@@ -1,0 +1,577 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+
+  <meta charset="UTF-8">
+
+  <title>LostFound Index</title>
+
+   <link rel="stylesheet" href="css/style.css" media="screen" type="text/css" />
+</head>
+
+<body>
+
+  <html ng-app="LostFound">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no, width=device-width">
+
+    <title>LostFound App</title>
+<!--
+    <link href="http://code.ionicframework.com/0.9.27/css/ionic.min.css" rel="stylesheet">
+    <script src="http://code.ionicframework.com/0.9.27/js/ionic.bundle.min.js"></script>
+-->
+    <link href="lib/ionic/css/ionic.min.css" rel="stylesheet">
+
+
+    <script src="lib/ionic/js/ionic.bundle.min.js"></script>
+
+
+
+</head>
+<body>
+
+<!-- ALL VIEW STATES LOADED IN HERE -->
+<ion-nav-view></ion-nav-view>
+
+
+<!-- THE MAIN CONTAINER HEADER-------------------------------------->
+<script id="mainContainer.html" type="text/ng-template">
+
+    <ion-side-menus>
+
+        <ion-pane ion-side-menu-content>
+            <ion-nav-bar type="bar bar-header bar-dark"
+                         
+                         animation="nav-title-slide-ios7"
+                >
+              
+             </ion-nav-bar>
+            <ion-nav-view name="main"></ion-nav-view>
+        </ion-pane>
+
+        <ion-side-menu side="left">
+            <header class="bar bar-header bar-stable">
+                <div class="title">Lost\Found Menu</div>
+            </header>
+            <ion-content has-header="true">
+                <ul class="list">
+             
+             <!--<a ui-sref="main.reportitem" class="item" ng-click="toggleMenu()">Report Item</a>-->
+             <a ui-sref="main.home" class="item" ng-click="toggleMenu()">Posts</a>
+             <a ui-sref="main.myitems1" class="item" ng-click="toggleMenu()">My Items</a>
+   <!--      <a ui-sref="main.profile" class="item" ng-click="toggleMenu()">Profile</a>
+             
+             <a ui-sref="main.reportedusers" class="item" ng-click="toggleMenu()">Report User</a>-->
+             <a ui-sref="main.info" class="item" ng-click="toggleMenu()">About us</a>
+             <a ui-sref="main.feedback" class="item" ng-click="toggleMenu()">FeedBack</a>   
+             <a ui-sref="main.help" class="item" ng-click="toggleMenu()">Help</a>
+            <!-- <a ui-sref="entry" class="item">Log Out</a>-->
+                  
+                </ul>
+            </ion-content>
+        </ion-side-menu>
+
+    </ion-side-menus>
+
+
+</script>
+
+
+
+
+
+<!--TABS and content------------------------------ -->
+<script id="home.html" type="text/ng-template">
+    <ion-view title="{{navTitle}}"  left-buttons="leftButtons" right-buttons="rightButtons">
+
+        <ion-tabs tabs-type="tabs-icon-top">
+          
+          <ion-tab title="LostItems" icon-on="ion-ios7-filing" icon-off="ion-ios7-filing-outline">
+                <ion-content has-header="true" padding="true">
+                  
+                  <div class="list">
+
+                    <div class="item item-input-inset">
+                      <label class="item-input-wrapper">
+                        <input type="text" placeholder="Search">
+                      </label>
+                    <select width="100" style="width: 100px" >
+                      <option selected >All</option>
+                      <option ng-repeat = "category in categories" >{{category.name}}</option>
+                      
+                     
+                    </select>
+                    </div>
+                  </div>
+                  
+                  <div class="list" ng-repeat="item in itemspre">
+                    
+                        <a class="item item-thumbnail-left" ui-sref="main.item">
+                 <img src={{item.imageurl}}>
+                          <h2>Item:{{item.itemname}}</h2>
+                          <p>Name:{{item.name}}</p>
+                          <p>Last Seen:{{item.location}}</p>
+                          <p>Satus:{{item.status}}</p>
+                          <p>{{item.views}}</p>
+                        </a>
+                      </div>
+                  
+                  
+                  
+                </ion-content>
+            </ion-tab>
+
+          <ion-tab title="NewsFeed" icon-on="ion-ios7-monitor" icon-off="ion-ios7-monitor-outline">
+                <ion-content has-header="true" padding="true">
+                  
+                  <div class="list">
+
+                    <div class="item item-input-inset">
+                      <label class="item-input-wrapper">
+                        <input type="text" placeholder="Search">
+                      </label>
+                    <select width="100" style="width: 100px">
+                      <option selected>All</option>
+                      <option ng-repeat = "category in categories" >{{category.name}}</option>
+                    </select>
+                    </div>
+                  </div>
+                 <div class="list" ng-repeat="item in itemspre">
+                    
+                        <a class="item item-thumbnail-left" ui-sref="main.item">
+                 <img src={{item.imageurl}}>
+                          <h2>Item:{{item.itemname}}</h2>
+                          <p>Name:{{item.name}}</p>
+                          <p>Last Seen:{{item.location}}</p>
+                          <p>Satus:{{item.status}}</p>
+                          <p>{{item.views}}</p>
+                        </a>
+                      </div>
+                
+                </ion-content>
+            </ion-tab>
+
+         <ion-tab title="FoundItems" icon-on="ion-ios7-box" icon-off="ion-ios7-box-outline">
+                <ion-content has-header="true" padding="true">
+                  
+                  <div class="list">
+
+                    <div class="item item-input-inset">
+                      <label class="item-input-wrapper">
+                        <input type="text" placeholder="Search">
+                      </label>
+                    <select width="100" style="width: 100px">
+                       <option selected >All</option>
+                      <option ng-repeat = "category in categories" >{{category.name}}</option>
+                    </select>
+                    </div>
+                  </div>
+                    
+                  <div class="list" ng-repeat="item in itemspre">
+                    
+                        <a class="item item-thumbnail-left" ui-sref="main.item">
+                 <img src={{item.imageurl}}>
+                          <h2>Item:{{item.itemname}}</h2>
+                          <p>Name:{{item.name}}</p>
+                          <p>Last Seen:{{item.location}}</p>
+                          <p>Satus:{{item.status}}</p>
+                          <p>{{item.views}}</p>
+                        </a>
+                      </div>
+                  
+                </ion-content>
+            </ion-tab>
+        </ion-tabs>
+
+
+    </ion-view>
+</script>
+
+ <!--Item Specific View -------------------------------------------------------------->  
+<script id="item.html" type="text/ng-template">
+    <ion-view title="{{navTitle}}" left-buttons="leftButtons" right-buttons="rightButtons">
+
+        <ion-content has-header="true" padding="true">
+          <div class="list card">
+
+<!--                <div class="item item-avatar">
+                  <img src="https://cdn4.iconfinder.com/data/icons/avatar-and-user/86/Avatar_person_user_character_man_woman_human-04-512.png">
+                  -->
+            <div>
+                  <h4>Djamsha@gmail.com</h4>
+                  <p><a class="button icon-left ion-ios7-telephone button-clear button-dark">787-123-4567</a></p>
+                  <p>November 05, 1955</p>
+                  
+                </div>
+
+                <div class="item item-body">
+                  <img class="full-image" src="http://static.photo.net/v3graphics/20140428/equipment/medium/2964.jpg">
+                  <p>
+                    I lost this camera today at stafani building around 12:30pm today. Please report it if you find it or leave a comment with information. 
+                  </p>
+            </div>
+            <div class="item item-body">
+                  <p> <a ui-sref= "main.comments" class="subdued">5 Comments</a></p>
+                  <p><a href="#" class="subdued">Location: Stefani</a></p>
+                <p><a href="#" class="subdued">Seen By: 100</a></p>
+                  
+                </div>
+
+                <div class="item tabs tabs-secondary tabs-icon-left">
+                  </a>
+                  <a class="tab-item" ui-sref="main.comments">
+                    <i class="icon ion-chatbox"></i>
+                    Comments
+                  </a>
+                  <a class="tab-item" href="#">
+                    <i class="icon ion-thumbsdown"></i>
+                    Report Post
+                  </a>
+                </div>
+
+              </div>
+          
+            
+
+        </ion-content>
+
+    </ion-view>
+
+</script>
+<!--REPORT-->
+  <script id="reportitem1.html" type="text/ng-template">
+    <ion-view title="{{navTitle}}" left-buttons="leftButtons">
+
+        <ion-content has-header="true" padding="true">
+          <div class="list">
+
+ 
+            <p><h5>Contact information:</h5></p>
+    <div class="list">
+            <label class="item item-input item-stacked-label">
+              <span class="input-label">Name</span>
+              <input type="text" placeholder="John Milk">
+            </label>
+             <div class="list">
+            <label class="item item-input item-stacked-label">
+              <span class="input-label">Last Name</span>
+              <input type="text" placeholder="John Milk">
+            </label>
+            <label class="item item-input item-stacked-label">
+              <span class="input-label">Valid Email</span>
+              <input type="text" placeholder="john.milk@upr.edu">
+            </label>
+            <label class="item item-input item-stacked-label">
+              <span class="input-label">PhoneNumber          </span>
+              <input type="text" placeholder="787-123-4567">
+            </label>
+          </div>
+  
+          
+            
+      <p></p>
+      <p><button class="button icon-right ion-chevron-right button-stable" ui-sref='main.reportitem2'>Continue</button></p>
+          
+        </ion-content>
+
+    </ion-view>
+
+</script>
+  
+  <script id="reportitem2.html" type="text/ng-template">
+    <ion-view title="{{navTitle}}" left-buttons="leftButtons" right-buttons="rightButtons">
+
+        <ion-content has-header="true" padding="true">
+          <div class="list">
+            
+            <label class="item item-input">
+              <span class="input-label">Item Name</span>
+              <input type="text">
+            </label>
+
+  <label class="item item-input item-select">
+    <div class="input-label">
+      Select a category of the item:
+    </div>
+    <select>
+       <option selected >All</option>
+                      <option ng-repeat = "category in categories" >{{category.name}}</option>
+    </select>
+  </label>
+  <label class="item item-input item-select">
+    <div class="input-label">
+      Item Status: 
+    </div>
+    <select>
+      <option>Lost</option>
+      <option>Found</option>
+    </select>
+  </label>
+
+</div>
+            <label class="item item-input item-stacked-label">
+          <span class="input-label">Provide a brief description of the item</span>
+
+                <textarea placeholder="Write description here..." rows="8" cols="10">
+                </textarea>
+              </label>
+            
+          <p><h></h></p>
+         
+          <label>
+          <div class="entrybuttons">
+           <p> <button class="button button-stable icon-right ion-image"
+                        ng-click = getPicture() >Upload</button>
+          
+            <button class="button button-stable icon-right ion-camera"
+                      ng-click = takePicture() >Take</button></p>
+          </div>
+          </label>
+          <p><h5>Select contact information to be displayed:</h5></p>
+          <label>
+           <ul  class="list">
+
+                <li class="item item-toggle">
+                   E-mail
+                   <label class="toggle toggle-dark">
+                     <input type="checkbox">
+                     <div class="track">
+                       <div class="handle"></div>
+                     </div>
+                   </label>
+                </li>
+             <li class="item item-toggle">
+                   Name
+                   <label class="toggle toggle-dark">
+                     <input type="checkbox">
+                     <div class="track">
+                       <div class="handle"></div>
+                     </div>
+                   </label>
+                </li>
+             <li class="item item-toggle">
+                   Phone Number
+                   <label class="toggle toggle-dark">
+                     <input type="checkbox">
+                     <div class="track">
+                       <div class="handle"></div>
+                     </div>
+                   </label>
+                </li>
+
+              </ul>
+          </label>
+          <p></p>
+          <p><h5>Send email everytime user comments:</h5></p>
+          <label>
+           <ul  class="list">
+
+                <li class="item item-toggle">
+                   Comment update emails
+                   <label class="toggle toggle-dark">
+                     <input type="checkbox">
+                     <div class="track">
+                       <div class="handle"></div>
+                     </div>
+                   </label>
+                </li>
+              </ul>
+          </label>
+      <p></p>
+      <p><button class="button icon-right ion-star button-stable">Preview</button></p>
+          
+        </ion-content>
+
+    </ion-view>
+
+</script>
+
+<script id="comments.html" type="text/ng-template">
+    <ion-view title="{{navTitle}}" left-buttons="leftButtons">
+
+        <ion-content has-header="true" padding="true">
+
+                    <div class="card" ng-repeat = "comment in comments">
+            <div class="item item-divider">
+              {{comment.name}}
+            </div>
+            <div class="item item-text-wrap">
+              {{comment.comment}}
+            </div>
+            <div class="item item-divider">
+            {{comment.date}}
+          </div>
+          </div>
+
+
+          <h6>Your Name:</h6>
+            <label class="item item-input">
+            <input type="text" placeholder="First Name">
+          </label>
+               <p><h></h></p>
+            <h6>Leave a comment about this item:</h6>
+            <label class="item item-input item-stacked-label">
+                <span class="input-label"></span>
+                <textarea placeholder="Write Commet here..." rows="8" cols="10">
+                </textarea>
+              </label>
+               <p><h></h></p>
+    <button class="button button-stable" ui-sref = 'main.home'>
+        Post
+    </button>
+
+        </ion-content>
+
+    </ion-view>
+
+</script>
+
+<!--ABOUT US -------------------------------------------------------------->  
+<script id="info.html" type="text/ng-template">
+    <ion-view title="{{navTitle}}" left-buttons="leftButtons">
+
+        <ion-content has-header="true" padding="true">
+
+            <h1>About us</h1>
+          <p>Lost or Found is a web-based system that will allow users to report lost or found items on a Campus. The system provides a simple and user friendly interaction with the user. Every user that wants to use any of the versions of this web-app will have to register with an email and a phone number. Each user will have a credibility status. This status will be made by the grant of other users on the app which indicates that it is a trustworthy user. Also to avoid bad intentional users, the application provides a way to report an user. This report can be seen by every user registered on the application to keep them warned.
+          </p>
+          
+          <p><div class="list">
+
+  <div class="item item-divider">
+    Contact Us:
+  </div>
+
+  <a class="item" ng-disable = "true">
+    irving.ramirez@upr.edu
+  </a>
+  <a class="item">
+    Angel.delatorre@upr.edu
+  </a>
+  <a class="item">
+    maria.rivera30@upr.edu
+  </a>
+
+
+</div>
+          <p></p>
+
+        </ion-content>
+
+    </ion-view>
+
+</script>
+
+<script id="myitems1.html" type="text/ng-template">
+    <ion-view title="{{navTitle}}" left-buttons="leftButtons">
+
+        <ion-content has-header="true" padding="true">
+                <div class="list">
+        <label class="item item-input">
+          <span class="input-label">E-mail</span>
+          <input type="text">
+        </label>
+        <label class="item item-input">
+          <span class="input-label">SecretKey</span>
+          <input type="password">
+        </label>
+      </div>
+      <button class="button button-stable" ui-sref = 'main.myitems2'>
+  Find items
+    </button>
+            
+        </ion-content>
+
+    </ion-view>
+
+</script>
+<script id="myitems2.html" type="text/ng-template">
+    <ion-view title="{{navTitle}}" left-buttons="leftButtons">
+
+        <ion-content has-header="true" padding="true">
+          
+            <div class="list">
+
+                    <div class="item item-input-inset">
+                      <label class="item-input-wrapper">
+                        <input type="text" placeholder="Search">
+                      </label>
+                    <select width="100" style="width: 100px" >
+                      <option selected >All</option>
+                      <option ng-repeat = "category in categories" >{{category.name}}</option>
+                    </select>
+                    </div>
+                  </div>
+                   <div class="list" ng-repeat="item in itemspre">
+                    
+                        <a class="item item-thumbnail-left" ui-sref="main.item">
+                 <img src={{item.imageurl}}>
+                          <h2>Item:{{item.itemname}}</h2>
+                          <p>Name:{{item.name}}</p>
+                          <p>Last Seen:{{item.location}}</p>
+                          <p>Satus:{{item.status}}</p>
+                          <p>{{item.views}}</p>
+                        </a>
+                      </div>    
+
+
+
+        </ion-content>
+
+    </ion-view>
+
+</script>
+
+ <script id="feedback.html" type="text/ng-template">
+    <ion-view title="{{navTitle}}" left-buttons="leftButtons">
+
+        <ion-content has-header="true" padding="true">
+          
+            <h6>With your comments we can build a better app.</h6>
+            <label class="item item-input item-stacked-label">
+                <span class="input-label">Please leave us your feedback</span>
+
+                <textarea placeholder="Write Commet here..." rows="8" cols="10">
+                </textarea>
+              </label>
+               <p><h></h></p>
+    <button class="button button-stable" ui-sref = 'main.info'>
+  Submit FeedBack
+    </button>
+
+        </ion-content>
+
+    </ion-view>
+
+</script>
+
+<script id="help.html" type="text/ng-template">
+    <ion-view title="{{navTitle}}" left-buttons="leftButtons">
+
+        <ion-content has-header="true" padding="true">
+          <div class="list card" ng-repeat = "help in tutorials">
+
+          <div class="item item-image">
+            <img ng-src={{help.pict}}>
+          </div>
+
+</div>
+
+        </ion-content>
+
+    </ion-view>
+
+</script>
+
+
+
+</body>
+</html>
+
+  <script src="js/index.js"></script>
+
+</body>
+
+</html>

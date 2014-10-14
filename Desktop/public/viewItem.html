@@ -1,0 +1,57 @@
+<!-- Page Content -->
+        <div nf-controller="languageController">
+    <div class="container" >
+
+        <div id ="editItemView"class="row" ng-controller="itemViewController">
+
+         
+
+            <div class="col-md-7">
+
+                <div class="thumbnail">
+                    <img class="img-responsive" src="http://www.quick-return-cleaners.co.uk/sitebuildercontent/sitebuilderpictures/keys.jpg" height="400" width="400">
+                    <div class="caption-full" >
+                        
+                        <h4>{{vm.translations.FOUNDBY}} <a> {{item.name}}</a> </h4>
+                        <h4>{{vm.translations.REPORTEDDATE}}: {{item.reportDate}}</h4>
+                        <h4>{{vm.translations.SUCCESDATE}}: {{item.successDate}}</h4>
+                         <h4>{{vm.translations.ITEMID}}: {{item.itemId}}</h4>
+                          <h4>{{vm.translations.LOCATION}}: {{item.location}}</h4>
+                          <h4>{{vm.translations.DESCRIPTION}}:</h4>                     
+                        <p>{{item.description}}</p>
+                    </div>
+                    
+                </div>
+
+                <div class="well">
+
+                    <div class="text-right">
+                        <a class="btn btn-success" ng-click="gotoTop()" ui-sref="form.addcomment" >{{vm.translations.LEAVECOMMENT}}</a>
+                    </div>
+
+                    <hr>
+                    <li id="comments" ng-repeat="com in comments">
+                    <div class="row">
+                        <span class="pull-right">{{com.date}}</span>
+                        <div class="col-md-12">
+                            
+                            <center>{{com.name}} {{vm.translations.SAID}}:
+                            <p>{{com.comment}}</p></center>
+                        </div>
+                    </div>
+                    <hr>
+                </li>
+                   
+                    
+
+
+                </div>
+                  
+
+            </div>
+
+        </div>
+
+    </div>
+</div>
+    <!-- /.container -->

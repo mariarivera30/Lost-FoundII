@@ -1,0 +1,15 @@
+<div class="adminlogin">
+     <label for="Email">
+                                {{vm.translations.EMAIL}}</label>
+                            <input type="text" class="form-control" id="email" placeholder="juan@gmail.com" required="require">
+      <label for="lastUser">
+                                {{vm.translations.SECRETKEY}}</label>
+                            <input type="text" class="form-control" id="secretKey" placeholder="{{vm.translations.SECRETKEY}}" required="require">
+                           
+
+<div class="buttonLoginAdmin">
+
+
+    <a ui-sref="form.admin.users" ng-click="gotoTop()" class="btn btn-primary">
+    {{vm.translations.LOGIN}}  </a>
+</div>

@@ -1,0 +1,41 @@
+<!-- Collect the nav links, forms, and other content for toggling -->
+    <style type="text/css">
+
+
+    #list{
+        padding-top: 5px;
+    }
+
+
+   
+</style>
+
+                
+<div id="list" ng-controller="formController"> 
+
+<ul class="list-group">
+  <li class="list-group-item" ng-repeat="item in items">
+    <div class="row">
+  <div class="col-xs-6 col-md-4"><div class="itemimg"><img ng-src="{{item.IMG}}"  ui-sref="form.viewitem" height="200" width="200"> </div></div>
+  <div class="col-xs-6 col-md-4"><h2 ><CENTER>{{item.userid}}</CENTER></h2><h4><CENTER>{{vm.translations.ITEMID}}: {{item.itemId}}</CENTER></h4><h4><CENTER>{{item.location}}</CENTER></h4><h4><center>{{vm.translations.SEENBY}}: {{item.views}}</center></h4>
+ </div>
+  <div class="col-xs-6 col-md-4">  
+ 
+
+ <div class="thumbs ">
+   
+  <h3 ><center>{{item.name}}</center></h3>
+ 
+ <center>
+
+ <button type="down" class="btn btn-large center"><span class="glyphicon glyphicon-thumbs-down custom"></span> </button></center></div>
+ </div>
+</div>
+
+  
+  </li>
+   
+  
+
+</ul>
+</div>
