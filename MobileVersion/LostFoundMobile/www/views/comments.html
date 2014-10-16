@@ -1,0 +1,36 @@
+<ion-view title="{{navTitle}}" left-buttons="leftButtons">
+
+    <ion-content has-header="true" padding="true">
+
+        <div class="card" ng-repeat = "comment in comments">
+            <div class="item item-divider">
+                {{comment.name}}
+            </div>
+            <div class="item item-text-wrap">
+                {{comment.comment}}
+            </div>
+            <div class="item item-divider">
+                {{comment.date}}
+            </div>
+        </div>
+
+
+        <h6>Your Name:</h6>
+        <label class="item item-input">
+            <input type="text" placeholder="First Name">
+        </label>
+        <p><h></h></p>
+        <h6>Leave a comment about this item:</h6>
+        <label class="item item-input item-stacked-label">
+            <span class="input-label"></span>
+            <textarea placeholder="Write Commet here..." rows="8" cols="10">
+            </textarea>
+        </label>
+        <p><h></h></p>
+        <button class="button button-stable" ui-sref = 'main.home'>
+            Post
+        </button>
+
+    </ion-content>
+
+</ion-view>
