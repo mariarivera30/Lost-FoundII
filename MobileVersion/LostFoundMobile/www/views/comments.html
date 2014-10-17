@@ -1,4 +1,4 @@
-<ion-view title="{{navTitle}}" left-buttons="leftButtons">
+<ion-view title="{{'comment_navTitle'|translate}}" left-buttons="leftButtons">
 
     <ion-content has-header="true" padding="true">
 
@@ -15,20 +15,19 @@
         </div>
 
 
-        <h6>Your Name:</h6>
+        <h6 translate= "Your_Name">Your Name:</h6>
         <label class="item item-input">
-            <input type="text" placeholder="First Name">
+            <input type="text" placeholder={{'First_Name'|translate}}>
         </label>
         <p><h></h></p>
-        <h6>Leave a comment about this item:</h6>
+        <h6 translate="Leave_Comment">Leave a comment about this item:</h6>
         <label class="item item-input item-stacked-label">
             <span class="input-label"></span>
-            <textarea placeholder="Write Commet here..." rows="8" cols="10">
-            </textarea>
+            <textarea placeholder= {{'comment_placeholder'|translate}} rows="8" cols="10"></textarea>
         </label>
         <p><h></h></p>
         <button class="button button-stable" ui-sref = 'main.home'>
-            Post
+            <div translate="Post">Post</div>
         </button>
 
     </ion-content>

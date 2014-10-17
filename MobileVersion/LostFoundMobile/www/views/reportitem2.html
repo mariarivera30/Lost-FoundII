@@ -1,16 +1,16 @@
-<ion-view title="{{navTitle}}" left-buttons="leftButtons" right-buttons="rightButtons">
+<ion-view title="{{'report_navTitle'|translate}}" left-buttons="leftButtons" right-buttons="rightButtons">
 
     <ion-content has-header="true" padding="true">
         <div class="list">
 
             <label class="item item-input">
-                <span class="input-label">Item Name</span>
+                <span class="input-label" translate="Item:">Item:</span>
                 <input type="text">
             </label>
 
             <label class="item item-input item-select">
                 <div class="input-label">
-                    Select a category of the item:
+                    <span translate="select_category">Select a category of the item:</span>
                 </div>
                 <select>
                     <option selected >All</option>
@@ -19,19 +19,19 @@
             </label>
             <label class="item item-input item-select">
                 <div class="input-label">
-                    Item Status:
+                    <span translate="item_status">Item Status:</span>
                 </div>
                 <select>
-                    <option>Lost</option>
-                    <option>Found</option>
+                    <option><span translate="Lost">Lost</span></option>
+                    <option><span translate="Found">Found</span></option>
                 </select>
             </label>
 
         </div>
         <label class="item item-input item-stacked-label">
-            <span class="input-label">Provide a brief description of the item</span>
+            <span class="input-label" translate="item_description">Provide a brief description of the item</span>
 
-            <textarea placeholder="Write description here..." rows="8" cols="10">
+            <textarea placeholder={{'w_item_description'|translate}} rows="8" cols="10">
             </textarea>
         </label>
 
@@ -40,18 +40,18 @@
         <label>
             <div class="entrybuttons">
                 <p> <button class="button button-stable icon-right ion-image"
-                            ng-click = "getPicture()" >Upload</button>
+                            ng-click = "getPicture()"><span translate="Upload">Upload</span></button>
 
                     <button class="button button-stable icon-right ion-camera"
-                            ng-click = "takePicture()" >Take</button></p>
+                            ng-click = "takePicture()"><span translate="Take">Take</span></button></p>
             </div>
         </label>
-        <p><h5>Select contact information to be displayed:</h5></p>
+        <p><h5 translate="cont_disp">Select contact information to be displayed:</h5></p>
         <label>
             <ul  class="list">
                 <label>
                     <li class="item item-toggle">
-                        E-mail
+                        <span translate="Email"> </span>
                         <label class="toggle toggle-dark">
                             <input type="checkbox">
                             <div class="track">
@@ -66,7 +66,7 @@
                 <label>
 
                     <li class="item item-toggle">
-                        Name
+                        <span translate="First_Name"> </span>
                         <label class="toggle toggle-dark">
                             <input type="checkbox">
                             <div class="track">
@@ -80,7 +80,7 @@
 
                 <label>
                     <li class="item item-toggle">
-                        Phone Number
+                        <span translate="Phone"></span>
                         <label class="toggle toggle-dark">
                             <input type="checkbox">
                             <div class="track">
@@ -94,12 +94,12 @@
         </ul>
 
         <p></p>
-        <p><h5>Send email everytime user comments:</h5></p>
+        <p><h5 translate="send_email">Send email everytime user comments:</h5></p>
         <label>
             <ul  class="list">
 
                 <li class="item item-toggle">
-                    Comment update emails
+                    <span translate="comment_update">Comment update emails</span>
                     <label class="toggle toggle-dark">
                         <input type="checkbox">
                         <div class="track">
@@ -110,7 +110,8 @@
             </ul>
         </label>
         <p></p>
-        <p><button class="button icon-right ion-star button-stable">Preview</button></p>
+        <p><button class="button icon-right ion-star button-stable">
+            <span translate="Preview">Preview</span></button></p>
 
     </ion-content>
 

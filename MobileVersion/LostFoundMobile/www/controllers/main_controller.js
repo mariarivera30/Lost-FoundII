@@ -1,7 +1,13 @@
-control.controller('MainController', [ '$scope',   function($scope) {
+control.controller('MainController', [ '$scope', '$translate','$log',  function($scope, $translate, $log) {
     $scope.toggleMenu = function() {
         $scope.sideMenuController.toggleLeft();
     };
+
+    $scope.ChangeLanguage = function(lang){
+        $translate.use(lang);
+    }
+
+
     $scope.categories = [{'name': 'Date'},
         {'name': 'Electronic'},
         {'name': 'Books'},

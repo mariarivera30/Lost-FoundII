@@ -1,5 +1,7 @@
 control.controller('langPageController', [ '$scope', '$state', function($scope, $state) {
-    $scope.navTitle = 'Language';
+    $scope.lang_navTitle = 'Language';
+
+
 
     $scope.leftButtons = [{
         type: 'button-icon icon ion-navicon',
@@ -9,3 +11,5 @@ control.controller('langPageController', [ '$scope', '$state', function($scope, 
     }];
 
 }]);
+
+

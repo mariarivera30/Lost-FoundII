@@ -1,5 +1,5 @@
 control.controller('commentsPageController', [ '$scope', '$state', function($scope, $state) {
-    $scope.navTitle = 'Comments';
+    $scope.comment_navTitle = 'Comments';
 
     $scope.leftButtons = [{
         type: 'button-icon icon ion-navicon',

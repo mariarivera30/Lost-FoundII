@@ -1,5 +1,5 @@
 control.controller('itemPageController', [ '$scope', '$state', function($scope, $state) {
-    $scope.navTitle = 'Item';
+    $scope.item_navTitle = 'Item';
 
     $scope.leftButtons = [{
         type: 'button-icon icon ion-navicon',

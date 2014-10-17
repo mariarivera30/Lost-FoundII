@@ -1,5 +1,5 @@
 control.controller('reportitem1PageController', [ '$scope', '$state', function($scope, $state) {
-    $scope.navTitle = 'Report Item';
+    $scope.report_navTitle = 'Report Item';
 
     $scope.leftButtons = [{
         type: 'button-icon icon ion-navicon',
@@ -9,7 +9,7 @@ control.controller('reportitem1PageController', [ '$scope', '$state', function($
     }];
 }]);
 control.controller('reportitem2PageController', [ '$scope', '$state',  function($scope, $state) {
-    $scope.navTitle = 'Report Item';
+    $scope.report_navTitle = 'Report Item';
 
     $scope.leftButtons = [{
         type: 'button-icon icon ion-navicon',

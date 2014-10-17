@@ -1,4 +1,4 @@
-<ion-view title="{{navTitle}}" left-buttons="leftButtons" right-buttons="rightButtons">
+<ion-view title="{{'item_navTitle'|translate}}" left-buttons="leftButtons" right-buttons="rightButtons">
 
     <ion-content has-header="true" padding="true">
         <div class="list card">
@@ -12,30 +12,32 @@
 
             <div class="item item-body">
                 <img class="full-image" src="http://static.photo.net/v3graphics/20140428/equipment/medium/2964.jpg">
+            </div>
+
+            <div class="item item-body">
+
+                <p class="subdued"><span translate="Location:">Location:</span> Stefani</p>
+                <p class="subdued"><span translate="Category:">Category:</span> Electronic</p>
                 <p>
                     I lost this camera today at stafani building around 12:30pm today. Please report it if you find it or leave a comment with information.
                 </p>
-            </div>
-            <div class="item item-body">
-                <p> <a ui-sref= "main.comments" class="subdued">5 Comments</a></p>
-                <p><a href="#" class="subdued">Location: Stefani</a></p>
-                <p><a href="#" class="subdued">Seen By: 100</a></p>
+                <p> <a ui-sref= "main.comments" class="subdued"><span translate="Comments">Comments</span></a></p>
 
             </div>
 
             <div class="item tabs tabs-secondary tabs-icon-left">
-                </a>
                 <a class="tab-item" ui-sref="main.comments">
                     <i class="icon ion-chatbox"></i>
-                    Comments
+                    <span translate="Comments">Comments</span>
                 </a>
                 <a class="tab-item" href="#">
                     <i class="icon ion-thumbsdown"></i>
-                    Report Post
+                    <span translate="Report">Report Post</span>
                 </a>
+
                 <a class="tab-item" ui-sref="main.reportitem2">
                     <i class="icon ion-settings"></i>
-                    Edit Post
+                    <span translate="edit_post">Edit Post</span>
                 </a>
             </div>
 
