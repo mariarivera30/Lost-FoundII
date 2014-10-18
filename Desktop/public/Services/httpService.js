@@ -8,13 +8,19 @@
 
    function addrestApi($http) {
     var service = {
-        getUsers:getUsers
+        getUsers:getUsers,
+        getItems:getItems
     };
 
     return service;
     function getUsers(){
     return $http.get('/allUsers');
-};
+	};
+
+ 	function getItems(){
+    return $http.get('/allItems');
+	};
+
 }
 
 

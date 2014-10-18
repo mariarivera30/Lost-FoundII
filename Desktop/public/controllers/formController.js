@@ -46,10 +46,6 @@ $scope.users
 }];
 
 
-	
-	// function to process the form
-	$scope.processForm = function() {
-		alert('awesome!');
-	};
+
 	
 }]);
