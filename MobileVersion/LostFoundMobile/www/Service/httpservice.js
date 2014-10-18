@@ -4,7 +4,7 @@
  var serviceId = 'restApi';
 
    // TODO: replace app with your module name
-   angular.module('formApp').factory(serviceId, ['$http', addrestApi]);
+   angular.module('LostFound').factory(serviceId, ['$http', addrestApi]);
 
    function addrestApi($http) {
     var service = {
@@ -14,11 +14,11 @@
 
     return service;
     function getUsers(){
-    return $http.get('/allUsers');
+    return $http.get('http://localhost:3000/allUsers');
 	};
 
  	function getItems(){
-    return $http.get('/allItems');
+    return $http.get('http://localhost:3000/allitems');
 	};
 
 
