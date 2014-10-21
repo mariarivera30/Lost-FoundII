@@ -9,7 +9,8 @@
    function addrestApi($http) {
     var service = {
         getUsers:getUsers,
-        getItems:getItems
+        getItems:getItems,
+        getCategories:getCategories
     };
 
     return service;
@@ -21,6 +22,9 @@
     return $http.get('/allItems');
 	};
 
+  function getCategories(){
+    return $http.get('/allCategories');
+  };
 
 }
 

@@ -42,7 +42,7 @@ exports.getUsers = function(req, res) {
                    if (err) {
                    return console.error('could not connect to postgres', err);
                    }
-                   client.query('SELECT  *  FROM public.users', function(err, result) {
+                   client.query('SELECT  *  FROM public.users ORDER BY users.firstname ASC ', function(err, result) {
                                
                                 if (err) {
                                 return console.error('error running query', err);
@@ -70,13 +70,41 @@ exports.getItems = function(req, res) {
                    if (err) {
                    return console.error('could not connect to postgres', err);
                    }
-                   client.query('SELECT  *  FROM public.item', function(err, result) {
+                   client.query('SELECT * FROM public.item, public.users WHERE item.userid = users.userid', function(err, result) {
                                
                                 if (err) {
                                 return console.error('error running query', err);
                                 }
                                 var response = {
                                 "items" : result.rows
+                                };
+                                res.status(200);
+                                res.json(response);
+                                console.log(response);
+                                //output: Tue Jan 15 2013 19:12:47 GMT-600 (CST)
+                                client.end();
+                                });
+                   });
+
+};
+
+exports.getCategories = function(req, res) {
+    console.log("GET");
+  res.header("Access-Control-Allow-Origin", "*");
+  res.header("Access-Control-Allow-Headers", "X-Requested-With");
+  var client = new pg.Client(conString);
+    
+  client.connect(function(err) {
+                   if (err) {
+                   return console.error('could not connect to postgres', err);
+                   }
+                   client.query('SELECT  *  FROM public.category', function(err, result) {
+                               
+                                if (err) {
+                                return console.error('error running query', err);
+                                }
+                                var response = {
+                                "categories" : result.rows
                                 };
                                 res.status(200);
                                 res.json(response);
