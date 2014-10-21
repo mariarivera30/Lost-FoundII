@@ -50,6 +50,7 @@ app.all('/', function(req, res, next) {
 app.get('/', routes.index);
 app.get('/allUsers', routes.getUsers);
 app.get('/allItems', routes.getItems);
+app.get('/allCategories', routes.getCategories);
 
 http.createServer(app).listen(app.get('port'), function(){
   console.log('Express server listening on port ' + app.get('port'));

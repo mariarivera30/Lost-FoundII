@@ -36,10 +36,10 @@
            
           </tr>
         </thead>
-        <tbody>
+        <tbody ng-repeat="category in categories">
           <tr>
-            <td><input type="checkbox" name="users" value=" "></td>
-            <td>Electronics</td>
+            <td><input type="checkbox" name="category" value=" "></td>
+            <td>{{category.categoryname}}</td>
             
           </tr>
           

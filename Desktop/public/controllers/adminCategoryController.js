@@ -1,8 +1,18 @@
 angular.module('formApp')
-.controller('adminCategoryController', function($scope) {
+.controller('adminCategoryController',['$scope','$http','restApi', function($scope,$http,restApi) {
+
+$scope.categories
+  getCategories();  
+	function getCategories() {
+        restApi.getCategories()
+            .success(function (data) {
+              
+                $scope.categories = data.categories;
+              })
+            .error(function (error) {
+                $scope.status = 'Unable to load customer data: ' + error.message;
+            });
+    };
+             
 	
-	// we will store all of our form data in this object
-	$scope.categories = [{'name': 'Date'},{'name': 'Electronics'},{'name': 'Books'},{'name': 'Bags'},{'name': 'Personal'},{'name': 'Clothes'}
-	,{'name': 'Other'}];
-	
-});
+}]);
