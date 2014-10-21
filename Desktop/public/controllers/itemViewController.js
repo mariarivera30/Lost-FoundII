@@ -1,5 +1,5 @@
 angular.module('formApp')
-.controller('itemViewController',['$scope','restApi', function($scope,restApi) {
+.controller('itemViewController',['$scope','restApi','shareData' ,function($scope,restApi,shareData) {
 
 
  function getUser() {
@@ -29,20 +29,7 @@ angular.module('formApp')
 	 	},
 	 	];
 
-$scope.item = {'name': 'Maria Rivera',
-'phone':'7879787978',
-	     'itemId': '#80',
-	 	  'views': '12',
-	 	  'status':'FOUND',
-	 	  'location':'Fisica',
-	 	  'reportDate':'03/08/15',
-	 	   'itemName':'Keys',
-	 	   'description':'Tiene 6 llaves. ',
-	 		'city':'San Juan',
-	 		'thumbsDown':'60',
-	 		'successDate':'undelivered',
-	 		'picture':'PICTURE'
-	 	};
+$scope.item = shareData.selectedItem;
 	
 	// function to process the form
 	$scope.processForm = function() {

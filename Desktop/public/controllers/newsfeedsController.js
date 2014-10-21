@@ -1,5 +1,5 @@
 angular.module('formApp')
-.controller('newsfeedsController',['$scope','$http','restApi', function($scope,$http,restApi) {
+.controller('newsfeedsController',['$scope','$http','restApi','shareData', function($scope,$http,restApi,shareData) {
 	
  $scope.items
 
@@ -15,7 +15,13 @@ angular.module('formApp')
             });
     }
 	// we will store all of our form data in this object
-	
+	$scope.itemSelected = {};
+  $scope.setValue = function(e) {
+    $scope.itemSelected = e;
+    shareData.selectedItem= e;
+
+ 
+  }
 
 
 	

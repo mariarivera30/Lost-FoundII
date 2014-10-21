@@ -1,6 +1,6 @@
 
 var pg = require('pg');
-var conString = "pg://postgres:postgres@localhost:5432/lostfoundDB";
+var conString = "pg://postgres:casa7463@localhost:5432/lostfoundDB";
 /*
  * GET home page.
  */

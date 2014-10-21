@@ -9,14 +9,15 @@
             <div class="col-md-7">
 
                 <div class="thumbnail">
-                    <img class="img-responsive" src="http://www.quick-return-cleaners.co.uk/sitebuildercontent/sitebuilderpictures/keys.jpg" height="400" width="400">
+                    <img ng-src="{{item.itempicture}}">
+                    <h4> <a> {{item.itemname}}</a> </h4>
                     <div class="caption-full" >
                         
-                        <h4>{{vm.translations.FOUNDBY}} <a> {{item.name}}</a> </h4>
-                        <h4>{{vm.translations.REPORTEDDATE}}: {{item.reportDate}}</h4>
-                        <h4>{{vm.translations.SUCCESDATE}}: {{item.successDate}}</h4>
-                         <h4>{{vm.translations.ITEMID}}: {{item.itemId}}</h4>
-                          <h4>{{vm.translations.LOCATION}}: {{item.location}}</h4>
+                        <h4>{{vm.translations.FOUNDBY}} <a> {{item.itemid}}</a> </h4>
+                        <h4>{{vm.translations.REPORTEDDATE}}: {{item.itemdate}}</h4>
+                        <h4>{{vm.translations.SUCCESDATE}}: {{item.itemsuccessdate}}</h4>
+                         <h4>{{vm.translations.ITEMID}}: {{item.itemid}}</h4>
+                          <h4>{{vm.translations.LOCATION}}: {{item.locationitem}}</h4>
                           <h4>{{vm.translations.DESCRIPTION}}:</h4>                     
                         <p>{{item.description}}</p>
                     </div>
