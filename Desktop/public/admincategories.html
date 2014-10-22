@@ -14,10 +14,10 @@
 </div>
         <div class="col-xs-6 col-md-4">
               
-                 <input type="text" class="form-control" placeholder={{vm.translations.ADDCATEGORY}} id="searchBarUsers">
+                 <input type="text" class="form-control" placeholder={{vm.translations.ADDCATEGORY}} id="searchBarUsers" ng-model="hi" >
              </div>      
        <div id ="AddCategoryBtnDiv">                        
-        <a href="#" id ="AddBtn" class="btn btn-primary" role="button" >{{vm.translations.ADD}}</a> 
+        <a  ui-sref="form.admin.category" ng-click="postCategories(hi)"id ="AddBtn" class="btn btn-primary" role="button">{{vm.translations.ADD}}</a> 
         <a href="#" id ="AddBtn" class="btn btn-primary" role="button" >{{vm.translations.REMOVE}}</a> 
       </div> 
         

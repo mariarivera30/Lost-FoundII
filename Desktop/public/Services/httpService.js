@@ -12,7 +12,9 @@
         getItems:getItems,
         getCategories:getCategories,
         getLostItems:getLostItems,
-        getFoundItems:getFoundItems
+        getFoundItems:getFoundItems,
+        postCategories:postCategories
+
     };
 
     return service;
@@ -26,6 +28,10 @@
 
   function getCategories(){
     return $http.get('/allCategories');
+  };
+
+  function postCategories(){
+    return $http.post('/aCategories');
   };
 
   function getLostItems(){

@@ -9,16 +9,16 @@ exports.index = function(req, res){
   res.render('index', { title: 'Express' });
 };
 
-/*
-exports.createDoctorAccount= function(req,res){
-   
-     var client = new pg.Client(conString);
+
+exports.postCategories= function(req,res){
+  console.log("POST");
+  var client = new pg.Client(conString);
       
   client.connect(function(err) {
                    if (err) {
                    return console.error('could not connect to postgres', err);
                    }
-                   client.query("INSERT INTO doctors (doctor_name,doctor_last) VALUES ('"+req.body.name+"','"+req.body.last+"' )", function(err, result) {
+                   client.query("INSERT INTO category (categoryname) VALUES ('bam')", function(err, result) {
                                
                                 if (err) {
                                 return console.error('error running query', err);
@@ -28,7 +28,7 @@ exports.createDoctorAccount= function(req,res){
                                 client.end();
                                 });
                    });
-};*/
+};
 
 
 
