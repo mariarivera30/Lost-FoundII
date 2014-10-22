@@ -33,20 +33,21 @@
 </div>
 </div>
 </div>
-<div id="list" ng-controller="formController"> 
+<div ng-controller="lostController">
+<div id="list" ng-controller="formController" > 
 
 <ul class="list-group">
-  <li class="list-group-item" ng-repeat="item in items" >
+  <li class="list-group-item" ng-repeat="lostitem in lostItems" >
     <div class="row">
-  <div class="col-xs-6 col-md-4"><div class="itemimg"><img ng-src="{{item.IMG}}"  ui-sref="form.viewitem" height="200" width="200"> </div></div>
-  <div class="col-xs-6 col-md-4"><h2 ><CENTER>{{item.status}}</CENTER></h2><h4><CENTER> {{vm.translations.ITEMID}} {{item.itemId}}</CENTER></h4><h4><CENTER>{{item.location}}</CENTER></h4><h4><center> {{vm.translations.SEENBY}}: {{item.views}}</center></h4>
+  <div class="col-xs-6 col-md-4"><div class="itemimg"><img ng-src="{{lostitem.itempicture}}"  ui-sref="form.viewitem" height="200" width="200"> </div></div>
+  <div class="col-xs-6 col-md-4"><h2 ><CENTER>{{lostitem.itemstatus}}</CENTER></h2><h4><CENTER> {{vm.translations.ITEMID}} {{lostitem.itemid}}</CENTER></h4><h4><CENTER>{{lostitem.locationitem}}</CENTER></h4><h4><center> {{vm.translations.SEENBY}}: {{lostitem.itemviews}}</center></h4>
  </div>
   <div class="col-xs-6 col-md-4">  
  
 
  <div class="thumbs ">
    
-  <h3 ><center>{{item.name}}</center></h3>
+  <h3 ><center>{{lostitem.itemname}}</center></h3>
  
  <center>
 
@@ -60,4 +61,5 @@
   
 
 </ul>
+</div>
 </div>

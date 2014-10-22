@@ -10,7 +10,9 @@
     var service = {
         getUsers:getUsers,
         getItems:getItems,
-        getCategories:getCategories
+        getCategories:getCategories,
+        getLostItems:getLostItems,
+        getFoundItems:getFoundItems
     };
 
     return service;
@@ -24,6 +26,14 @@
 
   function getCategories(){
     return $http.get('/allCategories');
+  };
+
+  function getLostItems(){
+    return $http.get('/allLostItems');
+  };
+
+  function getFoundItems(){
+    return $http.get('/allFoundItems');
   };
 
 }
