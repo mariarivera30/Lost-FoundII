@@ -30,8 +30,9 @@
     return $http.get('/allCategories');
   };
 
-  function postCategories(){
-    return $http.post('/aCategories');
+  function postCategories(newCategory){
+    var data = {type:newCategory};
+    return $http.post('/aCategories/', data);
   };
 
   function getLostItems(){
