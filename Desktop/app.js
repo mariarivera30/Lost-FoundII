@@ -46,7 +46,7 @@ app.all('/', function(req, res, next) {
  });
 
 
-
+//gets
 app.get('/', routes.index);
 app.get('/allUsers', routes.getUsers);
 app.get('/allItems', routes.getItems);
@@ -55,8 +55,8 @@ app.get('/allLostItems', routes.getLostItems);
 app.get('/allFoundItems', routes.getFoundItems);
 
 
-
-app.post('/aCategories', routes.postCategories);
+//posts
+app.post('/aCategories',routes.postCategories);
 
 http.createServer(app).listen(app.get('port'), function(){
   console.log('Express server listening on port ' + app.get('port'));
