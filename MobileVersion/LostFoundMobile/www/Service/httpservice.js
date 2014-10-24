@@ -14,11 +14,12 @@
 
     return service;
     function getUsers(){
-    return $http.get('http://localhost:3000/allUsers');
+    return $http.get('http://192.168.1.110:3000/allUsers');
 	};
 
  	function getItems(){
-    return $http.get('http://localhost:3000/allitems');
+
+    return $http.get('http://192.168.1.110:3000/allItems');
 	};
 
 
