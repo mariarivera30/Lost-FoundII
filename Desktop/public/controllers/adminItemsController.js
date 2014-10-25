@@ -1,5 +1,5 @@
 angular.module('formApp')
-.controller('adminItemsController',['$scope','$http','restApi', function($scope,$http,restApi) {
+.controller('adminItemsController',['$scope','$http','restApi', 'shareData' , function($scope,$http,restApi,shareData) {
 
 $scope.items
   getItems();  
@@ -13,7 +13,17 @@ $scope.items
                 $scope.status = 'Unable to load customer data: ' + error.message;
             });
     }
-  // we will store all of our form data in this object
 
+
+
+  // we will store all of our form data in this object
+ $scope.commentofitem = {};
+  
+  $scope.setValue = function(e) {
+    $scope.commentofitem = e;
+    shareData.commentofitem= e;
+
+ 
+  }
 
 }]);

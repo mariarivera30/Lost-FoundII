@@ -53,7 +53,7 @@ app.get('/allItems', routes.getItems);
 app.get('/allCategories', routes.getCategories);
 app.get('/allLostItems', routes.getLostItems);
 app.get('/allFoundItems', routes.getFoundItems);
-
+app.get('/allComments/:id', routes.getComments);
 
 //posts
 app.post('/aCategories',routes.postCategories);

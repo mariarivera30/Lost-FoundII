@@ -16,6 +16,7 @@ angular.module('formApp')
     }
 	// we will store all of our form data in this object
 	$scope.itemSelected = {};
+  
   $scope.setValue = function(e) {
     $scope.itemSelected = e;
     shareData.selectedItem= e;

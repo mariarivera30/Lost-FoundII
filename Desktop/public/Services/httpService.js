@@ -13,7 +13,8 @@
         getCategories:getCategories,
         getLostItems:getLostItems,
         getFoundItems:getFoundItems,
-        postCategories:postCategories
+        postCategories:postCategories,
+        getComments:getComments
 
     };
 
@@ -41,6 +42,10 @@
 
   function getFoundItems(){
     return $http.get('/allFoundItems');
+  };
+
+  function getComments(id){
+    return $http.get('/allComments/'+id);
   };
 
 }

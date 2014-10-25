@@ -13,17 +13,21 @@ $scope.categories
                 $scope.status = 'Unable to load customer data: ' + error.message;
             });
     };
-
+$scope.loadData = function(){
+  getCategories();
+};
  $scope.postCategories = function(newCategory) {
         restApi.postCategories(newCategory)
+
           .success(function (data) {
-                $route.reload();
-                getCategories(); 
+               
+               
               })
             .error(function (error) {
                 $scope.status = 'Unable to post customer data: ' + error.message;
             });
+      
     };
-          
+           
 	
 }]);
