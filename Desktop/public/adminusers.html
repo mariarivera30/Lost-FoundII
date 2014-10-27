@@ -3,12 +3,12 @@
 <div id = "AdminSearch" >
    <div class="col-xs-6 col-md-10">
               
-                 <input type="text" class="form-control" placeholder={{vm.translations.SEARCH}} id="searchBarUsers">
+                 <input type="text" class="form-control" placeholder={{vm.translations.SEARCH}} id="searchBarUsers" ng-model="searchAdminUser">
              </div>
  
               
    <div id ="searchUser">                        
-        <a  id ="SearchBtn" class="btn btn-primary" role="button" >{{vm.translations.SEARCH}}</a> 
+        <a  id ="SearchBtn" class="btn btn-primary" role="button" ng-click="setValue(searchAdminUser)">{{vm.translations.SEARCH}}</a> 
         
       </div> 
 </div>

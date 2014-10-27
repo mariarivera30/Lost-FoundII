@@ -6,7 +6,8 @@
    angular.module('formApp').factory('shareData', function() {  
 	return {
 		selectedItem : {},
-		commentofitem :{}
+		commentofitem :{},
+		searchUserEmail : {}
 		
 	};
 

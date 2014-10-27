@@ -202,6 +202,63 @@ exports.getComments = function(req, res) {
 
 };
 
+
+exports.getUserAdmin = function(req, res) {
+    console.log("GET");
+  res.header("Access-Control-Allow-Origin", "*");
+  res.header("Access-Control-Allow-Headers", "X-Requested-With");
+  var client = new pg.Client(conString);
+    
+  client.connect(function(err) {
+                   if (err) {
+                   return console.error('could not connect to postgres', err);
+                   }
+                   client.query("SELECT * FROM public.users WHERE users.email = '"+req.params.id+"' ", function(err, result) {
+                               
+                                if (err) {
+                                return console.error('error running query', err);
+                                }
+                                var response = {
+                                "anUser" : result.rows
+                                };
+                                res.status(200);
+                                res.json(response);
+                                console.log(response);
+                                //output: Tue Jan 15 2013 19:12:47 GMT-600 (CST)
+                                client.end();
+                                });
+                   });
+
+};
+
+exports.deleteCategory = function(req, res) {
+  console.log("DELETE");
+  res.header("Access-Control-Allow-Origin", "*");
+  res.header("Access-Control-Allow-Headers", "X-Requested-With");
+  var client = new pg.Client(conString);
+    
+  client.connect(function(err) {
+                   if (err) {
+                   return console.error('could not connect to postgres', err);
+                   }
+                   client.query("DELETE FROM public.category WHERE category.categoryname = '"+req.params.id+"' ", function(err, result) {
+                               
+                                if (err) {
+                                return console.error('error running query', err);
+                                }
+                                var response = {
+                                "categories" : result.rows
+                                };
+                                res.status(200);
+                                res.json(response);
+                                console.log(response);
+                                //output: Tue Jan 15 2013 19:12:47 GMT-600 (CST)
+                                client.end();
+                                });
+                   });
+
+};
+
 /*exports.getDoctorById = function(req, res){
     console.log("GET");
     res.setHeader("Content-Type", "application/json");

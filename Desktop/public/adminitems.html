@@ -46,7 +46,7 @@
         <tbody ng-repeat="item in items">
           <tr>
             <td><input type="checkbox" name="users" value=" "></td>
-            <td><a ui-sref="form.admin.comments" ng-click="setValue(item.itemid)">{{item.itemid}}</a></td>
+            <td><a ui-sref="form.admin.comments" ng-click="setValue(item.itemid); gotoTop()">{{item.itemid}}</a></td>
             <td>{{item.itemname}}</td>
             <td>{{item.email}}</td>
           </tr>

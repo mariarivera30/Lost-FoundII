@@ -17,8 +17,8 @@
                  <input type="text" class="form-control" placeholder={{vm.translations.ADDCATEGORY}} id="searchBarUsers" ng-model="newCategory" >
              </div>      
        <div id ="AddCategoryBtnDiv">                        
-        <a  ui-sref="form.admin.category" ng-click="postCategories(newCategory)" id ="AddBtn" class="btn btn-primary" role="button">{{vm.translations.ADD}}</a> 
-        <a href="#" id ="AddBtn" class="btn btn-primary" role="button" >{{vm.translations.REMOVE}}</a> 
+        <a  ui-sref="form.admin.category" ng-click="postCategories(newCategory); gotoTop();" id ="AddBtn" class="btn btn-primary" role="button">{{vm.translations.ADD}}</a> 
+        <a ui-sref="form.admin.category" ng-click="deleteCategory(category.categoryname)" id ="AddBtn" class="btn btn-primary" role="button" >{{vm.translations.REMOVE}}</a> 
       </div> 
         
 
@@ -36,10 +36,10 @@
            
           </tr>
         </thead>
-        <tbody ng-repeat="category in categories">
-          <tr>
-            <td><input type="checkbox" name="category" value=" "></td>
-            <td>{{category.categoryname}}</td>
+        <tbody ng-repeat="category in categories" ng-click="setValue(category.categoryname)" >
+          <tr >
+            <td><input type="checkbox" checklist-model="categoryname" checklist-value="category.categoryname"><td>{{category.categoryname}}</td></td>
+            
             
           </tr>
           

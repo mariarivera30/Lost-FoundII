@@ -14,7 +14,9 @@
         getLostItems:getLostItems,
         getFoundItems:getFoundItems,
         postCategories:postCategories,
-        getComments:getComments
+        getComments:getComments,
+        getUserAdmin:getUserAdmin,
+        deleteCategory:deleteCategory
 
     };
 
@@ -46,6 +48,14 @@
 
   function getComments(id){
     return $http.get('/allComments/'+id);
+  };
+
+  function getUserAdmin(id){
+    return $http.get('/anUser/'+id);
+  };
+
+  function deleteCategory(id){
+    return $http.delete('/deleteCategory/'+id);
   };
 
 }

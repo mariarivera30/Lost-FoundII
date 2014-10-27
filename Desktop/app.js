@@ -54,9 +54,14 @@ app.get('/allCategories', routes.getCategories);
 app.get('/allLostItems', routes.getLostItems);
 app.get('/allFoundItems', routes.getFoundItems);
 app.get('/allComments/:id', routes.getComments);
+app.get('/anUser/:id', routes.getUserAdmin);
 
 //posts
 app.post('/aCategories',routes.postCategories);
+
+//deletes
+app.delete('/deleteCategory/:id', routes.deleteCategory);
+
 
 http.createServer(app).listen(app.get('port'), function(){
   console.log('Express server listening on port ' + app.get('port'));
