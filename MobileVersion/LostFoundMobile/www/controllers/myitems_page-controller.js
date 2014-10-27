@@ -17,4 +17,11 @@ control.controller('myitems2PageController', [ '$scope', '$state', function($sco
             $scope.toggleMenu();
         }
     }];
+
+    $scope.setValue = function(e) {
+        $scope.itemSelected = e;
+        shareData.selectedItem = e;
+    };
+
+
 }]);
