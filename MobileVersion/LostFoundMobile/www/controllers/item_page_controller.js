@@ -1,4 +1,4 @@
-control.controller('itemPageController', [ '$scope', '$state', function($scope, $state) {
+control.controller('itemPageController', [ '$scope', '$state','shareData', function($scope, $state, shareData) {
     $scope.item_navTitle = 'Item';
 
     $scope.leftButtons = [{
@@ -13,4 +13,7 @@ control.controller('itemPageController', [ '$scope', '$state', function($scope, 
             window.history.back();
         }
     }];
+
+    $scope.item = shareData.selectedItem;
+
 }]);

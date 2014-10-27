@@ -7,5 +7,5 @@ control.controller('SpecificmyitemsPageController', [ '$scope', '$state', functi
             $scope.toggleMenu();
         }
     }];
-
+    $scope.item = shareData.selectedItem;
 }]);

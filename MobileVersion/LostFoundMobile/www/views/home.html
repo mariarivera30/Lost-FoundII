@@ -13,16 +13,16 @@
                         </label>
                         <select width="100" style="width: 100px" >
                             <option selected >All</option>
-                            <option ng-repeat = "category in categories" >{{category.name}}</option>
+                            <option ng-repeat = "category in categories">{{category.categoryname}}</option>
 
 
                         </select>
                     </div>
                 </div>
 
-                <div class="list" ng-repeat="item in itemsMaria">
+                <div class="list" ng-repeat="item in lostItems" >
 
-                    <a class="item item-thumbnail-left" ui-sref="main.item">
+                    <a class="item item-thumbnail-left" ui-sref="main.item" ng-click="setValue(item)">
                         <img src={{item.itempicture}}>
                         <h2><span translate="Item:">Item</span> {{item.itemname}}</h2>
                         <p><span translate="Name:">Name:</span> {{item.itemname}}</p>
@@ -49,13 +49,13 @@
                         </label>
                         <select width="100" style="width: 100px">
                             <option selected>All</option>
-                            <option ng-repeat = "category in categories" >{{category.name}}</option>
+                            <option ng-repeat = "category in categories" >{{category.categoryname}}</option>
                         </select>
                     </div>
                 </div>
-                <div class="list" ng-repeat="item in itemsMaria">
+                <div class="list" ng-repeat="item in items">
 
-                    <a class="item item-thumbnail-left" ui-sref="main.item">
+                    <a class="item item-thumbnail-left" ui-sref="main.item" ng-click="setValue(item)">
                         <img src={{item.itempicture}}>
                         <h2><span translate="Item:">Item</span> {{item.itemname}}</h2>
                         <p><span translate="Name:">Name:</span> {{item.itemname}}</p>
@@ -80,14 +80,14 @@
                         </label>
                         <select width="100" style="width: 100px">
                             <option selected >All</option>
-                            <option ng-repeat = "category in categories" >{{category.name}}</option>
+                            <option ng-repeat = "category in categories" >{{category.categoryname}}</option>
                         </select>
                     </div>
                 </div>
 
-                 <div class="list" ng-repeat="item in itemsMaria">
+                 <div class="list" ng-repeat="item in foundItems" >
 
-                    <a class="item item-thumbnail-left" ui-sref="main.item">
+                    <a class="item item-thumbnail-left" ui-sref="main.item" ng-click="setValue(item)">
                         <img src={{item.itempicture}}>
                         <h2><span translate="Item:">Item</span> {{item.itemname}}</h2>
                         <p><span translate="Name:">Name:</span> {{item.itemname}}</p>
