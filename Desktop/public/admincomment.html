@@ -1,4 +1,4 @@
-<div ng-Controller="adminCommentController">
+<div ng-Controller="adminCommentController as commentCtrl">
 <div ng-Controller="languageController">
 <div id = "AdminSearch">
    <div class="col-xs-6 col-md-10">
@@ -40,7 +40,7 @@
             <th><center>{{vm.translations.EMAIL}}</center></th>
           </tr>
         </thead>
-        <tbody ng-repeat="comment in comments">
+        <tbody ng-repeat="comment in commentCtrl.comments">
           <tr>
             <td><input type="checkbox" name="users" value=" "></td>
             <td>{{comment.usercomment}}</td>

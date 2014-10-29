@@ -1,19 +1,21 @@
 angular.module('formApp')
 .controller('lostController',['$scope','$http','restApi', function($scope,$http,restApi) {
 
-$scope.lostItems
+var lostCtrl = this;
+lostCtrl.lostItems = getLostItems;
+lostCtrl.status = {};
+
+
   getLostItems();  
   function getLostItems() {
         restApi.getLostItems()
             .success(function (data) {
               
-                $scope.lostItems = data.lostItems;
+                lostCtrl.lostItems = data.lostItems;
               })
             .error(function (error) {
-                $scope.status = 'Unable to load customer data: ' + error.message;
+                lostCtrl.status = 'Unable to load customer data: ' + error.message;
             });
     }
-  // we will store all of our form data in this object
-
-
+  
 }]);

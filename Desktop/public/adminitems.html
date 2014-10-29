@@ -1,5 +1,5 @@
 <div ng-controller="languageController">
-<div ng-controller="adminItemsController">
+<div ng-controller="adminItemsController as itemCtrl">
 <div id = "AdminSearch">
    <div  class="col-xs-6 col-md-10">
               
@@ -43,10 +43,10 @@
             <th><center>{{vm.translations.EMAIL}}</center></th>
           </tr>
         </thead>
-        <tbody ng-repeat="item in items">
+        <tbody ng-repeat="item in itemCtrl.items">
           <tr>
             <td><input type="checkbox" name="users" value=" "></td>
-            <td><a ui-sref="form.admin.comments" ng-click="setValue(item.itemid); gotoTop()">{{item.itemid}}</a></td>
+            <td><a ui-sref="form.admin.comments" ng-click="itemCtrl.setValue(item.itemid); gotoTop()">{{item.itemid}}</a></td>
             <td>{{item.itemname}}</td>
             <td>{{item.email}}</td>
           </tr>

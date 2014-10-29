@@ -33,11 +33,11 @@
 </div>
 </div>
 </div>
-<div ng-controller="foundController">
+<div ng-controller="foundController as foundCtrl">
 <div id="list" ng-controller="formController"> 
 
 <ul class="list-group">
-  <li class="list-group-item" ng-repeat="foundItem in foundItems">
+  <li class="list-group-item" ng-repeat="foundItem in foundCtrl.foundItems">
     <div class="row">
   <div class="col-xs-6 col-md-4"><div class="itemimg"><img ng-src="{{foundItem.itempicture}}"  ui-sref="form.viewitem" height="200" width="200"> </div></div>
   <div class="col-xs-6 col-md-4"><h2 ><CENTER>{{foundItem.itemstatus}}</CENTER></h2><h4><CENTER> {{vm.translations.ITEMID}}: {{foundItem.itemid}}</CENTER></h4><h4><CENTER>{{foundItem.locationitem}}</CENTER></h4><h4><center> {{vm.translations.SEENBY}}: {{foundItem.itemviews}}</center></h4>

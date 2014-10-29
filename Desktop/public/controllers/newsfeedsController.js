@@ -1,24 +1,28 @@
 angular.module('formApp')
 .controller('newsfeedsController',['$scope','$http','restApi','shareData', function($scope,$http,restApi,shareData) {
 	
- $scope.items
+var newsfeedCtrl = this;
+newsfeedCtrl.items = getItems;
+newsfeedCtrl.status = {};
+shareData.itemSelected = {};
+newsfeedCtrl.setValue = setValue;
+
 
   getItems();  
 	function getItems() {
         restApi.getItems()
             .success(function (data) {
               
-                $scope.items = data.items;
+                newsfeedCtrl.items = data.items;
               })
             .error(function (error) {
-                $scope.status = 'Unable to load customer data: ' + error.message;
+                newsfeedCtrl.status = 'Unable to load customer data: ' + error.message;
             });
     }
-	// we will store all of our form data in this object
-	$scope.itemSelected = {};
+	
   
-  $scope.setValue = function(e) {
-    $scope.itemSelected = e;
+  function setValue(e) {
+
     shareData.selectedItem= e;
 
  

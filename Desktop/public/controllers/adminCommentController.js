@@ -2,9 +2,9 @@
 angular.module('formApp')
 .controller('adminCommentController',['$scope','$http','restApi','shareData' , function($scope,$http,restApi,shareData) {
 
-
-
-$scope.comments
+var commentCtrl = this;
+commentCtrl.comments = getComments;
+commentCtrl.status = {};
 
 getComments();
    function getComments() {
@@ -12,12 +12,12 @@ getComments();
         restApi.getComments(shareData.commentofitem)
             .success(function (data) {
               
-                $scope.comments = data.comments;
+                commentCtrl.comments = data.comments;
                 
 
               })
             .error(function (error) {
-                $scope.status = 'Unable to load customer data: ' + error.message;
+                commentCtrl.status = 'Unable to load customer data: ' + error.message;
             });
     }
 

@@ -1,5 +1,5 @@
 <div ng-controller="languageController">
-<div ng-controller="adminUsersController">
+<div ng-controller="adminUsersController as userCtrl">
 <div id = "AdminSearch" >
    <div class="col-xs-6 col-md-10">
               
@@ -8,7 +8,7 @@
  
               
    <div id ="searchUser">                        
-        <a  id ="SearchBtn" class="btn btn-primary" role="button" ng-click="setValue(searchAdminUser)">{{vm.translations.SEARCH}}</a> 
+        <a  id ="SearchBtn" class="btn btn-primary" role="button" ng-click="userCtrl.setValue(searchAdminUser)">{{vm.translations.SEARCH}}</a> 
         
       </div> 
 </div>
@@ -32,7 +32,7 @@
   </div> -->
  
   <!-- Table -->
-  <table class="table" >
+  <table class="table"  >
         <thead>
           <tr>
             <th><center>{{vm.translations.SELECT}}</center></th>
@@ -41,7 +41,7 @@
             <th><center>{{vm.translations.EMAIL}}</center></th>
           </tr>
         </thead>
-        <tbody ng-repeat="user in users">
+        <tbody ng-repeat="user in userCtrl.users">
           <tr >
             <td><input type="checkbox" name="users" value=" "></td>
             <td>{{user.firstname}}</td>
