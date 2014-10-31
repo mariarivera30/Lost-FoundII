@@ -1,61 +1,64 @@
 angular.module('formApp')
-.controller('adminCategoryController',['$scope','$http','restApi','$state', function($scope,$http,restApi,$state) {
+.controller('adminCategoryController',['$scope','$http','$timeout','restApi','$state', function($scope,$http,$timeout,restApi,$state) {
 
-$scope.list ={
-  email: " "
-};
+var categoryCtrl = this;
+categoryCtrl.categories = getCategories;
+categoryCtrl.status = {};
+categoryCtrl.deleteCat = {};
+categoryCtrl.setValue = setValue;
+categoryCtrl.deleteCategory = deleteCategory;
+categoryCtrl.postCategories = postCategories;
 
-
-$scope.categories
   getCategories();  
+ 
 	function getCategories() {
         restApi.getCategories()
             .success(function (data) {
               
-                $scope.categories = data.categories;
+                categoryCtrl.categories = data.categories;
               })
             .error(function (error) {
-                $scope.status = 'Unable to load customer data: ' + error.message;
+                categoryCtrl.status = 'Unable to load customer data: ' + error.message;
             });
+            
     };
-// $scope.loadData = function(){
-//   getCategories();
-// };
- $scope.postCategories = function(newCategory) {
+
+
+ function postCategories(newCategory) {
         restApi.postCategories(newCategory)
 
           .success(function (data) {
-               
-               
+             
               })
             .error(function (error) {
-                $scope.status = 'Unable to post customer data: ' + error.message;
+               categoryCtrl.status = 'Unable to post customer data: ' + error.message;
             });
-      $state.reload();
+            
+      $timeout(getCategories, 1000);
+      newCategory = {};
     };
-$scope.deleteCat
- $scope.deleteCategory = function() {
-        alert($scope.deleteCat);
-        restApi.deleteCategory($scope.deleteCat)
+
+
+
+
+function deleteCategory() {
+       
+        restApi.deleteCategory(categoryCtrl.deleteCat)
 
           .success(function (data) {
-               
-               
+            
               })
             .error(function (error) {
-                $scope.status = 'Unable to post customer data: ' + error.message;
+                categoryCtrl.status = 'Unable to post customer data: ' + error.message;
             });
-      
+        $timeout(getCategories, 1000);
     }; 
 
-    $scope.setValue = function(id){
+ function setValue(id){
      
-      $scope.deleteCat = id;
-      
-      
+      categoryCtrl.deleteCat = id;
 
-
-    } ;
+    };
 
            
 	

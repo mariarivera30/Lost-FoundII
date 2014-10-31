@@ -70,7 +70,7 @@ exports.getItems = function(req, res) {
                    if (err) {
                    return console.error('could not connect to postgres', err);
                    }
-                   client.query("SELECT * FROM public.item, public.users WHERE item.userid = users.userid", function(err, result) {
+                   client.query("SELECT * FROM public.item, public.users WHERE item.email = users.email", function(err, result) {
                                
                                 if (err) {
                                 return console.error('error running query', err);
@@ -182,9 +182,7 @@ exports.getComments = function(req, res) {
                    if (err) {
                    return console.error('could not connect to postgres', err);
                    }
-                   client.query("SELECT * FROM public.comment, public.users, public.item "+ 
-                    "WHERE comment.itemid = item.itemid AND comment.userid = users.userid "+ 
-                    "AND comment.itemid = "+req.params.id+" ", function(err, result) {
+                   client.query(" SELECT  public.comment.usercomment , public.comment.email FROM public.comment, public.item WHERE comment.itemid = item.itemid AND comment.itemid = "+req.params.id+" ", function(err, result) {
                                
                                 if (err) {
                                 return console.error('error running query', err);

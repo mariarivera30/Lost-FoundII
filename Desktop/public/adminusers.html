@@ -41,7 +41,7 @@
             <th><center>{{vm.translations.EMAIL}}</center></th>
           </tr>
         </thead>
-        <tbody ng-repeat="user in userCtrl.users">
+        <tbody ng-repeat="user in userCtrl.users | filter:searchAdminUser">
           <tr >
             <td><input type="checkbox" name="users" value=" "></td>
             <td>{{user.firstname}}</td>

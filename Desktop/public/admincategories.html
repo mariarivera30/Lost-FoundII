@@ -1,4 +1,4 @@
-<div ng-controller="adminCategoryController">
+<div ng-controller="adminCategoryController as categoryCtrl">
 <div id = "AdminCategory">
    
 </div>
@@ -14,11 +14,11 @@
 </div>
         <div class="col-xs-6 col-md-4">
               
-                 <input type="text" class="form-control" placeholder={{vm.translations.ADDCATEGORY}} id="searchBarUsers" ng-model="newCategory" >
+                 <input type="text" class="form-control" placeholder={{vm.translations.ADDCATEGORY}} id="searchBarUsers" ng-model="newCategory" > 
              </div>      
        <div id ="AddCategoryBtnDiv">                        
-        <a  ui-sref="form.admin.category" ng-click="postCategories(newCategory); gotoTop();" id ="AddBtn" class="btn btn-primary" role="button">{{vm.translations.ADD}}</a> 
-        <a ui-sref="form.admin.category" ng-click="deleteCategory(category.categoryname)" id ="AddBtn" class="btn btn-primary" role="button" >{{vm.translations.REMOVE}}</a> 
+        <a  ui-sref="form.admin.category" ng-click="categoryCtrl.postCategories(newCategory);" id ="AddBtn" class="btn btn-primary" role="button">{{vm.translations.ADD}}</a> 
+        <a ui-sref="form.admin.category" ng-click="categoryCtrl.deleteCategory(category.categoryname)" id ="AddBtn" class="btn btn-primary" role="button" >{{vm.translations.REMOVE}}</a> 
       </div> 
         
 
@@ -36,7 +36,7 @@
            
           </tr>
         </thead>
-        <tbody ng-repeat="category in categories" ng-click="setValue(category.categoryname)" >
+        <tbody ng-repeat="category in categoryCtrl.categories | filter:newCategory" ng-click="categoryCtrl.setValue(category.categoryname)" >
           <tr >
             <td><input type="checkbox" checklist-model="categoryname" checklist-value="category.categoryname"><td>{{category.categoryname}}</td></td>
             

@@ -8,11 +8,12 @@ commentCtrl.status = {};
 
 getComments();
    function getComments() {
-
+        
         restApi.getComments(shareData.commentofitem)
             .success(function (data) {
               
                 commentCtrl.comments = data.comments;
+                
                 
 
               })
