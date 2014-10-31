@@ -7,6 +7,7 @@
                 <span class="input-label" translate="Item:">Item:</span>
                 <input type="text">
             </label>
+            <button ng-click="takePic()"> pic</button>
 
             <label class="item item-input item-select">
                 <div class="input-label">
@@ -43,7 +44,7 @@
                             ng-click = "getPicture()"><span translate="Upload">Upload</span></button>
 
                     <button class="button button-stable icon-right ion-camera"
-                            ng-click = "takePicture()"><span translate="Take">Take</span></button></p>
+                            ng-click="takePic()"><span translate="Take">Take</span></button></p>
             </div>
         </label>
         <p><h5 translate="cont_disp">Select contact information to be displayed:</h5></p>
