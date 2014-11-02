@@ -16,7 +16,13 @@
         postCategories:postCategories,
         getComments:getComments,
         getUserAdmin:getUserAdmin,
-        deleteCategory:deleteCategory
+        deleteCategory:deleteCategory,
+        postUser:postUser,
+        postComment:postComment,
+        postFeedback:postFeedback,
+        postItem:postItem,
+        putThumbsdown:putThumbsdown,
+        getMyPosts:getMyPosts
 
     };
 
@@ -49,6 +55,19 @@
   function getComments(id){
     return $http.get('/allComments/'+id);
   };
+  function postUser(newUser){
+    var data= newUser;
+    return $http.post('/newUser/',data);
+  };
+
+  function postComment(comment){
+    var data= comment;
+    return $http.post('/addComment/',data);
+  };
+  function postFeedback(feedback){
+    var data= feedback;
+    return $http.post('/addFeedback/',data);
+  };
 
   function getUserAdmin(id){
     return $http.get('/anUser/'+id);
@@ -56,6 +75,20 @@
 
   function deleteCategory(id){
     return $http.delete('/deleteCategory/'+id);
+  };
+
+  function postItem(newItem){
+     var data = {type:newItem};
+    return $http.post('/postItem/', data);
+  };
+
+  function putThumbsdown(id){
+    return $http.put('/putThumbsdown/'+id);
+  };
+
+  function getMyPosts(cred){
+    var data = {type:cred};
+    return $http.get('/myPosts/',data);
   };
 
 }

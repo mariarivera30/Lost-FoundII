@@ -1,40 +1,27 @@
 angular.module('formApp')
 .controller('itemViewController',['$scope','restApi','shareData' ,function($scope,restApi,shareData) {
 
+var itemViewCntrl =this;
+itemViewCntrl.item=shareData.selectedItem;
 
- function getUser() {
-        restApi.getUser()
-            .success(function (custs) {
-                $scope.users = custs;
-            })
+getComments();
+   function getComments() {
+        
+        restApi.getComments(shareData.selectedItem.itemid)
+            .success(function (data) {
+                itemViewCntrl.comments = data.comments;              
+                
+              })
             .error(function (error) {
-                $scope.status = 'Unable to load customer data: ' + error.message;
+                itemViewCntrl.status = 'Unable to load customer data: ' + error.message;
             });
     }
-	 // we will store all of our form data in this object
-	$scope.comments = [{'name': 'Maria Rivera',
-	     
-	 	  'date':'03/08/15',
-	 	   'comment':'Las vi en el departamento'
-	 	},
-	 	{'name': 'Juan del Pueblo',
-	     
-	 	  'date':'03/08/15',
-	 	   'comment':'Las tiene Pedro'
-	 	},
-	 	{'name': 'Karla Rivera',
-	     
-	 	  'date':'03/08/15',
-	 	   'comment':'Se te calleron en el zafacon.'
-	 	},
-	 	];
 
-$scope.item = shareData.selectedItem;
+
 	
-	// function to process the form
-	$scope.processForm = function() {
-		alert('awesome!');
-	};
+
+	
+
 	
 }])
 ;

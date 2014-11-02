@@ -23,8 +23,8 @@
 
 </div>
               
-        <a href="#" id ="BlockBtn" class="btn btn-primary" role="button" >{{vm.translations.BLOCK}}</a> 
-        <a href="#" id ="UnblockBtn" class="btn btn-primary" role="button" >{{vm.translations.UNBLOCK}}</a> 
+        <a href="#" id ="BlockBtn" class="btn btn-primary" role="button" ng-click ="userCtrl.getSelectedForBlock()">{{vm.translations.BLOCK}}</a> 
+        <a href="#" id ="UnblockBtn" class="btn btn-primary" role="button" ng-click ="userCtrl.getSelectedForUNBlock()">{{vm.translations.UNBLOCK}}</a> 
 
   </div>
   <!-- <div class="panel-body">
@@ -43,7 +43,7 @@
         </thead>
         <tbody ng-repeat="user in userCtrl.users | filter:searchAdminUser">
           <tr >
-            <td><input type="checkbox" name="users" value=" "></td>
+            <td><input type="checkbox" name="users" value=" " ng-model="user.Selected"></td>
             <td>{{user.firstname}}</td>
            <td>{{user.lastname}}</td>
             <td>{{user.email}}</td>

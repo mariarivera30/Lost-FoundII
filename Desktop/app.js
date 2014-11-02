@@ -58,9 +58,16 @@ app.get('/anUser/:id', routes.getUserAdmin);
 
 //posts
 app.post('/aCategories',routes.postCategories);
+app.post('/newUser',routes.postUser);
+app.post('/addComment',routes.postComment);
+app.post('/addFeedback/',routes.postFeedback);
+app.get('/myPosts/', routes.getMyPosts);
+app.post('/postItem',routes.postItem);
+app.put('/putThumbsdown/:id', routes.putThumbsdown)
 
-//deletes
-app.delete('/deleteCategory/:id', routes.deleteCategory);
+//block
+
+
 
 
 http.createServer(app).listen(app.get('port'), function(){

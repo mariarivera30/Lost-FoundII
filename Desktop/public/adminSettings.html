@@ -1,4 +1,4 @@
-<div id="adminsetting" ng-controller ="adminSettingsController">
+<div id="adminsetting" ng-controller ="adminSettingsController as settingCtrl">
 
 
 <div class="panel panel-default">
@@ -15,10 +15,7 @@
 
 
   </div>
-  <!-- <div class="panel-body">
-    <p></p>
-  </div> -->
- 
+  
   <!-- Table -->
   <table class="table">
         <thead>
@@ -27,40 +24,42 @@
             <th><center>{{vm.translations.FIRSTNAME}}</center></th>
             <th><center>{{vm.translations.LASTNAME}}</center></th>
             <th><center>{{vm.translations.EMAIL}}</center></th>
+            <th><center>block-un</center></th>
           </tr>
         </thead>
-        <tbody>
+        <tbody ng-repeat="user in settingCtrl.users | filter:email" >
           <tr>
             <td><input type="checkbox" name="users" value=" "></td>
-            <td>Angel</td>
-            <td>De La Torre</td>
-            <td>angel.delatorre@upr.edu</td>
+            <td>{{user.firstname}}</td>
+            <td>{{user.lastname}}</td>
+            <td>{{user.email}}</td>
+            <td>{{user.isblocked}}</td>
           </tr>
           
         </tbody>
       </table>
 </div>
 
-</div>
-</div>
+
 <div  ><center>
                         <div class="form-group">
                             <label for="nameUser">
                                 {{vm.translations.FIRSTNAME}}</label>
-                            <input type="text" class="form-control" id="nameUser" placeholder="First Name" required="require">
+                            <input type="text" class="form-control" id="nameUser" placeholder="First Name" required="require" ng-model ="userObject.firstname">
                              <label for="lastUser">
                                 {{vm.translations.LASTNAME}}</label>
-                            <input type="text" class="form-control" id="lastUser" placeholder="Last Name" required="require">
+                            <input type="text" class="form-control" id="lastUser" placeholder="Last Name" required="require" ng-model ="userObject.lastname">
+
                             <label for="Email">
                                 {{vm.translations.EMAIL}}</label>
-                            <input type="text" class="form-control" id="email" placeholder="juan@gmail.com" required="require">
+                            <input type="text" class="form-control" id="email" placeholder="juan@gmail.com" required="require" ng-model ="userObject.email">
                              <label for="phone">
                                 {{vm.translations.PHONENUM}}</label>
-                            <input type="text" class="form-control" id="phone" placeholder="787-655-5678" >
+                            <input type="text" class="form-control" id="phone" placeholder="787-655-5678" ng-model ="userObject.phone">
                           </div>
                           <div class="addAdminButton">
         
-        <p><a  ui-sref="form.newsfeeds" class="btn btn-primary" ng-click="gotoTop()" role="button">{{vm.translations.ADD}}</a> </p>
+        <p><a  ui-sref="form.newsfeeds" class="btn btn-primary" ng-click="gotoTop();settingCtrl.getUserObject(userObject)" role="button">{{vm.translations.ADD}}</a> </p>
       </div>   </center>
                         </div>
                       </div>
