@@ -83,7 +83,8 @@
   };
 
   function putThumbsdown(id){
-    return $http.put('/putThumbsdown/'+id);
+    var data = {id:id};
+    return $http.post('/putThumbsdown/',data);
   };
 
   function getMyPosts(cred){

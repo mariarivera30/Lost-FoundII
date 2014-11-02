@@ -1,4 +1,5 @@
 
+<div ng-controller="lostController as lostCtrl">
 <div class="form-group row"ng-controller="languageController">
    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
      
@@ -27,13 +28,13 @@
   
        </div>
 <div class="reportbtn">
-    <a ui-sref="form.reportitem" ng-click="gotoTop()" class="btn btn-block btn-info">
+    <a ui-sref="form.reportitem" ng-click="gotoTop(); lostCtrl.setValue('Lost')" class="btn btn-block btn-info">
      {{vm.translations.REPORTLOST}} <span class="glyphicon glyphicon-circle-arrow-right"></span>
     </a>
 </div>
 </div>
 </div>
-<div ng-controller="lostController as lostCtrl">
+
 <div id="list" > 
 
 <ul class="list-group">
@@ -51,7 +52,7 @@
  
  <center>
 
- <button type="down" class="btn btn-large center"><span class="glyphicon glyphicon-thumbs-down custom"></span> </button></center></div>
+ <button type="down" class="btn btn-large center" ng-click="lostCtrl.thumbsdownfunction(item.itemid)"><span class="glyphicon glyphicon-thumbs-down custom"></span> </button></center></div>
  </div>
 </div>
 

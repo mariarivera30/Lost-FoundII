@@ -137,7 +137,7 @@ exports.getItems = function(req, res) {
                    if (err) {
                    return console.error('could not connect to postgres', err);
                    }
-                   client.query("SELECT * FROM public.item, public.users WHERE item.email = users.email", function(err, result) {
+                   client.query("SELECT * FROM public.item, public.users WHERE item.email = users.email and item.isblocked = 'false'", function(err, result) {
                                
                                 if (err) {
                                 return console.error('error running query', err);
@@ -344,14 +344,15 @@ exports.postItem= function(req,res){
 
 
 exports.putThumbsdown= function(req,res){
-  console.log("PUT");
+  console.log("POST");
   var client = new pg.Client(conString);
      
   client.connect(function(err) {
                    if (err) {
                    return console.error('could not connect to postgres', err);
                    }
-                   client.query(" Update public.item Set thumbsdown = (thumbsdown + 1) Where itemid = "+req.params.id+"", function(err, result) {
+            
+                   client.query("Update public.item Set thumbsdown = (thumbsdown + 1) Where itemid = '"+req.body.id+"'", function(err, result) {
                                
                                 if (err) {
                                 return console.error('error running query', err);

@@ -8,6 +8,9 @@ shareData.itemSelected = {};
 newsfeedCtrl.setValue = setValue;
 newsfeedCtrl.credentials = {};
 newsfeedCtrl.myItems = {};
+newsfeedCtrl.isDisabled= true;
+$timeout(getItems, 2000);
+
 
 
   getItems();  
@@ -29,17 +32,25 @@ newsfeedCtrl.myItems = {};
 
   };
 
+  function refresh(){
+      
+    };
+
 newsfeedCtrl.thumbsdownfunction = function(id){
-  
+  newsfeedCtrl.isDisabled= true;
   restApi.putThumbsdown(id)
             .success(function (data) {
-              
-               
+                   newsfeedCtrl.buttonDisabled = false;     
               })
             .error(function (error) {
+
                 newsfeedCtrl.status = 'Unable to load customer data: ' + error.message;
             });
+  
 
+$timeout(getItems, 1000);
+   // newsfeedCtrl.isDisabled= true;
+   // location.reload();
 };
 newsfeedCtrl.myposts = function(cred){
   newsfeedCtrl.credentials = cred;
@@ -52,6 +63,8 @@ newsfeedCtrl.myposts = function(cred){
             .error(function (error) {
                 newsfeedCtrl.status = 'Unable to load customer data: ' + error.message;
             });
+
+
 
 
 };

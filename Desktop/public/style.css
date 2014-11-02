@@ -284,9 +284,9 @@ font-size:12px;
  
 
 /* form styling */
-#form-container               { background:#2F4F4F; margin-bottom:100px; 
+#form-container               { background:#9db6d7; margin-bottom:100px; 
     border-radius:5px; }
-#form-container .page-header   {padding-left: 50px; padding-right: 50px; background:#9db6d7; margin:0; padding:30px; 
+#form-container   {padding-left: 50px; padding-right: 50px; background:#9db6d7; margin:0; padding:30px; 
     border-top-left-radius:5px; border-top-right-radius:5px; }
 
 /* numbered buttons */

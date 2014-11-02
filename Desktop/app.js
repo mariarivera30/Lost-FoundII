@@ -63,7 +63,7 @@ app.post('/addComment',routes.postComment);
 app.post('/addFeedback/',routes.postFeedback);
 app.get('/myPosts/', routes.getMyPosts);
 app.post('/postItem',routes.postItem);
-app.put('/putThumbsdown/:id', routes.putThumbsdown)
+app.post('/putThumbsdown/', routes.putThumbsdown);
 
 //block
 
