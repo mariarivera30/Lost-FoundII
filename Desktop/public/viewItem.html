@@ -5,7 +5,7 @@
 
         <div id ="editItemView"class="row" >
 
-         
+        
 
             <div class="col-md-7">
 
@@ -28,7 +28,7 @@
                 <div class="well">
 
                     <div class="text-right">
-                        <a class="btn btn-success" ng-click="gotoTop()" ui-sref="form.addcomment" >{{vm.translations.LEAVECOMMENT}}</a>
+                        <a class="btn btn-success" ng-click="gotoTop()" ui-sref="form.addcomment({item:itemViewCntrl.item.itemid})" >{{vm.translations.LEAVECOMMENT}}</a>
                     </div>
 
                     <hr>

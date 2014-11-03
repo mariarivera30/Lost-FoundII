@@ -9,6 +9,35 @@ exports.index = function(req, res){
   res.render('index', { title: 'Express' });
 };
 
+exports.getItemId = function(req, res) {
+    console.log("GET");
+  res.header("Access-Control-Allow-Origin", "*");
+  res.header("Access-Control-Allow-Headers", "X-Requested-With");
+  var client = new pg.Client(conString);
+    
+  client.connect(function(err) {
+                   if (err) {
+                   return console.error('could not connect to postgres', err);
+                   }
+                   client.query("SELECT * FROM public.item natural join public.users WHERE item.itemid = '"+req.params.id+"'", function(err, result) {
+                               
+                                if (err) {
+                                return console.error('error running query', err);
+                                }
+                                var response = {
+                                "item" : result.rows
+                                };
+                                res.status(200);
+                                res.json(response);
+                                console.log(response);
+                                //output: Tue Jan 15 2013 19:12:47 GMT-600 (CST)
+                                client.end();
+                                });
+                   });
+
+};
+
+
 exports.postFeedback= function(req,res){
   console.log("POST");
   var client = new pg.Client(conString);

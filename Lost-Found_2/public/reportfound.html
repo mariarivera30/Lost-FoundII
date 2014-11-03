@@ -1,0 +1,66 @@
+
+<div ng-controller="foundController as foundCtrl">
+<div class="form-group row">
+   <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+     
+      <form class="navbar-form navbar-right" role="search">
+
+        
+        <div class="input-group" ng-controller="adminCategoryController">
+      <div class="input-group-btn">
+        <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown"> {{vm.translations.BY}}: <span class="caret"></span > 
+          <select  id= "categoryscroll" width="100" style="width: 120px" color="black">
+                     <option selected> {{vm.translations.ALL}}</option>
+                     <option ng-repeat="category in categories">{{category.name}}</option>
+                
+                   
+                   </select></button>
+        
+           
+
+      </div><!-- /btn-group -->
+     
+      <input type="text" class="form-control" placeholder=" {{vm.translations.SEARCH}}">
+     
+  
+<!-- /input-group -->
+      </form>
+  
+       </div>
+<div class="reportbtn">
+    <a ui-sref="form.reportitem" ng-click="gotoTop(); foundCtrl.setValue('Found') " class="btn btn-block btn-info">
+    {{vm.translations.REPORTFOUND}} <span class="glyphicon glyphicon-circle-arrow-right"></span>
+    </a>
+</div>
+</div>
+</div>
+
+<div id="list" > 
+
+<ul class="list-group">
+  <li class="list-group-item" ng-repeat="foundItem in foundCtrl.foundItems">
+    <div class="row">
+  <div class="col-xs-6 col-md-4"><div class="itemimg"><img ng-src="{{foundItem.itempicture}}"  ui-sref="form.viewitem" height="200" width="200"> </div></div>
+  <div class="col-xs-6 col-md-4"><h2 ><CENTER>{{foundItem.itemstatus}}</CENTER></h2><h4><CENTER> {{vm.translations.ITEMID}}: {{foundItem.itemid}}</CENTER></h4><h4><CENTER>{{foundItem.locationitem}}</CENTER></h4><h4><center> {{vm.translations.SEENBY}}: {{foundItem.itemviews}}</center></h4>
+ </div>
+  <div class="col-xs-6 col-md-4">  
+ 
+
+ <div class="thumbs ">
+   
+  <h3 ><center>{{foundItem.itemname}}</center></h3>
+ 
+ <center>
+
+ <button type="down" class="btn btn-large center" id="thumbsD" ng-click="foundCtrl.thumbsdownfunction(item.itemid)"><span class="glyphicon glyphicon-thumbs-down custom"></span> </button></center></div>
+ </div>
+</div>
+
+  
+  </li>
+   
+  
+
+</ul>
+</div>
+</div>

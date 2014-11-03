@@ -10,6 +10,7 @@
     var service = {
         getUsers:getUsers,
         getItems:getItems,
+        getItemId:getItemId,
         
         getLostItems:getLostItems,
         getFoundItems:getFoundItems,
@@ -43,6 +44,9 @@
   //   var data = {type:newCategory};
   //   return $http.post('/aCategories/', data);
   // };
+  function getItemId(id){
+    return $http.get('/itemId/' + id );
+  };
 
   function getLostItems(){
     return $http.get('/allLostItems');

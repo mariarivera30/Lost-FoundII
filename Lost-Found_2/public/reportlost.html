@@ -1,0 +1,66 @@
+
+<div ng-controller="lostController as lostCtrl">
+<div class="form-group row"ng-controller="languageController">
+   <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+     
+      <form class="navbar-form navbar-right" role="search">
+
+        
+        <div class="input-group" ng-controller="adminCategoryController">
+      <div class="input-group-btn" >
+        <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown"> {{vm.translations.BY}}: <span class="caret"></span > 
+             <select  id= "categoryscroll" width="120" style="width: 120px" color="black">
+                     <option selected> {{vm.translations.ALL}}</option>
+                     <option ng-repeat="category in categories">{{category.name}}</option>
+                
+                   
+                   </select></button>
+        
+           
+
+      </div><!-- /btn-group -->
+     
+      <input type="text" class="form-control" placeholder="{{vm.translations.SEARCH}}" ng-model="searchLostItem">
+     
+  
+<!-- /input-group -->
+      </form>
+  
+       </div>
+<div class="reportbtn">
+    <a ui-sref="form.reportitem" ng-click="gotoTop(); lostCtrl.setValue('Lost')" class="btn btn-block btn-info">
+     {{vm.translations.REPORTLOST}} <span class="glyphicon glyphicon-circle-arrow-right"></span>
+    </a>
+</div>
+</div>
+</div>
+
+<div id="list" > 
+
+<ul class="list-group">
+  <li class="list-group-item" ng-repeat="lostitem in lostCtrl.lostItems | filter:searchLostItem" >
+    <div class="row">
+  <div class="col-xs-6 col-md-4"><div class="itemimg"><img ng-src="{{lostitem.itempicture}}"  ui-sref="form.viewitem" height="200" width="200"> </div></div>
+  <div class="col-xs-6 col-md-4"><h2 ><CENTER>{{lostitem.itemstatus}}</CENTER></h2><h4><CENTER> {{vm.translations.ITEMID}} {{lostitem.itemid}}</CENTER></h4><h4><CENTER>{{lostitem.locationitem}}</CENTER></h4><h4><center> {{vm.translations.SEENBY}}: {{lostitem.itemviews}}</center></h4>
+ </div>
+  <div class="col-xs-6 col-md-4">  
+ 
+
+ <div class="thumbs ">
+   
+  <h3 ><center>{{lostitem.itemname}}</center></h3>
+ 
+ <center>
+
+ <button type="down" class="btn btn-large center" ng-click="lostCtrl.thumbsdownfunction(item.itemid)"><span class="glyphicon glyphicon-thumbs-down custom"></span> </button></center></div>
+ </div>
+</div>
+
+  
+  </li>
+   
+  
+
+</ul>
+</div>
+</div>

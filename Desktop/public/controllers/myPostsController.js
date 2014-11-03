@@ -1,6 +1,6 @@
 
 angular.module('formApp')
-.controller('myPostsController',['$scope','$http','restApi','shareData' , function($scope,$http,restApi,shareData) {
+.controller('myPostsController',['$scope','$http','$stateParams','restApi','shareData' , function($scope,$http,$stateParams,restApi,shareData) {
 
 var myPostsCtrl = this;
 myPostsCtrl.myItems = shareData.myItems;

@@ -33,7 +33,7 @@
                                                             <input type="checkbox" id="inlineCheckbox101" value="option1" ng-click="" > {{vm.translations.PRIVATE}} Falta poner un alert
                                                         </label>
                                                     </div>
-                                                    <button type="submit" class="btn btn-primary " id="addCommentButton" ng-click="gotoTop();commentCtrl.getCommentObject(commentCtrl.objectComment)" ui-sref="form.viewitem">
+                                                    <button type="submit" class="btn btn-primary " id="addCommentButton" ng-click="gotoTop();commentCtrl.getCommentObject(commentCtrl.objectComment)"ui-sref="form.viewitem({ item:commentCtrl.itemid})">
                                                         {{vm.translations.ADD}}</button>
                                                     </div>
                                                

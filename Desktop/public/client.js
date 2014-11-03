@@ -53,7 +53,7 @@ app.config(function($stateProvider, $urlRouterProvider,$httpProvider) {
 		})
 		
 		.state('form.viewitem', {
-			url: '/view',
+			url: '/view/:item',
 			templateUrl: 'viewItem.html'
 		})
 
@@ -62,7 +62,7 @@ app.config(function($stateProvider, $urlRouterProvider,$httpProvider) {
 			templateUrl: 'viewItemOwner.html'
 		})
 		.state('form.addcomment', {
-			url: '/addcomment',
+			url: '/addcomment/:item',
 			templateUrl: 'addComment.html'
 		})
 		.state('form.feedback', {

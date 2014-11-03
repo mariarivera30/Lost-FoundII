@@ -65,6 +65,7 @@ app.post('/addFeedback/',routes.postFeedback);
 
 app.post('/postItem',routes.postItem);
 app.post('/putThumbsdown/', routes.putThumbsdown);
+app.get('/itemId/:id',routes.getItemId);
 
 //block
 

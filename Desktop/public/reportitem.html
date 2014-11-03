@@ -1,6 +1,8 @@
 <!-- <div ng-controller="imgurController as img"> -->
 <div ng-controller= "reportItemController as reportItemCtrl">
 <div ng-controller="languageController"  >
+    <img ng-src="data:image/jpeg;base64,{{data.UserPhoto}}" id="photo-id"/>
+<input type="file" name="file" onchange="angular.element(this).scope().uploadFile(this)" id="photo-upload"/>
 <div class="fileUpload btn btn-primary">
     <span>{{vm.translations.UPLOAD}}</span>
     <input type="file" class="upload"    />
