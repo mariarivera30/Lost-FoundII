@@ -1,25 +1,26 @@
 <!-- Page Content -->
-        <div nf-controller="languageController">
+    <div ng-controller="itemViewController as itemViewCntrl">
+    <div ng-controller="languageController as vm">
     <div class="container" >
 
-        <div id ="editItemView"class="row" ng-controller="itemViewController">
+        <div id ="editItemView"class="row" >
 
          
 
             <div class="col-md-7">
 
                 <div class="thumbnail">
-                    <img ng-src="{{item.itempicture}}">
-                    <h4> <a> {{item.itemname}}</a> </h4>
+                    <img ng-src="{{itemViewCntrl.item.itempicture}}">
+                    <h4> <a> {{itemViewCntrl.item.itemname}}</a> </h4>
                     <div class="caption-full" >
                         
-                        <h4>{{vm.translations.FOUNDBY}} {{item.firstname}} {{item.lastname}}</h4>
-                        <h4>{{vm.translations.REPORTEDDATE}}: {{item.itemdate}}</h4>
-                        <h4>{{vm.translations.SUCCESDATE}}: {{item.itemsuccessdate}}</h4>
-                         <h4>{{vm.translations.ITEMID}}: {{item.itemid}}</h4>
-                          <h4>{{vm.translations.LOCATION}}: {{item.locationitem}}</h4>
+                        <h4>{{vm.translations.FOUNDBY}} {{itemViewCntrl.item.firstname}} {{itemViewCntrl.item.lastname}}</h4>
+                        <h4>{{vm.translations.REPORTEDDATE}}: {{itemViewCntrl.item.itemdate}}</h4>
+                        <h4>{{vm.translations.SUCCESDATE}}: {{itemViewCntrl.item.itemsuccessdate}}</h4>
+                         <h4>{{vm.translations.ITEMID}}: {{itemViewCntrl.item.itemid}}</h4>
+                          <h4>{{vm.translations.LOCATION}}: {{itemViewCntrl.item.locationitem}}</h4>
                           <h4>{{vm.translations.DESCRIPTION}}:</h4>                     
-                        <p>{{item.description}}</p>
+                        <p>{{itemViewCntrl.item.description}}</p>
                     </div>
                     
                 </div>
@@ -31,13 +32,13 @@
                     </div>
 
                     <hr>
-                    <li id="comments" ng-repeat="com in comments">
+                    <li id="comments" ng-repeat="com in itemViewCntrl.comments">
                     <div class="row">
-                        <span class="pull-right">{{com.date}}</span>
+                        
                         <div class="col-md-12">
                             
-                            <center>{{com.name}} {{vm.translations.SAID}}:
-                            <p>{{com.comment}}</p></center>
+                            <center>{{vm.translations.SAID}}: {{com.email}} 
+                            <p>{{com.usercomment}}</p></center>
                         </div>
                     </div>
                     <hr>
@@ -54,5 +55,6 @@
         </div>
 
     </div>
+</div>
 </div>
     <!-- /.container -->

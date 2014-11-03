@@ -9,8 +9,7 @@ exports.index = function(req, res){
   res.render('index', { title: 'Express' });
 };
 
-
-exports.postCategories= function(req,res){
+exports.postFeedback= function(req,res){
   console.log("POST");
   var client = new pg.Client(conString);
      
@@ -18,7 +17,8 @@ exports.postCategories= function(req,res){
                    if (err) {
                    return console.error('could not connect to postgres', err);
                    }
-                   client.query("INSERT INTO category (categoryname) VALUES ('"+req.body.type+"')", function(err, result) {
+                   console.log(req.body);
+                   client.query("INSERT INTO feedback (message, email) VALUES ('"+req.body.message+"','"+req.body.email+"')", function(err, result) {
                                
                                 if (err) {
                                 return console.error('error running query', err);
@@ -29,6 +29,73 @@ exports.postCategories= function(req,res){
                                 });
                    });
 };
+
+
+exports.postComment= function(req,res){
+  console.log("POST");
+  var client = new pg.Client(conString);
+     
+  client.connect(function(err) {
+                   if (err) {
+                   return console.error('could not connect to postgres', err);
+                   }
+                   console.log(req.body);
+                   client.query("INSERT INTO comment (itemid, usercomment, email,isblocked) VALUES ('"+req.body.itemid+"','"+req.body.usercomment+"','"+req.body.email+"','"+req.body.isblocked+"')", function(err, result) {
+                               
+                                if (err) {
+                                return console.error('error running query', err);
+                                }
+                                
+                                res.status(200);
+                                client.end();
+                                });
+                   });
+};
+
+exports.postUser= function(req,res){
+  console.log("POST");
+  var client = new pg.Client(conString);
+     
+  client.connect(function(err) {
+                   if (err) {
+                   return console.error('could not connect to postgres', err);
+                   }
+                   
+                   client.query("INSERT INTO users (firstname, lastname, email, phone, passkey, isblocked, isadmin) VALUES ('"+req.body.firstname+"','"+req.body.lastname+"','"+req.body.email+"','"+req.body.phone+"','"+req.body.passkey+"','"+req.body.isblocked+"','"+req.body.isadmin+"')", function(err, result) {
+                               
+                                if (err) {
+                                return console.error('error running query', err);
+                                }
+                                
+                                res.status(200);
+                                client.end();
+                                });
+                   });
+};
+
+
+
+
+
+// exports.postCategories= function(req,res){
+//   console.log("POST");
+//   var client = new pg.Client(conString);
+     
+//   client.connect(function(err) {
+//                    if (err) {
+//                    return console.error('could not connect to postgres', err);
+//                    }
+//                    client.query("INSERT INTO category (categoryname) VALUES ('"+req.body.type+"')", function(err, result) {
+                               
+//                                 if (err) {
+//                                 return console.error('error running query', err);
+//                                 }
+                                
+//                                 res.status(200);
+//                                 client.end();
+//                                 });
+//                    });
+// };
 
 
 
@@ -50,8 +117,8 @@ exports.getUsers = function(req, res) {
                                 var response = {
                                 "users" : result.rows
                                 };
-                                res.status(200);
-                                res.json(response);
+                                
+                                res.json(200,response);
                                 console.log(response);
                                 //output: Tue Jan 15 2013 19:12:47 GMT-600 (CST)
                                 client.end();
@@ -70,7 +137,7 @@ exports.getItems = function(req, res) {
                    if (err) {
                    return console.error('could not connect to postgres', err);
                    }
-                   client.query("SELECT * FROM public.item, public.users WHERE item.email = users.email", function(err, result) {
+                   client.query("SELECT * FROM public.item, public.users WHERE item.email = users.email and item.isblocked = 'false' ORDER BY item.itemid DESC", function(err, result) {
                                
                                 if (err) {
                                 return console.error('error running query', err);
@@ -78,8 +145,7 @@ exports.getItems = function(req, res) {
                                 var response = {
                                 "items" : result.rows
                                 };
-                                res.status(200);
-                                res.json(response);
+                                res.json(200,response);
                                 console.log(response);
                                 //output: Tue Jan 15 2013 19:12:47 GMT-600 (CST)
                                 client.end();
@@ -88,33 +154,32 @@ exports.getItems = function(req, res) {
 
 };
 
-exports.getCategories = function(req, res) {
-    console.log("GET");
-  res.header("Access-Control-Allow-Origin", "*");
-  res.header("Access-Control-Allow-Headers", "X-Requested-With");
-  var client = new pg.Client(conString);
+// exports.getCategories = function(req, res) {
+//     console.log("GET");
+//   res.header("Access-Control-Allow-Origin", "*");
+//   res.header("Access-Control-Allow-Headers", "X-Requested-With");
+//   var client = new pg.Client(conString);
     
-  client.connect(function(err) {
-                   if (err) {
-                   return console.error('could not connect to postgres', err);
-                   }
-                   client.query("SELECT  *  FROM public.category", function(err, result) {
+//   client.connect(function(err) {
+//                    if (err) {
+//                    return console.error('could not connect to postgres', err);
+//                    }
+//                    client.query("SELECT  *  FROM public.category", function(err, result) {
                                
-                                if (err) {
-                                return console.error('error running query', err);
-                                }
-                                var response = {
-                                "categories" : result.rows
-                                };
-                                res.status(200);
-                                res.json(response);
-                                console.log(response);
-                                //output: Tue Jan 15 2013 19:12:47 GMT-600 (CST)
-                                client.end();
-                                });
-                   });
+//                                 if (err) {
+//                                 return console.error('error running query', err);
+//                                 }
+//                                 var response = {
+//                                 "categories" : result.rows
+//                                 };
+//                                 res.json(200,response);
+//                                 console.log(response);
+//                                 //output: Tue Jan 15 2013 19:12:47 GMT-600 (CST)
+//                                 client.end();
+//                                 });
+//                    });
 
-};
+// };
 
 exports.getLostItems = function(req, res) {
     console.log("GET");
@@ -134,8 +199,8 @@ exports.getLostItems = function(req, res) {
                                 var response = {
                                 "lostItems" : result.rows
                                 };
-                                res.status(200);
-                                res.json(response);
+                    
+                                res.json(200,response);
                                 console.log(response);
                                 //output: Tue Jan 15 2013 19:12:47 GMT-600 (CST)
                                 client.end();
@@ -229,34 +294,104 @@ exports.getUserAdmin = function(req, res) {
 
 };
 
-exports.deleteCategory = function(req, res) {
-  console.log("DELETE");
-  res.header("Access-Control-Allow-Origin", "*");
-  res.header("Access-Control-Allow-Headers", "X-Requested-With");
-  var client = new pg.Client(conString);
+// exports.deleteCategory = function(req, res) {
+//   console.log("DELETE");
+//   res.header("Access-Control-Allow-Origin", "*");
+//   res.header("Access-Control-Allow-Headers", "X-Requested-With");
+//   var client = new pg.Client(conString);
     
+//   client.connect(function(err) {
+//                    if (err) {
+//                    return console.error('could not connect to postgres', err);
+//                    }
+//                    client.query("DELETE FROM public.category WHERE category.categoryname = '"+req.params.id+"' ", function(err, result) {
+                               
+//                                 if (err) {
+//                                 return console.error('error running query', err);
+//                                 }
+//                                 var response = {
+//                                 "categories" : result.rows
+//                                 };
+//                                 res.status(200);
+//                                 res.json(response);
+//                                 console.log(response);
+//                                 //output: Tue Jan 15 2013 19:12:47 GMT-600 (CST)
+//                                 client.end();
+//                                 });
+//                    });
+
+// };
+
+exports.postItem= function(req,res){
+  console.log("POST");
+  var client = new pg.Client(conString);
+     console.log(req.body.type.itemStatus);
   client.connect(function(err) {
                    if (err) {
                    return console.error('could not connect to postgres', err);
                    }
-                   client.query("DELETE FROM public.category WHERE category.categoryname = '"+req.params.id+"' ", function(err, result) {
+                   client.query("INSERT INTO item (itemname,description,locationitem,city, itemstatus,email,category) VALUES ('"+req.body.type.itemname+"','"+req.body.type.description+"','"+req.body.type.location+"','"+req.body.type.city+"','"+req.body.type.itemStatus+"','"+req.body.type.email+"','"+req.body.type.category+"')", function(err, result) {
+                               
+                                if (err) {
+                                return console.error('error running query', err);
+                                }
+                                
+                                res.status(200);
+                                client.end();
+                                });
+                   });
+};
+
+
+exports.putThumbsdown= function(req,res){
+  console.log("POST");
+  var client = new pg.Client(conString);
+     
+  client.connect(function(err) {
+                   if (err) {
+                   return console.error('could not connect to postgres', err);
+                   }
+            
+                   client.query("Update public.item Set thumbsdown = (thumbsdown + 1) Where itemid = '"+req.body.id+"'", function(err, result) {
+                               
+                                if (err) {
+                                return console.error('error running query', err);
+                                }
+                                
+                                res.status(200);
+                                client.end();
+                                });
+                   });
+};
+
+
+
+exports.getMyPosts= function(req,res){
+  console.log("GET");
+   console.log(req.params);
+    
+  var client = new pg.Client(conString);
+     
+  client.connect(function(err) {
+                   if (err) {
+                   return console.error('could not connect to postgres', err);
+                   }
+                   client.query("Select * from public.item, public.users where item.email = users.email and item.email = '"+req.params.email +"' and users.passkey = '"+ req.params.key+"'  ", function(err, result) {
                                
                                 if (err) {
                                 return console.error('error running query', err);
                                 }
                                 var response = {
-                                "categories" : result.rows
+                                "myPosts" : result.rows
                                 };
                                 res.status(200);
                                 res.json(response);
                                 console.log(response);
-                                //output: Tue Jan 15 2013 19:12:47 GMT-600 (CST)
+                               
                                 client.end();
                                 });
                    });
-
 };
-
 /*exports.getDoctorById = function(req, res){
     console.log("GET");
     res.setHeader("Content-Type", "application/json");

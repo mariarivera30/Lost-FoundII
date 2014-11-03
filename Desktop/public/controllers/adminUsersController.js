@@ -7,6 +7,7 @@ angular.module('formApp')
   userCtrl.searchUserEmail = {};
   userCtrl.status = {};
   userCtrl.setValue = setValue;
+  userCtrl.getSelected = {};
 
 
   // Invoke initialization.
@@ -48,6 +49,24 @@ angular.module('formApp')
             });
 
 };
+
+userCtrl.getSelectedForBlock= function(){
+  angular.forEach(userCtrl.users, function (user) {
+            if(user.Selected){
+              alert(user.email);
+            }
+        });
+
+};
+userCtrl.getSelectedForUNBlock= function(){
+  angular.forEach(userCtrl.users, function (user) {
+            if(user.Selected){
+              alert(user.email);
+            }
+        });
+
+};
+
            
 	
 }]);

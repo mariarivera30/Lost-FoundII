@@ -7,7 +7,10 @@
 	return {
 		selectedItem : {},
 		commentofitem :{},
-		searchUserEmail : {}
+		searchUserEmail : {},
+		itemStatus:{},
+		myItems : {}
+		
 		
 	};
 

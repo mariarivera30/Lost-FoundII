@@ -50,17 +50,25 @@ app.all('/', function(req, res, next) {
 app.get('/', routes.index);
 app.get('/allUsers', routes.getUsers);
 app.get('/allItems', routes.getItems);
-app.get('/allCategories', routes.getCategories);
+// app.get('/allCategories', routes.getCategories);
 app.get('/allLostItems', routes.getLostItems);
 app.get('/allFoundItems', routes.getFoundItems);
 app.get('/allComments/:id', routes.getComments);
 app.get('/anUser/:id', routes.getUserAdmin);
+app.get('/myPostsItems/:email/:key', routes.getMyPosts);
 
 //posts
-app.post('/aCategories',routes.postCategories);
+// app.post('/aCategories',routes.postCategories);
+app.post('/newUser',routes.postUser);
+app.post('/addComment',routes.postComment);
+app.post('/addFeedback/',routes.postFeedback);
 
-//deletes
-app.delete('/deleteCategory/:id', routes.deleteCategory);
+app.post('/postItem',routes.postItem);
+app.post('/putThumbsdown/', routes.putThumbsdown);
+
+//block
+
+
 
 
 http.createServer(app).listen(app.get('port'), function(){

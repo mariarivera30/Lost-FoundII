@@ -1,4 +1,5 @@
 
+<div ng-controller="foundController as foundCtrl">
 <div class="form-group row">
    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
      
@@ -27,13 +28,13 @@
   
        </div>
 <div class="reportbtn">
-    <a ui-sref="form.reportitem" ng-click="gotoTop()" class="btn btn-block btn-info">
+    <a ui-sref="form.reportitem" ng-click="gotoTop(); foundCtrl.setValue('Found') " class="btn btn-block btn-info">
     {{vm.translations.REPORTFOUND}} <span class="glyphicon glyphicon-circle-arrow-right"></span>
     </a>
 </div>
 </div>
 </div>
-<div ng-controller="foundController as foundCtrl">
+
 <div id="list" > 
 
 <ul class="list-group">
@@ -51,7 +52,7 @@
  
  <center>
 
- <button type="down" class="btn btn-large center" id="thumbsD"><span class="glyphicon glyphicon-thumbs-down custom"></span> </button></center></div>
+ <button type="down" class="btn btn-large center" id="thumbsD" ng-click="foundCtrl.thumbsdownfunction(item.itemid)"><span class="glyphicon glyphicon-thumbs-down custom"></span> </button></center></div>
  </div>
 </div>
 

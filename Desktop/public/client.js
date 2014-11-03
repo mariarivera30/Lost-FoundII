@@ -116,6 +116,11 @@ app.config(function($stateProvider, $urlRouterProvider,$httpProvider) {
 		.state('form.help', {
 			url: '/help',
 			templateUrl: 'help.html'
+		})
+
+		.state('form.myposts', {
+			url: '/myposts',
+			templateUrl: 'myPosts.html'
 		});
 		
 		

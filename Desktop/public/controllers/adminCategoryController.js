@@ -1,64 +1,64 @@
 angular.module('formApp')
 .controller('adminCategoryController',['$scope','$http','$timeout','restApi','$state', function($scope,$http,$timeout,restApi,$state) {
 
-var categoryCtrl = this;
-categoryCtrl.categories = getCategories;
-categoryCtrl.status = {};
-categoryCtrl.deleteCat = {};
-categoryCtrl.setValue = setValue;
-categoryCtrl.deleteCategory = deleteCategory;
-categoryCtrl.postCategories = postCategories;
+// var categoryCtrl = this;
+// categoryCtrl.categories = getCategories;
+// categoryCtrl.status = {};
+// categoryCtrl.deleteCat = {};
+// categoryCtrl.setValue = setValue;
+// categoryCtrl.deleteCategory = deleteCategory;
+// categoryCtrl.postCategories = postCategories;
 
-  getCategories();  
+//   getCategories();  
  
-	function getCategories() {
-        restApi.getCategories()
-            .success(function (data) {
+// 	function getCategories() {
+//         restApi.getCategories()
+//             .success(function (data) {
               
-                categoryCtrl.categories = data.categories;
-              })
-            .error(function (error) {
-                categoryCtrl.status = 'Unable to load customer data: ' + error.message;
-            });
+//                 categoryCtrl.categories = data.categories;
+//               })
+//             .error(function (error) {
+//                 categoryCtrl.status = 'Unable to load customer data: ' + error.message;
+//             });
             
-    };
+//     };
 
 
- function postCategories(newCategory) {
-        restApi.postCategories(newCategory)
+//  function postCategories(newCategory) {
+//         restApi.postCategories(newCategory)
 
-          .success(function (data) {
+//           .success(function (data) {
              
-              })
-            .error(function (error) {
-               categoryCtrl.status = 'Unable to post customer data: ' + error.message;
-            });
+//               })
+//             .error(function (error) {
+//                categoryCtrl.status = 'Unable to post customer data: ' + error.message;
+//             });
             
-      $timeout(getCategories, 1000);
-      newCategory = {};
-    };
+//       $timeout(getCategories, 1000);
+//       newCategory = {};
+//     };
 
 
 
 
-function deleteCategory() {
+// function deleteCategory() {
        
-        restApi.deleteCategory(categoryCtrl.deleteCat)
+//         restApi.deleteCategory(categoryCtrl.deleteCat)
 
-          .success(function (data) {
+//           .success(function (data) {
             
-              })
-            .error(function (error) {
-                categoryCtrl.status = 'Unable to post customer data: ' + error.message;
-            });
-        $timeout(getCategories, 1000);
-    }; 
+//               })
+//             .error(function (error) {
+//                 categoryCtrl.status = 'Unable to post customer data: ' + error.message;
+//             });
+//         $timeout(getCategories, 1000);
+//     }; 
 
- function setValue(id){
+//  function setValue(id){
      
-      categoryCtrl.deleteCat = id;
+//       categoryCtrl.deleteCat = id;
 
-    };
+//     };
 
            
 	
