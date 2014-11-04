@@ -28,7 +28,7 @@
   
        </div>
 <div class="reportbtn">
-    <a ui-sref="form.reportitem" ng-click="gotoTop(); lostCtrl.setValue('Lost')" class="btn btn-block btn-info">
+    <a ui-sref="form.reportitem({itemStatus:'Lost'})" ng-click="gotoTop(); lostCtrl.setValue('Lost')" class="btn btn-block btn-info">
      {{vm.translations.REPORTLOST}} <span class="glyphicon glyphicon-circle-arrow-right"></span>
     </a>
 </div>

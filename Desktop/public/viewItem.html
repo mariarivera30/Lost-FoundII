@@ -4,15 +4,13 @@
     <div class="container" >
 
         <div id ="editItemView"class="row" >
-<form method="post" enctype="multipart/form-data" action="/upload">
-    <input type="file" name="file">
-    <input type="submit" value="Submit">
-</form>
+
         
 
             <div class="col-md-7">
 
                 <div class="thumbnail">
+                    
                     <img ng-src="{{itemViewCntrl.item.itempicture}}">
                     <h4> <a> {{itemViewCntrl.item.itemname}}</a> </h4>
                     <div class="caption-full" >
