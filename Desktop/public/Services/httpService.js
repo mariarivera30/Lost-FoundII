@@ -23,11 +23,21 @@
         postFeedback:postFeedback,
         postItem:postItem,
         putThumbsdown:putThumbsdown,
-        getMyPosts:getMyPosts
+        getMyPosts:getMyPosts,
+        postItemPic:postItemPic
 
     };
 
+
     return service;
+    function postItemPic(image){
+    return $http.post('/upload',image,{
+                        headers: { 'Content-Type': false },
+                        transformRequest: angular.identity
+                    });
+  };
+   
+        
     function getUsers(){
     return $http.get('/allUsers');
 	};
