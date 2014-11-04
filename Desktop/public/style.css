@@ -333,7 +333,15 @@ font-size:12px;
     -moz-animation:slideOutLeft 0.5s both ease;
     animation:slideOutLeft 0.5s both ease;   
 }
-
+#message {
+    -webkit-transition:all linear 0.5s;
+    transition:all linear 0.5s;
+    background: transparent;
+}
+#message.ng-invalid {
+    color:white;
+    background: red;
+}
 
 
 /* ANIMATIONS

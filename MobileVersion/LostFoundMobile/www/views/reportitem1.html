@@ -1,34 +1,38 @@
-<ion-view title="{{'report_navTitle'|translate}}" left-buttons="leftButtons">
+<ion-view title="{{'report_navTitle'|translate}}" left-buttons="leftButtons" right-buttons="rightButtons">
 
     <ion-content has-header="true" padding="true">
         <div class="list">
 
 
-            <p><h5 translate="Contact_Info">Contact information:</h5></p>
+            <p><h5 translate="Contact_Info"></h5></p>
             <div class="list">
                 <label class="item item-input item-stacked-label">
-                    <span class="input-label" translate="First_Name">Name</span>
-                    <input type="text" placeholder="John Milk">
+                    <span class="input-label" translate="First_Name"></span>
+                    <input  type="text" placeholder="John Milk" ng-model="name">
                 </label>
                 <div class="list">
                     <label class="item item-input item-stacked-label">
-                        <span class="input-label" translate="Last_Name">Last Name</span>
+                        <span class="input-label" translate="Last_Name"></span>
                         <input type="text" placeholder="John Milk">
                     </label>
                     <label class="item item-input item-stacked-label">
-                        <span class="input-label" translate="Email">Email</span>
+                        <span class="input-label" translate="Email"></span>
                         <input type="text" placeholder="john.milk@upr.edu">
                     </label>
                     <label class="item item-input item-stacked-label">
-                        <span class="input-label" translate="Phone">PhoneNumber </span>
+                        <span class="input-label" translate="Phone"></span>
                         <input type="text" placeholder="787-123-4567">
                     </label>
+
+
                 </div>
             </div>
         </div>
+
+
                 <p></p>
                 <p><button class="button icon-right ion-chevron-right button-stable" ui-sref='main.reportitem2'>
-                    <span translate="Continue">Continue</span></button></p>
+                    <span translate="Continue"></span></button></p>
 
     </ion-content>
 

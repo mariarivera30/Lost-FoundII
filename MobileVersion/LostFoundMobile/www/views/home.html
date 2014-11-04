@@ -23,7 +23,7 @@
                 <div class="list" ng-repeat="item in lostItems" >
 
                     <a class="item item-thumbnail-left" ui-sref="main.item" ng-click="setValue(item)">
-                        <img src={{item.itempicture}}>
+                        <img ng-src={{item.itempicture}}>
                         <h2><span translate="Item:">Item</span> {{item.itemname}}</h2>
                         <p><span translate="Name:">Name:</span> {{item.itemname}}</p>
                         <p><span translate="Location:">Location:</span> {{item.locationitem}}</p>
@@ -56,7 +56,7 @@
                 <div class="list" ng-repeat="item in items">
 
                     <a class="item item-thumbnail-left" ui-sref="main.item" ng-click="setValue(item)">
-                        <img src={{item.itempicture}}>
+                        <img ng-src={{item.itempicture}}>
                         <h2><span translate="Item:">Item</span> {{item.itemname}}</h2>
                         <p><span translate="Name:">Name:</span> {{item.itemname}}</p>
                         <p><span translate="Location:">Location:</span> {{item.locationitem}}</p>
@@ -88,7 +88,7 @@
                  <div class="list" ng-repeat="item in foundItems" >
 
                     <a class="item item-thumbnail-left" ui-sref="main.item" ng-click="setValue(item)">
-                        <img src={{item.itempicture}}>
+                        <img ng-src={{item.itempicture}}>
                         <h2><span translate="Item:">Item</span> {{item.itemname}}</h2>
                         <p><span translate="Name:">Name:</span> {{item.itemname}}</p>
                         <p><span translate="Location:">Location:</span> {{item.locationitem}}</p>

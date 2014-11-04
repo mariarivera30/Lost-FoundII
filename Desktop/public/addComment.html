@@ -24,7 +24,7 @@
                                             <label for="name">
                                                 {{vm.translations.COMMENT}}</label>
                                                 <textarea name="message" id="message" class="form-control" rows="9" cols="25" required="required"
-                                                placeholder="{{vm.translations.MESSAGE}}" ng-model="commentCtrl.objectComment.usercomment"></textarea>
+                                                placeholder="{{vm.translations.MESSAGE}}" ng-model="commentCtrl.objectComment.usercomment" ng-pattern = "commentCtrl.pattern.field"></textarea>
 
 
                                                 <div class="col-md-12">

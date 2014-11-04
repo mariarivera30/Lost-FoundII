@@ -70,8 +70,8 @@
                             </div>
                             <label for="name">
                                 {{vm.translations.DESCRIPTION}}</label>
-                            <textarea name="message" id="message" class="form-control" rows="9" cols="25" required="required"
-                                placeholder="Message" ng-model="list.description"></textarea>
+                            <textarea name="message" id="message" class="form-control" rows="9" cols="25"
+                                placeholder="Message" ng-model="list.description" ng-pattern="reportItemCtrl.pattern.field" ></textarea>
                         </div class "left">
                        
                          <label class="checkbox-inline">

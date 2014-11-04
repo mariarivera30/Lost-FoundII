@@ -4,35 +4,35 @@
         <div class="list">
 
             <label class="item item-input">
-                <span class="input-label" translate="Item:">Item:</span>
+                <span class="input-label" translate="Item:"></span>
                 <input type="text">
             </label>
-            <button ng-click="takePic()"> pic</button>
+
 
             <label class="item item-input item-select">
                 <div class="input-label">
-                    <span translate="select_category">Select a category of the item:</span>
+                    <span translate="select_category"></span>
                 </div>
                 <select>
-                    <option selected >All</option>
+                    <option ng-selected >All</option>
                     <option ng-repeat = "category in categories" >{{category.categoryname}}</option>
                 </select>
             </label>
             <label class="item item-input item-select">
                 <div class="input-label">
-                    <span translate="item_status">Item Status:</span>
+                    <span translate="item_status"></span>
                 </div>
                 <select>
-                    <option><span translate="Lost">Lost</span></option>
-                    <option><span translate="Found">Found</span></option>
+                    <option><span translate="Lost"></span></option>
+                    <option><span translate="Found"></span></option>
                 </select>
             </label>
 
         </div>
         <label class="item item-input item-stacked-label">
-            <span class="input-label" translate="item_description">Provide a brief description of the item</span>
+            <span class="input-label" translate="item_description"></span>
 
-            <textarea placeholder={{'w_item_description'|translate}} rows="8" cols="10">
+            <textarea class="checkforms" placeholder={{'w_item_description'|translate}} rows="8" cols="10" ng-model="description.text" ng-pattern="pattern.field">
             </textarea>
         </label>
 
@@ -41,13 +41,13 @@
         <label>
             <div class="entrybuttons">
                 <p> <button class="button button-stable icon-right ion-image"
-                            ng-click = "getPicture()"><span translate="Upload">Upload</span></button>
+                            ng-click = "getPic()"><span translate="Upload"></span></button>
 
                     <button class="button button-stable icon-right ion-camera"
-                            ng-click="takePic()"><span translate="Take">Take</span></button></p>
+                            ng-click="takePic()"><span translate="Take"></span></button></p>
             </div>
         </label>
-        <p><h5 translate="cont_disp">Select contact information to be displayed:</h5></p>
+        <p><h5 translate="cont_disp"></h5></p>
         <label>
             <ul  class="list">
                 <label>
@@ -95,12 +95,12 @@
 
 
         <p></p>
-        <p><h5 translate="send_email">Send email everytime user comments:</h5></p>
+        <p><h5 translate="send_email"></h5></p>
         <label>
             <ul  class="list">
 
                 <li class="item item-toggle">
-                    <span translate="comment_update">Comment update emails</span>
+                    <span translate="comment_update"></span>
                     <label class="toggle toggle-dark">
                         <input type="checkbox">
                         <div class="track">
@@ -112,7 +112,7 @@
         </label>
         <p></p>
         <p><button class="button icon-right ion-star button-stable">
-            <span translate="Preview">Preview</span></button></p>
+            <span translate="Preview"></span></button></p>
 
     </ion-content>
 
