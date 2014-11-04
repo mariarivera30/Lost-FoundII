@@ -10,30 +10,60 @@
     var service = {
         getUsers:getUsers,
         getItems:getItems,
-        
+        getItemId:getItemId,
+        getItemsAdmin:getItemsAdmin,
         getLostItems:getLostItems,
         getFoundItems:getFoundItems,
-       
         getComments:getComments,
-        getUserAdmin:getUserAdmin,
-        
+        getUserAdmin:getUserAdmin,        
         postUser:postUser,
         postComment:postComment,
         postFeedback:postFeedback,
         postItem:postItem,
         putThumbsdown:putThumbsdown,
-        getMyPosts:getMyPosts
+        getMyPosts:getMyPosts,
+
+        blockAdminUser:blockAdminUser,
+        unblockAdminUser:unblockAdminUser,
+        blockAdminItem:blockAdminItem,
+        unblockAdminItem:unblockAdminItem,
+        getItemSearchAdmin:getItemSearchAdmin,
+        getAdmins:getAdmins,
+        removeAdmin:removeAdmin,
+
+        postItemPic:postItemPic
+
 
     };
 
+
     return service;
+
+    function postItemPic(image){
+    return $http.post('/upload',image,{
+                        headers: { 'Content-Type': false },
+                        transformRequest: angular.identity
+                    });
+  };
+   
+        
     function getUsers(){
+
     return $http.get('/allUsers');
 	};
+
+
+  function getAdmins(){
+    return $http.get('/allAdmins');
+  };
 
  	function getItems(){
     return $http.get('/allItems');
 	};
+
+  function getItemsAdmin(){
+    return $http.get('/allItemsAdmin');
+  };
 
   // function getCategories(){
   //   return $http.get('/allCategories');
@@ -43,6 +73,9 @@
   //   var data = {type:newCategory};
   //   return $http.post('/aCategories/', data);
   // };
+  function getItemId(id){
+    return $http.get('/itemId/' + id );
+  };
 
   function getLostItems(){
     return $http.get('/allLostItems');
@@ -73,6 +106,11 @@
     return $http.get('/anUser/'+id);
   };
 
+
+  function getItemSearchAdmin(id){
+    return $http.get('/anItem/'+id);
+  };
+
   // function deleteCategory(id){
   //   return $http.delete('/deleteCategory/'+id);
   // };
@@ -90,6 +128,31 @@
   function getMyPosts(cred){
    
     return $http.get('/myPostsItems/'+cred.myemail+'/'+cred.mykey);
+  };
+
+  function blockAdminUser(id){
+    var data = {id:id};
+    return $http.post('/blockAdminUser/',data);
+  };
+
+  function unblockAdminUser(id){
+    var data = {id:id};
+    return $http.post('/unblockAdminUser/',data);
+  };
+
+  function blockAdminItem(id){
+    var data = {id:id};
+    return $http.post('/blockAdminItem/',data);
+  };
+
+  function unblockAdminItem(id){
+    var data = {id:id};
+    return $http.post('/unblockAdminItem/',data);
+  };
+
+  function removeAdmin(id){
+    var data = {id:id};
+    return $http.post('/removeAdmin/',data);
   };
 
 }

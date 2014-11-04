@@ -9,7 +9,8 @@
 		commentofitem :{},
 		searchUserEmail : {},
 		itemStatus:{},
-		myItems : {}
+		myItems : {},
+		credentials: {}
 		
 		
 	};

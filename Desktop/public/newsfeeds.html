@@ -16,8 +16,8 @@
 <ul class="list-group">
   <li class="list-group-item" ng-repeat="item in newsfeedCtrl.items" ng-click="newsfeedCtrl.setValue(item)">
     <div class="row">
-  <div class="col-xs-6 col-md-4"><div class="itemimg"><img ng-src="{{item.itempicture}}"  ui-sref="form.viewitem" height="200" width="200"> </div></div>
-  <div class="col-xs-6 col-md-4"><h2 ><CENTER>{{item.itemstatus}}</CENTER></h2><h4><CENTER>{{vm.translations.ITEMID}}: {{item.itemid}}</CENTER></h4><h4><CENTER>{{item.locationitem}}</CENTER></h4><h4><center>{{vm.translations.SEENBY}}: {{item.itemviews}}</center></h4>
+  <div class="col-xs-6 col-md-4"><div class="itemimg"><img ng-src="{{item.itempicture}}"  ui-sref="form.viewitem({ item:item.itemid})" height="200" width="200"> </div></div>
+  <div class="col-xs-6 col-md-4"><h2 ><CENTER>{{item.itemstatus}}</CENTER></h2><h4><CENTER>{{vm.translations.ITEMID}}: {{item.itemid}}</CENTER></h4><h4><CENTER>{{vm.translations.CATEGORY}}: {{item.category}}</CENTER></h4><h4><CENTER>{{item.locationitem}}</CENTER></h4><h4><center>{{vm.translations.SEENBY}}: {{item.itemviews}}</center></h4>
  </div>
   <div class="col-xs-6 col-md-4">  
  
@@ -28,8 +28,9 @@
  
  <center>
 
- <button ng-click="newsfeedCtrl.thumbsdownfunction(item.itemid)" ng-disabled="newsfeedCtrl.buttonDisabled"><span class="glyphicon glyphicon-thumbs-down custom"> </button> </center></div>
- </div>
+ <button ng-click="newsfeedCtrl.thumbsdownfunction(item.itemid)" ><span class="glyphicon glyphicon-thumbs-down custom"> </button> </center></div>
+
+</div>
 </div>
 
   

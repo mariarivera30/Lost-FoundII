@@ -227,7 +227,11 @@ padding-left: 10px;
     padding-rigth: 100px;
 }
 .list-group-item{
-    background:#567884;
+    background:#cfdce4;
+    color:#0a1921;
+  
+    border-color:#0a1921; 
+    border-radius: 20px;
 }
 .about{
   color: #2A4D58;

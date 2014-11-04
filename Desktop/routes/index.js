@@ -9,6 +9,35 @@ exports.index = function(req, res){
   res.render('index', { title: 'Express' });
 };
 
+exports.getItemId = function(req, res) {
+    console.log("GET");
+  res.header("Access-Control-Allow-Origin", "*");
+  res.header("Access-Control-Allow-Headers", "X-Requested-With");
+  var client = new pg.Client(conString);
+    
+  client.connect(function(err) {
+                   if (err) {
+                   return console.error('could not connect to postgres', err);
+                   }
+                   client.query("SELECT * FROM public.item natural join public.users WHERE item.itemid = '"+req.params.id+"'", function(err, result) {
+                               
+                                if (err) {
+                                return console.error('error running query', err);
+                                }
+                                var response = {
+                                "item" : result.rows
+                                };
+                                res.status(200);
+                                res.json(response);
+                                console.log(response);
+                                //output: Tue Jan 15 2013 19:12:47 GMT-600 (CST)
+                                client.end();
+                                });
+                   });
+
+};
+
+
 exports.postFeedback= function(req,res){
   console.log("POST");
   var client = new pg.Client(conString);
@@ -127,6 +156,35 @@ exports.getUsers = function(req, res) {
 
 };
 
+
+exports.getAdmins = function(req, res) {
+    console.log("GET");
+  res.header("Access-Control-Allow-Origin", "*");
+  res.header("Access-Control-Allow-Headers", "X-Requested-With");
+  var client = new pg.Client(conString);
+    
+  client.connect(function(err) {
+                   if (err) {
+                   return console.error('could not connect to postgres', err);
+                   }
+                   client.query("SELECT  *  FROM public.users WHERE users.isadmin = 'true' ORDER BY users.firstname ASC", function(err, result) {
+                               
+                                if (err) {
+                                return console.error('error running query', err);
+                                }
+                                var response = {
+                                "users" : result.rows
+                                };
+                                
+                                res.json(200,response);
+                                console.log(response);
+                                //output: Tue Jan 15 2013 19:12:47 GMT-600 (CST)
+                                client.end();
+                                });
+                   });
+
+};
+
 exports.getItems = function(req, res) {
     console.log("GET");
   res.header("Access-Control-Allow-Origin", "*");
@@ -191,7 +249,7 @@ exports.getLostItems = function(req, res) {
                    if (err) {
                    return console.error('could not connect to postgres', err);
                    }
-                   client.query("SELECT * FROM public.item WHERE item.itemstatus = 'Lost'", function(err, result) {
+                   client.query("SELECT * FROM public.item WHERE item.itemstatus = 'Lost' and item.isblocked = 'false' ORDER BY item.itemid DESC", function(err, result) {
                                
                                 if (err) {
                                 return console.error('error running query', err);
@@ -219,7 +277,7 @@ exports.getFoundItems = function(req, res) {
                    if (err) {
                    return console.error('could not connect to postgres', err);
                    }
-                   client.query("SELECT * FROM public.item WHERE item.itemstatus = 'Found'", function(err, result) {
+                   client.query("SELECT * FROM public.item WHERE item.itemstatus = 'Found' and item.isblocked = 'false' ORDER BY item.itemid DESC", function(err, result) {
                                
                                 if (err) {
                                 return console.error('error running query', err);
@@ -276,7 +334,7 @@ exports.getUserAdmin = function(req, res) {
                    if (err) {
                    return console.error('could not connect to postgres', err);
                    }
-                   client.query("SELECT * FROM public.users WHERE users.email = '"+req.params.id+"' ", function(err, result) {
+                   client.query("SELECT * FROM public.users WHERE users.email LIKE '%"+req.params.id+"%' OR users.firstname LIKE '%"+req.params.id+"%' OR users.lastname LIKE '%"+req.params.id+"%' ", function(err, result) {
                                
                                 if (err) {
                                 return console.error('error running query', err);
@@ -286,6 +344,61 @@ exports.getUserAdmin = function(req, res) {
                                 };
                                 res.status(200);
                                 res.json(response);
+                                console.log(response);
+                                //output: Tue Jan 15 2013 19:12:47 GMT-600 (CST)
+                                client.end();
+                                });
+                   });
+
+};
+
+
+exports.getItemsAdmin = function(req, res) {
+    console.log("GET");
+  res.header("Access-Control-Allow-Origin", "*");
+  res.header("Access-Control-Allow-Headers", "X-Requested-With");
+  var client = new pg.Client(conString);
+    
+  client.connect(function(err) {
+                   if (err) {
+                   return console.error('could not connect to postgres', err);
+                   }
+                   client.query("SELECT * FROM public.item ORDER BY item.itemid DESC", function(err, result) {
+                               
+                                if (err) {
+                                return console.error('error running query', err);
+                                }
+                                var response = {
+                                "items" : result.rows
+                                };
+                                res.json(200,response);
+                                console.log(response);
+                                //output: Tue Jan 15 2013 19:12:47 GMT-600 (CST)
+                                client.end();
+                                });
+                   });
+
+};
+
+exports.getItemsAdminSearchBar = function(req, res) {
+    console.log("GET");
+  res.header("Access-Control-Allow-Origin", "*");
+  res.header("Access-Control-Allow-Headers", "X-Requested-With");
+  var client = new pg.Client(conString);
+    
+  client.connect(function(err) {
+                   if (err) {
+                   return console.error('could not connect to postgres', err);
+                   }
+                   client.query("SELECT * FROM public.item WHERE item.email LIKE '%"+req.params.id+"%' OR item.itemname LIKE '%"+req.params.id+"%' ", function(err, result) {
+                               
+                                if (err) {
+                                return console.error('error running query', err);
+                                }
+                                var response = {
+                                "items" : result.rows
+                                };
+                                res.json(200,response);
                                 console.log(response);
                                 //output: Tue Jan 15 2013 19:12:47 GMT-600 (CST)
                                 client.end();
@@ -388,6 +501,115 @@ exports.getMyPosts= function(req,res){
                                 res.json(response);
                                 console.log(response);
                                
+                                client.end();
+                                });
+                   });
+
+
+};
+
+exports.blockAdminUser= function(req,res){
+  console.log("POST");
+  var client = new pg.Client(conString);
+     
+  client.connect(function(err) {
+                   if (err) {
+                   return console.error('could not connect to postgres', err);
+                   }
+            
+                   client.query("Update public.users Set isblocked = 'true' Where email = '"+req.body.id+"'", function(err, result) {
+                               
+                                if (err) {
+                                return console.error('error running query', err);
+                                }
+                                
+                                res.status(200);
+                                client.end();
+                                });
+                   });
+};
+
+exports.unblockAdminUser= function(req,res){
+  console.log("POST");
+  var client = new pg.Client(conString);
+     
+  client.connect(function(err) {
+                   if (err) {
+                   return console.error('could not connect to postgres', err);
+                   }
+            
+                   client.query("Update public.users Set isblocked = 'false' Where email = '"+req.body.id+"'", function(err, result) {
+                               
+                                if (err) {
+                                return console.error('error running query', err);
+                                }
+                                
+                                res.status(200);
+                                client.end();
+                                });
+                   });
+};
+
+
+exports.blockAdminItem= function(req,res){
+  console.log("POST");
+  var client = new pg.Client(conString);
+     
+  client.connect(function(err) {
+                   if (err) {
+                   return console.error('could not connect to postgres', err);
+                   }
+            
+                   client.query("Update public.item Set isblocked = 'true' Where itemid = '"+req.body.id+"'", function(err, result) {
+                               
+                                if (err) {
+                                return console.error('error running query', err);
+                                }
+                                
+                                res.status(200);
+                                client.end();
+                                });
+                   });
+};
+
+exports.unblockAdminItem= function(req,res){
+  console.log("POST");
+  var client = new pg.Client(conString);
+     
+  client.connect(function(err) {
+                   if (err) {
+                   return console.error('could not connect to postgres', err);
+                   }
+            
+                   client.query("Update public.item Set isblocked = 'false' Where itemid = '"+req.body.id+"'", function(err, result) {
+                               
+                                if (err) {
+                                return console.error('error running query', err);
+                                }
+                                
+                                res.status(200);
+                                client.end();
+                                });
+                   });
+};
+
+
+exports.removeAdmin= function(req,res){
+  console.log("POST");
+  var client = new pg.Client(conString);
+     
+  client.connect(function(err) {
+                   if (err) {
+                   return console.error('could not connect to postgres', err);
+                   }
+            
+                   client.query("Update public.users Set isadmin = 'false' Where email = '"+req.body.id+"'", function(err, result) {
+                               
+                                if (err) {
+                                return console.error('error running query', err);
+                                }
+                                
+                                res.status(200);
                                 client.end();
                                 });
                    });

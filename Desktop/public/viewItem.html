@@ -4,8 +4,11 @@
     <div class="container" >
 
         <div id ="editItemView"class="row" >
-
-         
+<form method="post" enctype="multipart/form-data" action="/upload">
+    <input type="file" name="file">
+    <input type="submit" value="Submit">
+</form>
+        
 
             <div class="col-md-7">
 
@@ -15,7 +18,7 @@
                     <div class="caption-full" >
                         
                         <h4>{{vm.translations.FOUNDBY}} {{itemViewCntrl.item.firstname}} {{itemViewCntrl.item.lastname}}</h4>
-                        <h4>{{vm.translations.REPORTEDDATE}}: {{itemViewCntrl.item.itemdate}}</h4>
+                        <h4>{{vm.translations.REPORTEDDATE}}: {{itemViewCntrl.item.itemdate}} </h4>
                         <h4>{{vm.translations.SUCCESDATE}}: {{itemViewCntrl.item.itemsuccessdate}}</h4>
                          <h4>{{vm.translations.ITEMID}}: {{itemViewCntrl.item.itemid}}</h4>
                           <h4>{{vm.translations.LOCATION}}: {{itemViewCntrl.item.locationitem}}</h4>
@@ -28,7 +31,7 @@
                 <div class="well">
 
                     <div class="text-right">
-                        <a class="btn btn-success" ng-click="gotoTop()" ui-sref="form.addcomment" >{{vm.translations.LEAVECOMMENT}}</a>
+                        <a class="btn btn-success" ng-click="gotoTop()" ui-sref="form.addcomment({item:itemViewCntrl.item.itemid})" >{{vm.translations.LEAVECOMMENT}}</a>
                     </div>
 
                     <hr>

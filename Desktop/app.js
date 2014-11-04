@@ -8,10 +8,12 @@ var routes = require('./routes');
 
 var http = require('http');
 var path = require('path');
+var path2 = require('path');
 
 var app = express();
 
 var pg = require("pg");
+var fs = require('fs');
 
 
 var conString = "pg://postgres:postgres@localhost:5432/lostfoundDB";
@@ -19,18 +21,25 @@ var conString = "pg://postgres:postgres@localhost:5432/lostfoundDB";
 var client = new pg.Client(conString);
 client.connect();
 
-
-// all environments
+app.configure(function() {
 app.set('port', 3000);
 app.set('views', path.join(__dirname, 'views'));
+    app.use(express.bodyParser());
+    app.use(express.static(path2.join(__dirname, 'public'))); 
+    
+});
+
+// all environments
+
 app.set('view engine', 'jade');
+app.use(express.bodyParser());
 app.use(express.favicon());
 app.use(express.logger('dev'));
 app.use(express.json());
 app.use(express.urlencoded());
 app.use(express.methodOverride());
 app.use(app.router);
-app.use(express.static(path.join(__dirname, 'public')));
+
 
 // development only
 if ('development' == app.get('env')) {
@@ -49,12 +58,15 @@ app.all('/', function(req, res, next) {
 //gets
 app.get('/', routes.index);
 app.get('/allUsers', routes.getUsers);
+app.get('/allAdmins', routes.getAdmins);
 app.get('/allItems', routes.getItems);
+app.get('/allItemsAdmin', routes.getItemsAdmin);
 // app.get('/allCategories', routes.getCategories);
 app.get('/allLostItems', routes.getLostItems);
 app.get('/allFoundItems', routes.getFoundItems);
 app.get('/allComments/:id', routes.getComments);
 app.get('/anUser/:id', routes.getUserAdmin);
+app.get('/anItem/:id', routes.getItemsAdminSearchBar);
 app.get('/myPostsItems/:email/:key', routes.getMyPosts);
 
 //posts
@@ -65,9 +77,31 @@ app.post('/addFeedback/',routes.postFeedback);
 
 app.post('/postItem',routes.postItem);
 app.post('/putThumbsdown/', routes.putThumbsdown);
+app.get('/itemId/:id',routes.getItemId);
+app.post('/blockAdminUser/', routes.blockAdminUser);
+app.post('/unblockAdminUser/', routes.unblockAdminUser);
+app.post('/blockAdminItem/', routes.blockAdminItem);
+app.post('/unblockAdminItem/', routes.unblockAdminItem);
+app.post('/removeAdmin/', routes.removeAdmin);
+
 
 //block
 
+app.post('/upload', function(req, res) {
+	console.log(req.files.file);
+	
+	var image =  req.files.file;
+    var newImageLocation = path.join(__dirname, 'public/images', image.name);
+    
+    fs.readFile(image.path, function(err, data) {
+        fs.writeFile(newImageLocation, data, function(err) {
+            res.json(200, { 
+                src: 'images/' + image.name,
+                size: image.size
+            });
+        });
+    });
+});
 
 
 

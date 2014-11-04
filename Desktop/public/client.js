@@ -2,12 +2,17 @@
 
 // create our angular app and inject ngAnimate and ui-router 
 // =============================================================================
-var app =angular.module('app', ['formApp','ngAnimate', 'ui.router', 'ngResource','ngRoute']);
+var app =angular.module('app', ['formApp','ngAnimate', 'ui.router', 'ngResource','ngRoute','imageupload']);
 
 // configuring our routes 
 // =============================================================================
-app.config(function($stateProvider, $urlRouterProvider,$httpProvider) {
+app.config(function($stateProvider, $urlRouterProvider,$httpProvider,$compileProvider) {
 	
+   
+       var oldWhiteList = $compileProvider.imgSrcSanitizationWhitelist();
+  $compileProvider.imgSrcSanitizationWhitelist(/^\s*(https?|ftp|file|blob):|data:image\//);
+        // Angular before v1.2 uses $compileProvider.urlSanitizationWhitelist(...)
+
 	$stateProvider
 	
 		// route to show our basic form (/form)
@@ -53,7 +58,7 @@ app.config(function($stateProvider, $urlRouterProvider,$httpProvider) {
 		})
 		
 		.state('form.viewitem', {
-			url: '/view',
+			url: '/view/:item',
 			templateUrl: 'viewItem.html'
 		})
 
@@ -62,7 +67,7 @@ app.config(function($stateProvider, $urlRouterProvider,$httpProvider) {
 			templateUrl: 'viewItemOwner.html'
 		})
 		.state('form.addcomment', {
-			url: '/addcomment',
+			url: '/addcomment/:item',
 			templateUrl: 'addComment.html'
 		})
 		.state('form.feedback', {
@@ -87,10 +92,10 @@ app.config(function($stateProvider, $urlRouterProvider,$httpProvider) {
     		url: '/adminusers',
 			 templateUrl: 'adminusers.html'})
 
-		.state('form.admin.category', {
-    		parent: 'form.admin',
-    		url: '/admincategories',
-			 templateUrl: 'admincategories.html'})
+		// .state('form.admin.category', {
+  //   		parent: 'form.admin',
+  //   		url: '/admincategories',
+		// 	 templateUrl: 'admincategories.html'})
 
   		.state('form.admin.items', {
     		parent: 'form.admin',

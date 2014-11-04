@@ -1,13 +1,16 @@
 
 angular.module('formApp')
-.controller('myPostsController',['$scope','$http','restApi','shareData' , function($scope,$http,restApi,shareData) {
+.controller('myPostsController',['$scope','$http','$stateParams','restApi','shareData','$timeout' , function($scope,$http,$stateParams,restApi,shareData,$timeout) {
 
 var myPostsCtrl = this;
 myPostsCtrl.myItems = shareData.myItems;
 myPostsCtrl.status ={};
 myPostsCtrl.credentials = {};
 
+$timeout(refresh,1000);
+
 myPostsCtrl.myposts = function(cred){
+   shareData.credentials = cred;
   myPostsCtrl.credentials = cred;
 //alert(myPostsCtrl.credentials.myemail);
   restApi.getMyPosts( myPostsCtrl.credentials)
@@ -21,6 +24,11 @@ myPostsCtrl.myposts = function(cred){
 
             
         };
+
+function refresh(){
+  myPostsCtrl.myposts( shareData.credentials);
+
+};
 
 
 

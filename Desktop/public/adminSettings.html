@@ -10,8 +10,8 @@
 
 </div>
               
-        <a href="#" id ="BlockBtn" class="btn btn-primary" role="button" >{{vm.translations.RESETKEY}}</a> 
-        <a href="#" id ="UnblockBtn" class="btn btn-primary" role="button" >{{vm.translations.REMOVE}}</a> 
+        <a  id ="BlockBtn" class="btn btn-primary" role="button" >{{vm.translations.RESETKEY}}</a> 
+        <a  id ="UnblockBtn" ng-click="settingCtrl.selectToRemoveAdmin()" class="btn btn-primary" role="button" >{{vm.translations.REMOVE}}</a> 
 
 
   </div>
@@ -24,16 +24,16 @@
             <th><center>{{vm.translations.FIRSTNAME}}</center></th>
             <th><center>{{vm.translations.LASTNAME}}</center></th>
             <th><center>{{vm.translations.EMAIL}}</center></th>
-            <th><center>block-un</center></th>
+            <!-- <th><center>Blocked</center></th> -->
           </tr>
         </thead>
-        <tbody ng-repeat="user in settingCtrl.users | filter:email" >
+        <tbody ng-repeat="user in settingCtrl.admins " >
           <tr>
-            <td><input type="checkbox" name="users" value=" "></td>
+            <td><input type="checkbox" name="users" value=" " ng-model="user.Selected"></td>
             <td>{{user.firstname}}</td>
             <td>{{user.lastname}}</td>
             <td>{{user.email}}</td>
-            <td>{{user.isblocked}}</td>
+           <!--  <td>{{user.isblocked}}</td> -->
           </tr>
           
         </tbody>
@@ -43,13 +43,12 @@
 
 <div  ><center>
                         <div class="form-group">
-                            <label for="nameUser">
+                            <label for="nameUsers">
                                 {{vm.translations.FIRSTNAME}}</label>
-                            <input type="text" class="form-control" id="nameUser" placeholder="First Name" required="require" ng-model ="userObject.firstname">
+                            <input type="text" class="form-control" id="nameUsers" placeholder="First Name" required="require" ng-model ="userObject.firstname">
                              <label for="lastUser">
                                 {{vm.translations.LASTNAME}}</label>
                             <input type="text" class="form-control" id="lastUser" placeholder="Last Name" required="require" ng-model ="userObject.lastname">
-
                             <label for="Email">
                                 {{vm.translations.EMAIL}}</label>
                             <input type="text" class="form-control" id="email" placeholder="juan@gmail.com" required="require" ng-model ="userObject.email">
