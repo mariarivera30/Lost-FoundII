@@ -49,12 +49,15 @@ app.all('/', function(req, res, next) {
 //gets
 app.get('/', routes.index);
 app.get('/allUsers', routes.getUsers);
+app.get('/allAdmins', routes.getAdmins);
 app.get('/allItems', routes.getItems);
+app.get('/allItemsAdmin', routes.getItemsAdmin);
 // app.get('/allCategories', routes.getCategories);
 app.get('/allLostItems', routes.getLostItems);
 app.get('/allFoundItems', routes.getFoundItems);
 app.get('/allComments/:id', routes.getComments);
 app.get('/anUser/:id', routes.getUserAdmin);
+app.get('/anItem/:id', routes.getItemsAdminSearchBar);
 app.get('/myPostsItems/:email/:key', routes.getMyPosts);
 
 //posts
@@ -66,6 +69,12 @@ app.post('/addFeedback/',routes.postFeedback);
 app.post('/postItem',routes.postItem);
 app.post('/putThumbsdown/', routes.putThumbsdown);
 app.get('/itemId/:id',routes.getItemId);
+app.post('/blockAdminUser/', routes.blockAdminUser);
+app.post('/unblockAdminUser/', routes.unblockAdminUser);
+app.post('/blockAdminItem/', routes.blockAdminItem);
+app.post('/unblockAdminItem/', routes.unblockAdminItem);
+app.post('/removeAdmin/', routes.removeAdmin);
+
 
 //block
 

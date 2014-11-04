@@ -1,6 +1,6 @@
 angular.module('formApp')
 
-.controller('adminUsersController',['$scope','$http','restApi','shareData', function($scope,$http,restApi,shareData) {
+.controller('adminUsersController',['$scope','$http','restApi','shareData','$timeout', function($scope,$http,restApi,shareData,$timeout) {
   
   var userCtrl = this;
   userCtrl.users ={};
@@ -53,18 +53,36 @@ angular.module('formApp')
 userCtrl.getSelectedForBlock= function(){
   angular.forEach(userCtrl.users, function (user) {
             if(user.Selected){
-              alert(user.email);
+              
+              restApi.blockAdminUser(user.email)
+            .success(function (data) {
+              
+               
+              })
+            .error(function (error) {
+                userCtrl.status = 'Unable to load customer data: ' + error.message;
+            });
+
             }
         });
-
+$timeout(getUser, 1000);
 };
 userCtrl.getSelectedForUNBlock= function(){
   angular.forEach(userCtrl.users, function (user) {
             if(user.Selected){
-              alert(user.email);
+              
+        restApi.unblockAdminUser(user.email)
+            .success(function (data) {
+              
+               
+              })
+            .error(function (error) {
+                userCtrl.status = 'Unable to load customer data: ' + error.message;
+            });
+
             }
         });
-
+$timeout(getUser, 1000);
 };
 
            

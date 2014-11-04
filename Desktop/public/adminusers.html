@@ -23,8 +23,8 @@
 
 </div>
               
-        <a href="#" id ="BlockBtn" class="btn btn-primary" role="button" ng-click ="userCtrl.getSelectedForBlock()">{{vm.translations.BLOCK}}</a> 
-        <a href="#" id ="UnblockBtn" class="btn btn-primary" role="button" ng-click ="userCtrl.getSelectedForUNBlock()">{{vm.translations.UNBLOCK}}</a> 
+        <a id ="BlockBtn" class="btn btn-primary" role="button" ng-click ="userCtrl.getSelectedForBlock()">{{vm.translations.BLOCK}}</a> 
+        <a id ="UnblockBtn" class="btn btn-primary" role="button" ng-click ="userCtrl.getSelectedForUNBlock()">{{vm.translations.UNBLOCK}}</a> 
 
   </div>
   <!-- <div class="panel-body">
@@ -39,14 +39,16 @@
             <th><center>{{vm.translations.FIRSTNAME}}</center></th>
             <th><center>{{vm.translations.LASTNAME}}</center></th>
             <th><center>{{vm.translations.EMAIL}}</center></th>
+             <th><center>Blocked</center></th>
           </tr>
         </thead>
-        <tbody ng-repeat="user in userCtrl.users | filter:searchAdminUser">
+        <tbody ng-repeat="user in userCtrl.users">
           <tr >
             <td><input type="checkbox" name="users" value=" " ng-model="user.Selected"></td>
             <td>{{user.firstname}}</td>
            <td>{{user.lastname}}</td>
             <td>{{user.email}}</td>
+            <td>{{user.isblocked}}</td>
           </tr>
           
         </tbody>

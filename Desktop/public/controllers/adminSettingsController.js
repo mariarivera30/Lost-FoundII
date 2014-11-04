@@ -1,18 +1,21 @@
 angular.module('formApp')
-.controller('adminSettingsController',['$scope','$http','restApi', function($scope,$http,restApi) {
+.controller('adminSettingsController',['$scope','$http','restApi','$timeout', function($scope,$http,restApi,$timeout) {
 var settingCtrl = this;
 settingCtrl.firstname ="";
 settingCtrl.userObject={};
+settingCtrl.admins = {};
+settingCtrl.status = {};
 
 
-$scope.users
-  getUser();  
+
+  getAdmins();  
 
   settingCtrl.getUserObject = function (object){
+      var x = Math.floor((Math.random() * 999) + 1);
    settingCtrl.userObject=object;
    settingCtrl.userObject.isblocked='false';
    settingCtrl.userObject.isadmin='true';
-    settingCtrl.userObject.passkey=123;
+    settingCtrl.userObject.passkey = x;
    postUser(object);
   };
 
@@ -27,19 +30,35 @@ $scope.users
             });
     };
 
-	function getUser() {
-        restApi.getUsers()
+	function getAdmins() {
+        restApi.getAdmins()
             .success(function (data) {
               
-                settingCtrl.users = data.users;
+                settingCtrl.admins = data.users;
               })
             .error(function (error) {
-                $scope.status = 'Unable to load customer data: ' + error.message;
+                settingCtrl.status = 'Unable to load customer data: ' + error.message;
             });
     };
 
 
+settingCtrl.selectToRemoveAdmin= function(){
+  angular.forEach(settingCtrl.admins, function (user) {
+            if(user.Selected){
+              
+              restApi.removeAdmin(user.email)
+            .success(function (data) {
+              
+               
+              })
+            .error(function (error) {
+                settingCtrl.status = 'Unable to load customer data: ' + error.message;
+            });
 
+            }
+        });
+$timeout(getAdmins, 1000);
+};
 
 
 

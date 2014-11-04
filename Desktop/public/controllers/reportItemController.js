@@ -8,7 +8,7 @@ angular.module('formApp')
 	function postItem() {
         restApi.postItem(reportItemCtrl.list)
             .success(function (data) {
-              
+              reportItemCtrl.list ={};
                 
               })
             .error(function (error) {
@@ -20,9 +20,8 @@ angular.module('formApp')
     reportItemCtrl.setValue = function (x){
     	reportItemCtrl.list = x;
         reportItemCtrl.list.itemStatus = shareData.itemStatus;
-    	
     	postItem();
-    	
+    	reportItemCtrl.list = {};
 
     };
 	

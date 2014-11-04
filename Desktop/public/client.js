@@ -87,10 +87,10 @@ app.config(function($stateProvider, $urlRouterProvider,$httpProvider) {
     		url: '/adminusers',
 			 templateUrl: 'adminusers.html'})
 
-		.state('form.admin.category', {
-    		parent: 'form.admin',
-    		url: '/admincategories',
-			 templateUrl: 'admincategories.html'})
+		// .state('form.admin.category', {
+  //   		parent: 'form.admin',
+  //   		url: '/admincategories',
+		// 	 templateUrl: 'admincategories.html'})
 
   		.state('form.admin.items', {
     		parent: 'form.admin',
