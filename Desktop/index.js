@@ -9,6 +9,20 @@ exports.index = function(req, res){
   res.render('index', { title: 'Express' });
 };
 
+exports.uploadImg =function(req, res) {
+    var image =  req.files.image;
+    var newImageLocation = path.join(__dirname, 'public/images', image.name);
+    
+    fs.readFile(image.path, function(err, data) {
+        fs.writeFile(newImageLocation, data, function(err) {
+            res.json(200, { 
+                src: 'images/' + image.name,
+                size: image.size
+            });
+        });
+    });
+};
+
 exports.getItemId = function(req, res) {
     console.log("GET");
   res.header("Access-Control-Allow-Origin", "*");
@@ -19,7 +33,7 @@ exports.getItemId = function(req, res) {
                    if (err) {
                    return console.error('could not connect to postgres', err);
                    }
-                   client.query("SELECT * FROM public.item, public.users WHERE item.itemid = =$1",[id], function(err, result) {
+                   client.query("SELECT * FROM public.item, public.users WHERE item.itemid =$1",[id], function(err, result) {
                                
                                 if (err) {
                                 return console.error('error running query', err);

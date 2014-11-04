@@ -22,19 +22,33 @@
         postItem:postItem,
         putThumbsdown:putThumbsdown,
         getMyPosts:getMyPosts,
+
         blockAdminUser:blockAdminUser,
         unblockAdminUser:unblockAdminUser,
         blockAdminItem:blockAdminItem,
         unblockAdminItem:unblockAdminItem,
         getItemSearchAdmin:getItemSearchAdmin,
         getAdmins:getAdmins,
-        removeAdmin:removeAdmin
+        removeAdmin:removeAdmin,
+
+        postItemPic:postItemPic
+
 
     };
 
+
     return service;
-  
-  function getUsers(){
+
+    function postItemPic(image){
+    return $http.post('/upload',image,{
+                        headers: { 'Content-Type': false },
+                        transformRequest: angular.identity
+                    });
+  };
+   
+        
+    function getUsers(){
+
     return $http.get('/allUsers');
 	};
 

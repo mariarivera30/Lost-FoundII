@@ -2,12 +2,17 @@
 
 // create our angular app and inject ngAnimate and ui-router 
 // =============================================================================
-var app =angular.module('app', ['formApp','ngAnimate', 'ui.router', 'ngResource','ngRoute']);
+var app =angular.module('app', ['formApp','ngAnimate', 'ui.router', 'ngResource','ngRoute','imageupload']);
 
 // configuring our routes 
 // =============================================================================
-app.config(function($stateProvider, $urlRouterProvider,$httpProvider) {
+app.config(function($stateProvider, $urlRouterProvider,$httpProvider,$compileProvider) {
 	
+   
+       var oldWhiteList = $compileProvider.imgSrcSanitizationWhitelist();
+  $compileProvider.imgSrcSanitizationWhitelist(/^\s*(https?|ftp|file|blob):|data:image\//);
+        // Angular before v1.2 uses $compileProvider.urlSanitizationWhitelist(...)
+
 	$stateProvider
 	
 		// route to show our basic form (/form)
