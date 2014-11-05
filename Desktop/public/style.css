@@ -340,11 +340,12 @@ font-size:12px;
 #message {
     -webkit-transition:all linear 0.5s;
     transition:all linear 0.5s;
-    background: transparent;
+    background: white;
 }
 #message.ng-invalid {
-    color:white;
-    background: red;
+    color:black;
+    
+    background-color: red;
 }
 
 

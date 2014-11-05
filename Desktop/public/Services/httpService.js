@@ -22,7 +22,6 @@
         postItem:postItem,
         putThumbsdown:putThumbsdown,
         getMyPosts:getMyPosts,
-
         blockAdminUser:blockAdminUser,
         unblockAdminUser:unblockAdminUser,
         blockAdminItem:blockAdminItem,
@@ -30,7 +29,6 @@
         getItemSearchAdmin:getItemSearchAdmin,
         getAdmins:getAdmins,
         removeAdmin:removeAdmin,
-
         postItemPic:postItemPic
 
 

@@ -1,13 +1,13 @@
 
 angular.module('formApp')
-.controller('myPostsController',['$scope','$http','$stateParams','restApi','shareData','$timeout' , function($scope,$http,$stateParams,restApi,shareData,$timeout) {
+.controller('myPostsController',['$scope','$http','$stateParams','restApi','shareData','$state' , function($scope,$http,$stateParams,restApi,shareData,$state) {
 
 var myPostsCtrl = this;
 myPostsCtrl.myItems = shareData.myItems;
 myPostsCtrl.status ={};
 myPostsCtrl.credentials = {};
 
-$timeout(refresh,1000);
+
 
 myPostsCtrl.myposts = function(cred){
    shareData.credentials = cred;
@@ -22,13 +22,9 @@ myPostsCtrl.myposts = function(cred){
                 myPostsCtrl.status = 'Unable to load customer data: ' + error.message;
             });
 
-            
+            $state.load()
         };
 
-function refresh(){
-  myPostsCtrl.myposts( shareData.credentials);
-
-};
 
 
 
