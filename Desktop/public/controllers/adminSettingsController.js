@@ -28,6 +28,7 @@ settingCtrl.status = {};
             .error(function (error) {
                 $scope.status = 'Unable to load customer data: ' + error.message;
             });
+            $timeout(getAdmins, 1000);
     };
 
 	function getAdmins() {

@@ -57,7 +57,7 @@ app.config(function($stateProvider, $urlRouterProvider,$httpProvider,$compilePro
 			templateUrl: 'reportlost.html'
 		})
 		.state('form.edititem', {
-			url: '/edititem',
+			url: '/edititem/:item',
 			templateUrl: 'edit-item.html'
 		})
 		
@@ -73,13 +73,10 @@ app.config(function($stateProvider, $urlRouterProvider,$httpProvider,$compilePro
 			templateUrl: 'reportfound.html'
 		})
 		.state('form.reportitem', {
-			url: '/reportitem/:itemStatus',
+			url: '/reportitem',
 			templateUrl: 'reportitem.html'
 		})
-		.state('form.edit', {
-			url: '/edit',
-			templateUrl: 'edit-item.html'
-		})
+		
 		
 		.state('form.viewitem', {
 			url: '/view/:item',
@@ -87,7 +84,7 @@ app.config(function($stateProvider, $urlRouterProvider,$httpProvider,$compilePro
 		})
 
 		.state('form.viewitemowner', {
-			url: '/viewitemowner',
+			url: '/viewitemowner/:item',
 			templateUrl: 'viewItemOwner.html'
 		})
 		.state('form.addcomment', {

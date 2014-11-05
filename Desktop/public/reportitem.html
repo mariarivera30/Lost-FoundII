@@ -4,21 +4,16 @@
    
 
 
-
+        <input type="file" file-model="myFile"/>
+    <button ng-click="reportItemCtrl.uploadFile(myFile)">upload me</button>
+    
+       
 
 <div class="container" >
     <div class="row">
-        <div class="col-md-8">
-            
-             <!---<input type="file" file-model="myFile" class="btn btn-primary" role="button">{{vm.translations.UPLOAD}}</input>-->
-            
-        <input type="file" file-model="myFile"></div>
         <div class="col-md-7">
-
-            
             <div class="centre">
             <div class="well well-sm">
-
 
                 <form>
                 <div class="row">
@@ -99,7 +94,7 @@
     </div>
      <div class="caption">
         
-        <p><a  ui-sref="form.newsfeeds" ng-click="gotoTop(); reportItemCtrl.postItem(list,myFile)" class="btn btn-primary" role="button" >{{vm.translations.SUBMIT}}</a> </p>
+        <p><a  ui-sref="form.newsfeeds" ng-click="gotoTop(); reportItemCtrl.setValue(list)" class="btn btn-primary" role="button" >{{vm.translations.SUBMIT}}</a> </p>
       </div>     
 </div>
 </div>

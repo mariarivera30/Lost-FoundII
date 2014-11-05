@@ -443,7 +443,7 @@ exports.postItem= function(req,res){
                    if (err) {
                    return console.error('could not connect to postgres', err);
                    }
-                   client.query("INSERT INTO item (itemname,description,locationitem,city, itemstatus,email,category,itempicture) VALUES ('"+req.body.type.itemname+"','"+req.body.type.description+"','"+req.body.type.location+"','"+req.body.type.city+"','"+req.body.type.itemStatus+"','"+req.body.type.email+"','"+req.body.type.category+"','"+req.body.type.itempicture+"')", function(err, result) {
+                   client.query("INSERT INTO item (itemname,description,locationitem,city, itemstatus,email,category) VALUES ('"+req.body.type.itemname+"','"+req.body.type.description+"','"+req.body.type.location+"','"+req.body.type.city+"','"+req.body.type.itemStatus+"','"+req.body.type.email+"','"+req.body.type.category+"')", function(err, result) {
                                
                                 if (err) {
                                 return console.error('error running query', err);

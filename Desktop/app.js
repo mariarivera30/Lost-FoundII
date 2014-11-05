@@ -93,7 +93,6 @@ app.post('/upload', function(req, res) {
 	
 	var image =  req.files.file;
     var newImageLocation = path.join(__dirname, 'public/images', image.name);
-    console.log(newImageLocation);
     
     fs.readFile(image.path, function(err, data) {
         fs.writeFile(newImageLocation, data, function(err) {

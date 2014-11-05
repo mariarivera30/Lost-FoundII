@@ -11,11 +11,13 @@
         <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown"> {{vm.translations.BY}}: <span class="caret"></span > 
              <select  id= "categoryscroll" width="120" style="width: 120px" color="black">
                      <option selected> {{vm.translations.ALL}}</option>
-                     <option ng-repeat="category in categoryCtrl.categories">{{category}}</option>
+                      
+                     <option ng-repeat="category in categoryCtrl.categories"  >{{category.name}}</option>
                 
-                   
-                   </select></button>
-        
+                   </select>
+
+                 </button>
+         
            
 
       </div><!-- /btn-group -->
@@ -28,7 +30,7 @@
   
        </div>
 <div class="reportbtn">
-    <a ui-sref="form.reportitem({itemStatus:'Lost'})" ng-click="gotoTop(); lostCtrl.setValue('Lost')" class="btn btn-block btn-info">
+    <a ui-sref="form.reportitem" ng-click="gotoTop(); lostCtrl.setValue('Lost')" class="btn btn-block btn-info">
      {{vm.translations.REPORTLOST}} <span class="glyphicon glyphicon-circle-arrow-right"></span>
     </a>
 </div>

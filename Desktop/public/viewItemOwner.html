@@ -1,30 +1,26 @@
 <!-- Page Content -->
-    <style type="text/css">
+    <div ng-controller="itemViewController as itemViewCntrl">
+    <div ng-controller="languageController as vm">
+    <div class="container" >
 
-    .img-responsive{
+        <div id ="editItemView"class="row" >
 
-        padding-top:40px;
-        }</style>
-        <div ng-controller="languageController">
-    <div class="container" ng-controller="itemViewController">
-
-        <div id ="editItemView"class="row">
-
-         
+        
 
             <div class="col-md-7">
 
                 <div class="thumbnail">
-                    <img class="img-responsive" src="http://www.quick-return-cleaners.co.uk/sitebuildercontent/sitebuilderpictures/keys.jpg" height="400" width="400">
+                    <img ng-src="{{itemViewCntrl.item.itempicture}}">
+                    <h4> <a> {{itemViewCntrl.item.itemname}}</a> </h4>
                     <div class="caption-full" >
                         
-                        <h4>Keys  {{vm.translations.FOUNDBY}}: <a> {{item.name}}</a> </h4>
-                        <h4>{{vm.translations.REPORTEDDATE}}: {{item.reportDate}}</h4>
-                        <h4>{{vm.translations.SUCCESDATE}}: {{item.successDate}}</h4>
-                         <h4>{{vm.translations.ITEMID}}: {{item.itemId}}</h4>
-                          <h4>{{vm.translations.LOCATION}}: {{item.location}}</h4>
+                        <h4>{{vm.translations.FOUNDBY}} {{itemViewCntrl.item.firstname}} {{itemViewCntrl.item.lastname}}</h4>
+                        <h4>{{vm.translations.REPORTEDDATE}}: {{itemViewCntrl.item.itemdate}} </h4>
+                        <h4>{{vm.translations.SUCCESDATE}}: {{itemViewCntrl.item.itemsuccessdate}}</h4>
+                         <h4>{{vm.translations.ITEMID}}: {{itemViewCntrl.item.itemid}}</h4>
+                          <h4>{{vm.translations.LOCATION}}: {{itemViewCntrl.item.locationitem}}</h4>
                           <h4>{{vm.translations.DESCRIPTION}}:</h4>                     
-                        <p>{{item.description}}</p>
+                        <p>{{itemViewCntrl.item.description}}</p>
                     </div>
                     
                 </div>
@@ -32,17 +28,17 @@
                 <div class="well">
 
                     <div class="text-right">
-                        <a class="btn btn-success" ng-click="gotoTop()" ui-sref="form.addcomment" >{{vm.translations.LEAVECOMMENT}}</a>
+                        <a class="btn btn-success" ng-click="gotoTop()" ui-sref="form.addcomment({item:itemViewCntrl.item.itemid})" >{{vm.translations.LEAVECOMMENT}}</a>
                     </div>
 
                     <hr>
-                    <li id="comments" ng-repeat="com in comments">
+                    <li id="comments" ng-repeat="com in itemViewCntrl.comments">
                     <div class="row">
-                        <span class="pull-right">{{com.date}}</span>
+                        
                         <div class="col-md-12">
                             
-                            <center>{{com.name}} said:
-                            <p>{{com.comment}}</p></center>
+                            <center>{{vm.translations.SAID}}: {{com.email}} 
+                            <p>{{com.usercomment}}</p></center>
                         </div>
                     </div>
                     <hr>
@@ -52,11 +48,12 @@
 
 
                 </div>
-                 <div id ="edit"class="center">
-        
-        <a  d ="editBtn" class="btn btn-primary" ng-click="gotoTop()" role="button" ui-sref="form.edititem">{{vm.translations.EDIT}}</a> 
-        
-      </div>     
+
+            
+                <div class=".col-xs-6 .col-sm-3" align="right">
+                  <a  id ="editBtn" class="btn btn-primary" ng-click="gotoTop()" role="button" ui-sref="form.edititem({ item:item.itemid})">{{vm.translations.EDIT}}</a> 
+                   </div>
+             
 
             </div>
 
@@ -64,4 +61,6 @@
 
     </div>
 </div>
+</div>
     <!-- /.container -->
+    <!-- /.container --> 

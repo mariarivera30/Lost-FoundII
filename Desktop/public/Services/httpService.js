@@ -32,6 +32,9 @@
         postItemPic:postItemPic,
         getAuth:getAuth
 
+     
+
+
 
     };
 
