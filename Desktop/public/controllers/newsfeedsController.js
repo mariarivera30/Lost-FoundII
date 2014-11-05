@@ -9,7 +9,7 @@ newsfeedCtrl.setValue = setValue;
 
 
 newsfeedCtrl.isDisabled= true;
-$timeout(getItems, 2000);
+$timeout(getItems,60000);
 
 
 

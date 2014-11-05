@@ -19,6 +19,11 @@ angular.module('formApp')
     getUser();
   };
   
+  $scope.login = function() {
+    $rootScope.loggedInUser = $scope.username;
+    
+  };
+
 	function getUser() {
         restApi.getUsers()
             .success(function (data) {

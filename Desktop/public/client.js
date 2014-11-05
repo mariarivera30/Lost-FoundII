@@ -6,6 +6,32 @@ var app =angular.module('app', ['formApp','ngAnimate', 'ui.router', 'ngResource'
 
 // configuring our routes 
 // =============================================================================
+app.run(function($rootScope, $location) {
+
+    $rootScope.$on( "$stateChangeStart", function(event, next, current) {
+      if ($rootScope.loggedInUser == null) {
+        // no logged user, redirect to /login
+      	if (next.templateUrl === "adminusers.html"  || next.templateUrl === "adminSettings.html"|| next.templateUrl === "adminitems.html" || next.templateUrl === "admincomment.html" || 
+      		current.templateUrl === "adminusers.html"  || current.templateUrl === "adminSettings.html"|| current.templateUrl === "adminitems.html" || current.templateUrl === "admincomment.html") {
+        		
+        		next.templateUrl="adminlogin.html";
+        } 
+    }
+        else if($rootScope.loggedInUser != null){
+        	if (current.templateUrl==="adminlogin.html" ||next.templateUrl==="adminlogin.html"){
+
+         	next.templateUrl="adminusers.html";
+        }
+        else{	(current=next);
+        }
+
+        }
+
+       
+
+    });
+  });
+
 app.config(function($stateProvider, $urlRouterProvider,$httpProvider,$compileProvider) {
 	
    
@@ -34,8 +60,6 @@ app.config(function($stateProvider, $urlRouterProvider,$httpProvider,$compilePro
 			url: '/edititem',
 			templateUrl: 'edit-item.html'
 		})
-
-
 		
 		// url will be /form/interests
 		.state('form.newsfeeds', {
@@ -82,8 +106,8 @@ app.config(function($stateProvider, $urlRouterProvider,$httpProvider,$compilePro
 
 		.state('form.admin', {
 			url: '/admin',
-			templateUrl: 'admin.html',
-			abstract:true
+			templateUrl: 'admin.html'
+			
 
 		})
 				
@@ -91,11 +115,6 @@ app.config(function($stateProvider, $urlRouterProvider,$httpProvider,$compilePro
     		parent: 'form.admin',
     		url: '/adminusers',
 			 templateUrl: 'adminusers.html'})
-
-		// .state('form.admin.category', {
-  //   		parent: 'form.admin',
-  //   		url: '/admincategories',
-		// 	 templateUrl: 'admincategories.html'})
 
   		.state('form.admin.items', {
     		parent: 'form.admin',

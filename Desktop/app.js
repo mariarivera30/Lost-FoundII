@@ -83,6 +83,7 @@ app.post('/unblockAdminUser/', routes.unblockAdminUser);
 app.post('/blockAdminItem/', routes.blockAdminItem);
 app.post('/unblockAdminItem/', routes.unblockAdminItem);
 app.post('/removeAdmin/', routes.removeAdmin);
+app.get('/getAuth/',routes.getAuth);
 
 
 //block

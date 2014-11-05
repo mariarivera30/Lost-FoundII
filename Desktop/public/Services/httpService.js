@@ -22,7 +22,6 @@
         postItem:postItem,
         putThumbsdown:putThumbsdown,
         getMyPosts:getMyPosts,
-
         blockAdminUser:blockAdminUser,
         unblockAdminUser:unblockAdminUser,
         blockAdminItem:blockAdminItem,
@@ -30,8 +29,8 @@
         getItemSearchAdmin:getItemSearchAdmin,
         getAdmins:getAdmins,
         removeAdmin:removeAdmin,
-
-        postItemPic:postItemPic
+        postItemPic:postItemPic,
+        getAuth:getAuth
 
 
     };
@@ -118,6 +117,10 @@
   function postItem(newItem){
      var data = {type:newItem};
     return $http.post('/postItem/', data);
+  };
+  function getAuth(credentials){
+     var data = credentials;
+    return $http.post('/getAuth/', data);
   };
 
   function putThumbsdown(id){

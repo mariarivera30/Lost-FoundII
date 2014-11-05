@@ -508,6 +508,36 @@ exports.getMyPosts= function(req,res){
 
 };
 
+exports.getMyPosts= function(req,res){
+  console.log("GET");
+   console.log(req.params);
+    
+  var client = new pg.Client(conString);
+     
+  client.connect(function(err) {
+                   if (err) {
+                   return console.error('could not connect to postgres', err);
+                   }
+                   client.query("Select * public.users where users.email = '"+req.body.email +"' and users.passkey = '"+ req.body.key+"'  ", function(err, result) {
+                               
+                                if (err) {
+                                return console.error('error running query', err);
+                                }
+                                var response = {
+                                "user" : result.rows
+                                };
+                                res.status(200);
+                                res.json(response);
+                                console.log(response);
+                               
+                                client.end();
+                                });
+                   });
+
+
+};
+
+
 exports.blockAdminUser= function(req,res){
   console.log("POST");
   var client = new pg.Client(conString);

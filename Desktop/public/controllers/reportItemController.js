@@ -20,7 +20,7 @@ var reportItemCtrl = this;
             .error(function (error) {
                 $scope.status = 'Unable to load customer data: ' + error.message;
             });
-            reportItemCtrl.list={};
+          
     };
   
    function uploadFile (myFile){
