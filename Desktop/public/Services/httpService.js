@@ -30,7 +30,9 @@
         getAdmins:getAdmins,
         removeAdmin:removeAdmin,
         postItemPic:postItemPic,
-        getAuth:getAuth
+        getAuth:getAuth,
+        updateUser:updateUser,
+        updateItem:updateItem
 
      
 
@@ -118,7 +120,8 @@
   // };
 
   function postItem(newItem){
-     var data = {type:newItem};
+     var data = newItem;
+     console.log(newItem);
     return $http.post('/postItem/', data);
   };
   function getAuth(credentials){
@@ -141,9 +144,20 @@
     return $http.post('/blockAdminUser/',data);
   };
 
+
   function unblockAdminUser(id){
     var data = {id:id};
     return $http.post('/unblockAdminUser/',data);
+  };
+
+  function updateUser(user){
+    var data = user;
+    return $http.post('/updateUser/',data);
+  };
+
+  function updateItem(item){
+    var data = item;
+    return $http.post('/updateItem/',data);
   };
 
   function blockAdminItem(id){

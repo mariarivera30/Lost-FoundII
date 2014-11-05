@@ -1,4 +1,4 @@
-<div ng-controller="myPostsController as myPostsCtrl">
+<div ng-controller="formController as formCtrl">
 <div class="row" ng-controller="languageController as vm" >
 <div class="col-sm-8 col-sm-offset-2">
 
@@ -40,11 +40,11 @@
                         <a ui-sref="form.help" ng-click="gotoTop()">{{vm.translations.HELP}}</a>
                     </li>
 
-                     <li id="nameUser"> <input type="text" class="form-control input-sm"  placeholder="{{vm.translations.EMAIL}}" ng-model="credentials.myemail" ></li>
+                     <li id="nameUser"> <input type="text" class="form-control input-sm"  placeholder="{{vm.translations.EMAIL}}" ng-model="formCtrl.myemail" ></li>
   
-              <li id="scretkeyuser">  <input type="text" class="form-control input-sm"  placeholder="{{vm.translations.SECRETKEY}}" ng-model="credentials.mykey" > </li>        
+              <li id="scretkeyuser">  <input type="text" class="form-control input-sm"  placeholder="{{vm.translations.SECRETKEY}}" ng-model="formCtrl.mykey" > </li>        
                 
-              <li id="buttongetmypost"> <a ui-sref="form.myposts" ng-click="myPostsCtrl.myposts(credentials)" class="btn btn-small" role="button" >{{vm.translations.MYPOST}}</a></li> 
+              <li id="buttongetmypost"> <a ui-sref="form.myposts" ng-click="formCtrl.getCredentials.(formCtrl.myemail, formCtrl.mykey)" class="btn btn-small" role="button" >{{vm.translations.MYPOST}}</a></li> 
                 </ul>
             </div>
             <!-- /.navbar-collapse -->

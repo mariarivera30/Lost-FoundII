@@ -73,7 +73,7 @@ app.config(function($stateProvider, $urlRouterProvider,$httpProvider,$compilePro
 			templateUrl: 'reportfound.html'
 		})
 		.state('form.reportitem', {
-			url: '/reportitem',
+			url: '/reportitem/:itemStatus',
 			templateUrl: 'reportitem.html'
 		})
 		

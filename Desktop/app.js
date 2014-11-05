@@ -14,6 +14,18 @@ var app = express();
 
 var pg = require("pg");
 var fs = require('fs');
+var nodemailer = require('nodemailer');
+// create reusable transporter object using SMTP transport
+var transporter = nodemailer.createTransport({
+    service: 'Gmail',
+    auth: {
+        user: 'lostfound.uprm@gmail.com',
+        pass: 'DBlostfound04'
+    }
+});
+
+
+
 
 
 var conString = "pg://postgres:postgres@localhost:5432/lostfoundDB";
@@ -30,6 +42,7 @@ app.set('views', path.join(__dirname, 'views'));
 });
 
 // all environments
+
 
 app.set('view engine', 'jade');
 app.use(express.bodyParser());
@@ -74,6 +87,7 @@ app.get('/myPostsItems/:email/:key', routes.getMyPosts);
 app.post('/newUser',routes.postUser);
 app.post('/addComment',routes.postComment);
 app.post('/addFeedback/',routes.postFeedback);
+app.post('getAuth/',routes.getAuth);
 
 app.post('/postItem',routes.postItem);
 app.post('/putThumbsdown/', routes.putThumbsdown);
@@ -83,7 +97,8 @@ app.post('/unblockAdminUser/', routes.unblockAdminUser);
 app.post('/blockAdminItem/', routes.blockAdminItem);
 app.post('/unblockAdminItem/', routes.unblockAdminItem);
 app.post('/removeAdmin/', routes.removeAdmin);
-app.get('/getAuth/',routes.getAuth);
+app.post('/updateUser/', routes.updateUser);
+app.post('/updateItem/', routes.updateItem);
 
 
 //block

@@ -4,6 +4,29 @@ var conString = "pg://postgres:postgres@localhost:5432/lostfoundDB";
 /*
  * GET home page.
  */
+// setup e-mail data with unicode symbols
+
+
+
+var mailOptions = {
+    from: 'Fred Foo ✔ <foo@blurdybloop.com>', // sender address
+    to: 'bar@blurdybloop.com, baz@blurdybloop.com', // list of receivers
+    subject: 'Hello ✔', // Subject line
+    text: 'Hello world ✔', // plaintext body
+    html: '<b>Hello world ✔</b>' // html body
+};
+
+sendEmail = function(email){
+  // send mail with defined transport object
+mailOptions.to ="maria.rivera30@upr.edu";
+transporter.sendMail(mailOptions, function(error, info){
+    if(error){
+        console.log(error);
+    }else{
+        console.log('Message sent: ' + info.response);
+    }
+});
+};
 
 exports.index = function(req, res){
   res.render('index', { title: 'Express' });
@@ -104,6 +127,28 @@ exports.postUser= function(req,res){
 
 
 
+exports.updateUser= function(req,res){
+  console.log("POST");
+  var client = new pg.Client(conString);
+     
+  client.connect(function(err) {
+                   if (err) {
+                   return console.error('could not connect to postgres', err);
+                   }
+                   
+                   client.query("UPDATE users SET firstname = '"+req.body.firstname+"', lastname = '"+req.body.lastname+"', phone = '"+req.body.phone+"' where email = '"+req.body.email+"'", function(err, result) {
+                               
+                                if (err) {
+                                return console.error('error running query', err);
+                                }
+                                
+                                res.status(200);
+                                client.end();
+                                });
+                   });
+};
+
+
 
 
 // exports.postCategories= function(req,res){
@@ -186,6 +231,7 @@ exports.getAdmins = function(req, res) {
 };
 
 exports.getItems = function(req, res) {
+    
     console.log("GET");
   res.header("Access-Control-Allow-Origin", "*");
   res.header("Access-Control-Allow-Headers", "X-Requested-With");
@@ -353,6 +399,7 @@ exports.getUserAdmin = function(req, res) {
 };
 
 
+
 exports.getItemsAdmin = function(req, res) {
     console.log("GET");
   res.header("Access-Control-Allow-Origin", "*");
@@ -438,12 +485,32 @@ exports.getItemsAdminSearchBar = function(req, res) {
 exports.postItem= function(req,res){
   console.log("POST");
   var client = new pg.Client(conString);
-     console.log(req.body.type.itemStatus);
   client.connect(function(err) {
                    if (err) {
                    return console.error('could not connect to postgres', err);
                    }
-                   client.query("INSERT INTO item (itemname,description,locationitem,city, itemstatus,email,category) VALUES ('"+req.body.type.itemname+"','"+req.body.type.description+"','"+req.body.type.location+"','"+req.body.type.city+"','"+req.body.type.itemStatus+"','"+req.body.type.email+"','"+req.body.type.category+"')", function(err, result) {
+                   console.log(req.body);
+                   client.query("INSERT INTO item (itemname,description,locationitem,city,itemstatus,email,category,itempicture) VALUES ('"+req.body.itemname+"','"+req.body.description+"','"+req.body.location+"','"+req.body.city+"','"+req.body.itemStatus+"','"+req.body.email+"','"+req.body.category+"','"+req.body.itempicture+"')", function(err, result) {
+                               
+                                if (err) {
+                                return console.error('error running query', err);
+                                }
+                                
+                                res.status(200);
+                                client.end();
+                                });
+                   });
+};
+
+exports.updateItem= function(req,res){
+  console.log("POST");
+  var client = new pg.Client(conString);
+
+  client.connect(function(err) {
+                   if (err) {
+                   return console.error('could not connect to postgres', err);
+                   }
+                   client.query("UPDATE item SET itemname = '"+req.body.itemname+"', description = '"+req.body.description+"',locationitem = '"+req.body.locationitem+"',city = '"+req.body.city+"',category = '"+req.body.category+"' ,itempicture = '"+req.body.itempicture+"' WHERE itemid = '"+req.body.itemid+"'", function(err, result) {
                                
                                 if (err) {
                                 return console.error('error running query', err);
@@ -508,7 +575,7 @@ exports.getMyPosts= function(req,res){
 
 };
 
-exports.getMyPosts= function(req,res){
+exports.getAuth= function(req,res){
   console.log("GET");
    console.log(req.params);
     
