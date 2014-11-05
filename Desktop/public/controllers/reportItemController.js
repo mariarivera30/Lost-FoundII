@@ -1,7 +1,6 @@
 angular.module('formApp')
 .controller('reportItemController',['$scope','$http','$stateParams','restApi','shareData','fileUpload', function($scope,$http,$stateParams,restApi,shareData,fileUpload) {
- var reportItemCtrl = this;
- reportItemCtrl.list ={};
+var reportItemCtrl = this;
 
  reportItemCtrl.pattern = {
 
@@ -10,35 +9,21 @@ angular.module('formApp')
     };
  
 
-	function postItem(myFile) {
-        var file = myFile;
-        console.log('file is ' + JSON.stringify(file));
-        var uploadUrl = "/upload";
-        fileUpload.uploadFileToUrl(file, uploadUrl);
-
-        reportItemCtrl.list.itempicture = 'images/' + file.name;
-        restApi.postItem(reportItemCtrl.list)
+	reportItemCtrl.postItem= function (item,myFile) {
+        uploadFile(myFile);
+        item.itemStatus =  $stateParams.itemStatus;
+        item.itempicture = 'images/' + myFile.name;
+        restApi.postItem(item)
             .success(function (data) {
-              reportItemCtrl.list ={};
-                
+                              
               })
             .error(function (error) {
                 $scope.status = 'Unable to load customer data: ' + error.message;
             });
+            reportItemCtrl.list={};
     };
-
-
-    reportItemCtrl.setValue = function (x,myFile){
-    	reportItemCtrl.list = x;
-        reportItemCtrl.list.itemStatus = $stateParams.itemStatus;
-    	postItem(myFile);
-    	
-
-    };
-
-   
-    reportItemCtrl.uploadFile = function(myFile){
-      
+  
+   function uploadFile (myFile){
         var file = myFile;
         console.log('file is ' + JSON.stringify(file));
         var uploadUrl = "/upload";
