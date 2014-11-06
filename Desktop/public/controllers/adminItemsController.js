@@ -82,7 +82,7 @@ itemCtrl.getSelectedForUNBlock= function(){
 
             }
         });
-$timeout(getItemsAdmin, 1000);
+
 };
 
 

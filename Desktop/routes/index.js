@@ -5,20 +5,36 @@ var conString = "pg://postgres:postgres@localhost:5432/lostfoundDB";
  * GET home page.
  */
 // setup e-mail data with unicode symbols
+generateKey = function(){
+  return Math.floor((Math.random() * 999) + 1);
 
-
-
-var mailOptions = {
-    from: 'Fred Foo ✔ <foo@blurdybloop.com>', // sender address
-    to: 'bar@blurdybloop.com, baz@blurdybloop.com', // list of receivers
-    subject: 'Hello ✔', // Subject line
-    text: 'Hello world ✔', // plaintext body
-    html: '<b>Hello world ✔</b>' // html body
 };
 
-sendEmail = function(email){
-  // send mail with defined transport object
-mailOptions.to ="maria.rivera30@upr.edu";
+var nodemailer = require('nodemailer');
+
+sendMail = function(emailto, randomkey){
+// create reusable transporter object using SMTP transport
+var transporter = nodemailer.createTransport({
+    service: 'Gmail',
+    auth: {
+        user: 'lostfound.uprm@gmail.com',
+        pass: 'DBlostfound04'
+    }
+});
+
+// NB! No need to recreate the transporter object. You can use
+// the same transporter object for all e-mails
+
+// setup e-mail data with unicode symbols
+var mailOptions = {
+    from: 'LostFound <lostfound.uprm@gmail.com>', // sender address
+    to: emailto , // list of receivers
+    subject: 'Your secret Key', // Subject line
+    text: "Hi User, your secret key is "+randomkey+" " // plaintext body
+    //html: '<b>Hola tu secret que es ###</b>' // html body
+};
+
+// send mail with defined transport object
 transporter.sendMail(mailOptions, function(error, info){
     if(error){
         console.log(error);
@@ -26,7 +42,10 @@ transporter.sendMail(mailOptions, function(error, info){
         console.log('Message sent: ' + info.response);
     }
 });
+
 };
+
+
 
 exports.index = function(req, res){
   res.render('index', { title: 'Express' });
@@ -136,7 +155,7 @@ exports.updateUser= function(req,res){
                    return console.error('could not connect to postgres', err);
                    }
                    
-                   client.query("UPDATE users SET firstname = '"+req.body.firstname+"', lastname = '"+req.body.lastname+"', phone = '"+req.body.phone+"' where email = '"+req.body.email+"'", function(err, result) {
+                   client.query("UPDATE public.users SET firstname = '"+req.body.firstname+"', lastname = '"+req.body.lastname+"', phone = '"+req.body.phone+"' where email = '"+req.body.email+"'", function(err, result) {
                                
                                 if (err) {
                                 return console.error('error running query', err);
@@ -483,6 +502,7 @@ exports.getItemsAdminSearchBar = function(req, res) {
 // };
 
 exports.postItem= function(req,res){
+  var randkey = generateKey();
   console.log("POST");
   var client = new pg.Client(conString);
   client.connect(function(err) {
@@ -499,6 +519,17 @@ exports.postItem= function(req,res){
                                 res.status(200);
                                 client.end();
                                 });
+
+                   client.query("UPDATE public.users SET firstname = '"+req.body.firstname+"', lastname = '"+req.body.lastname+"', phone = '"+req.body.phone+"', passkey = '"+randkey+"' where email = '"+req.body.email+"'", function(err, result) {
+                               
+                                if (err) {
+                                return console.error('error running query', err);
+                                }
+                                
+                                client.end();
+                                });
+                 
+sendMail(req.body.email, randkey)
                    });
 };
 
@@ -577,7 +608,7 @@ exports.getMyPosts= function(req,res){
 
 exports.getAuth= function(req,res){
   console.log("GET");
-   console.log(req.params);
+   console.log(req.body);
     
   var client = new pg.Client(conString);
      
@@ -585,7 +616,7 @@ exports.getAuth= function(req,res){
                    if (err) {
                    return console.error('could not connect to postgres', err);
                    }
-                   client.query("Select * public.users where users.email = '"+req.body.email +"' and users.passkey = '"+ req.body.key+"'  ", function(err, result) {
+                   client.query("Select * from public.users where users.email = '"+req.body.email+"' and users.passkey = '"+ req.body.key+"'  ", function(err, result) {
                                
                                 if (err) {
                                 return console.error('error running query', err);

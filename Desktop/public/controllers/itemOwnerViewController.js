@@ -17,7 +17,7 @@ function getItemID(){
                 itemViewCntrl.status = 'Unable to load customer data: ' + error.message;
             });
 
-        return itemViewCntrl.item;
+     
 }
 
    function getComments() {

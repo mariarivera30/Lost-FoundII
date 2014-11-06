@@ -70,7 +70,7 @@ userCtrl.getSelectedForBlock= function(){
 
             }
         });
-$timeout(getUser, 1000);
+
 };
 userCtrl.getSelectedForUNBlock= function(){
   angular.forEach(userCtrl.users, function (user) {
@@ -87,7 +87,7 @@ userCtrl.getSelectedForUNBlock= function(){
 
             }
         });
-$timeout(getUser, 1000);
+
 };
 
            

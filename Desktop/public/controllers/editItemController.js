@@ -32,7 +32,7 @@ editCtrl.updateItem=function(){
 	restApi.updateUser(editCtrl.item)
 
 			.success(function () {
-                            
+                 alert('hizo user');            
             })
             .error(function (error) {
                 editCtrl.status = 'Unable to load customer data: ' + error.message;
@@ -40,13 +40,13 @@ editCtrl.updateItem=function(){
 
      restApi.updateItem(editCtrl.item)
      		.success(function () {
-                            
+                 alert('hizo item');            
             })
             .error(function (error) {
                 editCtrl.status = 'Unable to load customer data: ' + error.message;
             });
-}
-
+};
+   
 editCtrl.updateUser=function(){
 	restApi.updateUser(editCtrl.item)
 

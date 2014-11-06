@@ -17,17 +17,30 @@ angular.module('formApp')
         fileUpload.uploadFileToUrl(file, uploadUrl);
         reportItemCtrl.list.itemStatus = $stateParams.itemStatus;
         reportItemCtrl.list.itempicture = 'images/' + file.name;
+
         restApi.postItem(reportItemCtrl.list)
-            .success(function (data) {
-          
-                
+            .success(function () {
+
+
               })
             .error(function (error) {
                 $scope.status = 'Unable to load customer data: ' + error.message;
             });
+
+       /*restApi.updateUser(editCtrl.item)
+
+            .success(function () {
+                             
+            })
+            .error(function (error) {
+                editCtrl.status = 'Unable to load customer data: ' + error.message;
+            });*/
+
+     
+
     };
 
-
+        
     reportItemCtrl.setValue = function (x,myFile){
         reportItemCtrl.list = x;
         reportItemCtrl.list.itemStatus = $stateParams.itemStatus;
@@ -45,6 +58,8 @@ angular.module('formApp')
         fileUpload.uploadFileToUrl(file, uploadUrl);
   
     };
+   
+
 
     
 }]);

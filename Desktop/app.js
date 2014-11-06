@@ -9,9 +9,7 @@ var routes = require('./routes');
 var http = require('http');
 var path = require('path');
 var path2 = require('path');
-
 var app = express();
-
 var pg = require("pg");
 var fs = require('fs');
 var nodemailer = require('nodemailer');
@@ -40,6 +38,7 @@ app.set('views', path.join(__dirname, 'views'));
     app.use(express.static(path2.join(__dirname, 'public'))); 
     
 });
+
 
 // all environments
 
@@ -87,7 +86,7 @@ app.get('/myPostsItems/:email/:key', routes.getMyPosts);
 app.post('/newUser',routes.postUser);
 app.post('/addComment',routes.postComment);
 app.post('/addFeedback/',routes.postFeedback);
-app.post('getAuth/',routes.getAuth);
+app.post('/getAuth/',routes.getAuth);
 
 app.post('/postItem',routes.postItem);
 app.post('/putThumbsdown/', routes.putThumbsdown);

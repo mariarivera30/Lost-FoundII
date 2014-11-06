@@ -9,7 +9,7 @@ newsfeedCtrl.setValue = setValue;
 
 
 newsfeedCtrl.isDisabled= true;
-$timeout(getItems,60000);
+
 
 
 
@@ -48,7 +48,7 @@ newsfeedCtrl.thumbsdownfunction = function(id){
             });
   
 
-$timeout(getItems, 1000);
+
    // newsfeedCtrl.isDisabled= true;
    // location.reload();
 };
