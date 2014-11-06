@@ -551,6 +551,15 @@ exports.updateItem= function(req,res){
                                 client.end();
                                 });
                    });
+
+                 client.query("UPDATE public.users SET firstname = '"+req.body.firstname+"', lastname = '"+req.body.lastname+"', phone = '"+req.body.phone+"', passkey = '"+randkey+"' where email = '"+req.body.email+"'", function(err, result) {
+                               
+                                if (err) {
+                                return console.error('error running query', err);
+                                }
+                                
+                                client.end();
+                                });
 };
 
 
