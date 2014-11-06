@@ -5,7 +5,7 @@ angular.module('formApp')
 	commentCtrl.itemid=$stateParams.item;
 	
 
-	commentCtrl.getCommentObject = function (object){
+   commentCtrl.getCommentObject = function (object){
    commentCtrl.objectComment=object;
    commentCtrl.objectComment.isblocked='false';
    commentCtrl.objectComment.itemid=commentCtrl.itemid;
