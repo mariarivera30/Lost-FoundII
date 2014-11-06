@@ -5,7 +5,7 @@ var foundCtrl = this;
 foundCtrl.foundItems = getFoundItems;
 foundCtrl.status = {};
 shareData.itemStatus = {};
-
+foundCtrl.searchFoundItem ={};
 
   getFoundItems(); 
 
@@ -19,6 +19,24 @@ shareData.itemStatus = {};
                 foundCtrl.status = 'Unable to load customer data: ' + error.message;
             });
     }
+
+    foundCtrl.setItems = function(e){
+    foundCtrl.searchFoundItem = e;
+    getFoundItemsSearch();
+ 
+  };
+
+  function  getFoundItemsSearch() {
+        restApi.getFoundItemsSearch(foundCtrl.searchFoundItem)
+            .success(function (data) {
+              
+                foundCtrl.foundItems = data.items;
+              })
+            .error(function (error) {
+                foundCtrl.status = 'Unable to load customer data: ' + error.message;
+            });
+    };
+    
   foundCtrl.setValue = function(stat){
       shareData.itemStatus= stat;
       

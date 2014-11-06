@@ -45,7 +45,35 @@ transporter.sendMail(mailOptions, function(error, info){
 
 };
 
+exports.resetKey = function(req,res){
+  console.log("POST");
+  var randkey = generateKey();
+  res.header("Access-Control-Allow-Origin", "*");
+  res.header("Access-Control-Allow-Headers", "X-Requested-With");
+  var client = new pg.Client(conString);
+    
+  client.connect(function(err) {
+                   if (err) {
+                   return console.error('could not connect to postgres', err);
+                   }
+                   client.query("UPDATE public.users SET passkey = '"+randkey+"'  WHERE email = '"+req.body.id+"'", function(err, result) {
+                               
+                                if (err) {
+                                return console.error('error running query', err);
+                                }
+                                
+                                res.status(200);
+                                
+                                
+                                client.end();
+                                });
+                   });
 
+  sendMail(req.body.id,randkey);
+
+
+
+};
 
 exports.index = function(req, res){
   res.render('index', { title: 'Express' });
@@ -82,6 +110,8 @@ exports.getItemId = function(req, res) {
 
 exports.postFeedback= function(req,res){
   console.log("POST");
+  res.header("Access-Control-Allow-Origin", "*");
+  res.header("Access-Control-Allow-Headers", "X-Requested-With");
   var client = new pg.Client(conString);
      
   client.connect(function(err) {
@@ -104,6 +134,8 @@ exports.postFeedback= function(req,res){
 
 exports.postComment= function(req,res){
   console.log("POST");
+  res.header("Access-Control-Allow-Origin", "*");
+  res.header("Access-Control-Allow-Headers", "X-Requested-With");
   var client = new pg.Client(conString);
      
   client.connect(function(err) {
@@ -125,6 +157,8 @@ exports.postComment= function(req,res){
 
 exports.postUser= function(req,res){
   console.log("POST");
+  res.header("Access-Control-Allow-Origin", "*");
+  res.header("Access-Control-Allow-Headers", "X-Requested-With");
   var client = new pg.Client(conString);
      
   client.connect(function(err) {
@@ -148,6 +182,8 @@ exports.postUser= function(req,res){
 
 exports.updateUser= function(req,res){
   console.log("POST");
+  res.header("Access-Control-Allow-Origin", "*");
+  res.header("Access-Control-Allow-Headers", "X-Requested-With");
   var client = new pg.Client(conString);
      
   client.connect(function(err) {
@@ -473,6 +509,62 @@ exports.getItemsAdminSearchBar = function(req, res) {
 
 };
 
+
+exports.getLostItemsSearch = function(req, res) {
+    console.log("GET");
+  res.header("Access-Control-Allow-Origin", "*");
+  res.header("Access-Control-Allow-Headers", "X-Requested-With");
+  var client = new pg.Client(conString);
+    
+  client.connect(function(err) {
+                   if (err) {
+                   return console.error('could not connect to postgres', err);
+                   }
+                   client.query("SELECT * FROM public.item WHERE item.itemstatus = 'Lost' AND (item.itemname LIKE '%"+req.params.id+"%' OR item.category LIKE '%"+req.params.id+"%') ", function(err, result) {
+                               
+                                if (err) {
+                                return console.error('error running query', err);
+                                }
+                                var response = {
+                                "items" : result.rows
+                                };
+                                res.json(200,response);
+                                console.log(response);
+                                //output: Tue Jan 15 2013 19:12:47 GMT-600 (CST)
+                                client.end();
+                                });
+                   });
+
+};
+
+
+exports.getFoundItemsSearch = function(req, res) {
+    console.log("GET");
+  res.header("Access-Control-Allow-Origin", "*");
+  res.header("Access-Control-Allow-Headers", "X-Requested-With");
+  var client = new pg.Client(conString);
+    
+  client.connect(function(err) {
+                   if (err) {
+                   return console.error('could not connect to postgres', err);
+                   }
+                   client.query("SELECT * FROM public.item WHERE item.itemstatus = 'Found' AND (item.itemname LIKE '%"+req.params.id+"%' OR item.category LIKE '%"+req.params.id+"%') ", function(err, result) {
+                               
+                                if (err) {
+                                return console.error('error running query', err);
+                                }
+                                var response = {
+                                "items" : result.rows
+                                };
+                                res.json(200,response);
+                                console.log(response);
+                                //output: Tue Jan 15 2013 19:12:47 GMT-600 (CST)
+                                client.end();
+                                });
+                   });
+
+};
+
 // exports.deleteCategory = function(req, res) {
 //   console.log("DELETE");
 //   res.header("Access-Control-Allow-Origin", "*");
@@ -504,6 +596,8 @@ exports.getItemsAdminSearchBar = function(req, res) {
 exports.postItem= function(req,res){
   var randkey = generateKey();
   console.log("POST");
+  res.header("Access-Control-Allow-Origin", "*");
+  res.header("Access-Control-Allow-Headers", "X-Requested-With");
   var client = new pg.Client(conString);
   client.connect(function(err) {
                    if (err) {
@@ -535,6 +629,8 @@ sendMail(req.body.email, randkey)
 
 exports.updateItem= function(req,res){
   console.log("POST");
+  res.header("Access-Control-Allow-Origin", "*");
+  res.header("Access-Control-Allow-Headers", "X-Requested-With");
   var client = new pg.Client(conString);
 
   client.connect(function(err) {
@@ -547,8 +643,7 @@ exports.updateItem= function(req,res){
                                 return console.error('error running query', err);
                                 }
                                 
-                                res.status(200);
-                                client.end();
+                               
                                 });
                    });
 
@@ -565,6 +660,8 @@ exports.updateItem= function(req,res){
 
 exports.putThumbsdown= function(req,res){
   console.log("POST");
+  res.header("Access-Control-Allow-Origin", "*");
+  res.header("Access-Control-Allow-Headers", "X-Requested-With");
   var client = new pg.Client(conString);
      
   client.connect(function(err) {
@@ -588,6 +685,8 @@ exports.putThumbsdown= function(req,res){
 
 exports.getMyPosts= function(req,res){
   console.log("GET");
+  res.header("Access-Control-Allow-Origin", "*");
+  res.header("Access-Control-Allow-Headers", "X-Requested-With");
    console.log(req.params);
     
   var client = new pg.Client(conString);
@@ -617,6 +716,8 @@ exports.getMyPosts= function(req,res){
 
 exports.getAuth= function(req,res){
   console.log("GET");
+  res.header("Access-Control-Allow-Origin", "*");
+  res.header("Access-Control-Allow-Headers", "X-Requested-With");
    console.log(req.body);
     
   var client = new pg.Client(conString);
@@ -647,6 +748,8 @@ exports.getAuth= function(req,res){
 
 exports.blockAdminUser= function(req,res){
   console.log("POST");
+  res.header("Access-Control-Allow-Origin", "*");
+  res.header("Access-Control-Allow-Headers", "X-Requested-With");
   var client = new pg.Client(conString);
      
   client.connect(function(err) {
@@ -668,6 +771,8 @@ exports.blockAdminUser= function(req,res){
 
 exports.unblockAdminUser= function(req,res){
   console.log("POST");
+  res.header("Access-Control-Allow-Origin", "*");
+  res.header("Access-Control-Allow-Headers", "X-Requested-With");
   var client = new pg.Client(conString);
      
   client.connect(function(err) {
@@ -690,6 +795,8 @@ exports.unblockAdminUser= function(req,res){
 
 exports.blockAdminItem= function(req,res){
   console.log("POST");
+  res.header("Access-Control-Allow-Origin", "*");
+  res.header("Access-Control-Allow-Headers", "X-Requested-With");
   var client = new pg.Client(conString);
      
   client.connect(function(err) {
@@ -711,6 +818,8 @@ exports.blockAdminItem= function(req,res){
 
 exports.unblockAdminItem= function(req,res){
   console.log("POST");
+  res.header("Access-Control-Allow-Origin", "*");
+  res.header("Access-Control-Allow-Headers", "X-Requested-With");
   var client = new pg.Client(conString);
      
   client.connect(function(err) {
@@ -733,6 +842,8 @@ exports.unblockAdminItem= function(req,res){
 
 exports.removeAdmin= function(req,res){
   console.log("POST");
+  res.header("Access-Control-Allow-Origin", "*");
+  res.header("Access-Control-Allow-Headers", "X-Requested-With");
   var client = new pg.Client(conString);
      
   client.connect(function(err) {
