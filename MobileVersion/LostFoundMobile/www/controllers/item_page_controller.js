@@ -1,4 +1,4 @@
-control.controller('itemPageController', [ '$scope', '$state','shareData', function($scope, $state, shareData) {
+control.controller('itemPageController', [ '$scope', '$state','$stateParams','shareData','restApi', function($scope, $state,$stateParams, shareData, restApi) {
     $scope.item_navTitle = 'Item';
 
     $scope.leftButtons = [{
@@ -13,7 +13,35 @@ control.controller('itemPageController', [ '$scope', '$state','shareData', funct
             window.history.back();
         }
     }];
+    getItemID();
 
-    $scope.item = shareData.selectedItem;
+
+    function getItemID(){
+        restApi.getItemId($stateParams.item)
+            .success(function (data) {
+                $scope.item= data.item[0];
+
+            })
+            .error(function (error) {
+                $scope.status = 'Unable to load customer data: ' + error.message;
+            });
+
+        return $scope.item;
+    }
+
+
+
+
+    $scope.thumbsdown = function(id) {
+        restApi.putThumbsdown(id)
+            .success(function (data) {
+                $scope.show = false;
+            })
+            .error(function (error) {
+
+                $scope.status = 'Unable to load customer data: ' + error.message;
+            });
+    }
+
 
 }]);

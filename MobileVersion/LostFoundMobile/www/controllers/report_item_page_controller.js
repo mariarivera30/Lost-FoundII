@@ -1,4 +1,4 @@
-control.controller('reportitem1PageController', [ '$scope', '$state', function($scope) {
+control.controller('reportitem1PageController', [ '$scope', '$state','restApi', function($scope, restApi) {
     $scope.report_navTitle = 'Report Item';
 
     $scope.leftButtons = [{
@@ -23,7 +23,7 @@ control.controller('reportitem1PageController', [ '$scope', '$state', function($
 
 
 }]);
-control.controller('reportitem2PageController', [ '$scope', '$state',  function($scope, $state) {
+control.controller('reportitem2PageController', [ '$scope', '$state','restApi',  function($scope, $state, restApi) {
 
     $scope.report_navTitle = 'Report Item';
 

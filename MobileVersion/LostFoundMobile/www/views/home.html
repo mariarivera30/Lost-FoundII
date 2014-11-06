@@ -13,7 +13,12 @@
                         </label>
                         <select width="100" style="width: 100px" >
                             <option selected >All</option>
-                            <option ng-repeat = "category in categories">{{category.categoryname}}</option>
+                            option>Bags</option>
+                            <option>Books</option>
+                            <option>Clothes</option>
+                            <option>Electronics</option>
+                            <option>Tools</option>
+                            <option>Other</option>
 
 
                         </select>
@@ -22,7 +27,7 @@
 
                 <div class="list" ng-repeat="item in lostItems" >
 
-                    <a class="item item-thumbnail-left" ui-sref="main.item" ng-click="setValue(item)">
+                    <a class="item item-thumbnail-left" ui-sref="main.item({item:item.itemid})" ng-click="setValue(item)">
                         <img ng-src={{item.itempicture}}>
                         <h2><span translate="Item:">Item</span> {{item.itemname}}</h2>
                         <p><span translate="Name:">Name:</span> {{item.itemname}}</p>
@@ -49,13 +54,18 @@
                         </label>
                         <select width="100" style="width: 100px">
                             <option selected>All</option>
-                            <option ng-repeat = "category in categories" >{{category.categoryname}}</option>
+                            option>Bags</option>
+                            <option>Books</option>
+                            <option>Clothes</option>
+                            <option>Electronics</option>
+                            <option>Tools</option>
+                            <option>Other</option>
                         </select>
                     </div>
                 </div>
                 <div class="list" ng-repeat="item in items">
 
-                    <a class="item item-thumbnail-left" ui-sref="main.item" ng-click="setValue(item)">
+                    <a class="item item-thumbnail-left" ui-sref="main.item({item:item.itemid})" ng-click="setValue(item)">
                         <img ng-src={{item.itempicture}}>
                         <h2><span translate="Item:">Item</span> {{item.itemname}}</h2>
                         <p><span translate="Name:">Name:</span> {{item.itemname}}</p>
@@ -80,14 +90,19 @@
                         </label>
                         <select width="100" style="width: 100px">
                             <option selected >All</option>
-                            <option ng-repeat = "category in categories" >{{category.categoryname}}</option>
+                            option>Bags</option>
+                            <option>Books</option>
+                            <option>Clothes</option>
+                            <option>Electronics</option>
+                            <option>Tools</option>
+                            <option>Other</option>
                         </select>
                     </div>
                 </div>
 
                  <div class="list" ng-repeat="item in foundItems" >
 
-                    <a class="item item-thumbnail-left" ui-sref="main.item" ng-click="setValue(item)">
+                    <a class="item item-thumbnail-left" ui-sref="main.item({item:item.itemid})" ng-click="setValue(item)">
                         <img ng-src={{item.itempicture}}>
                         <h2><span translate="Item:">Item</span> {{item.itemname}}</h2>
                         <p><span translate="Name:">Name:</span> {{item.itemname}}</p>

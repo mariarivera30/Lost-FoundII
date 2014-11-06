@@ -3,17 +3,20 @@
     <ion-content has-header="true" padding="true">
         <div class="list">
             <label class="item item-input">
-                <span class="input-label" translate="Email">E-mail</span>
-                <input type="text">
+                <span class="input-label" translate="Email"></span>
+                <input type="text" ng-model="email">
             </label>
             <label class="item item-input">
-                <span class="input-label" translate="Secret_key">SecretKey</span>
-                <input type="password">
+                <span class="input-label" translate="Secret_key"></span>
+                <input type="password" ng-model="passkey">
             </label>
         </div>
-        <button class="button button-stable" ui-sref = 'main.myitems2'>
-            <span translate="Find_items">Find items</span>
+        <button class="button button-stable" ng-click="login(email,passkey)">
+            <span translate="Find_items"></span>
         </button>
+        <button ng-click="check()">check</button>
+
+        <div><p>{{nose}}</p></div>
 
     </ion-content>
 
