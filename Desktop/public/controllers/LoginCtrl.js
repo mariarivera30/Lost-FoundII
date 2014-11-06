@@ -3,9 +3,9 @@ angular.module('formApp').controller('LoginCtrl', ['$scope','$location','$rootSc
 var credentials ={};
 
   LG.login = function(username,password) {
-  	 credentials = {'email':username,'key':password};
-  	var response ={};
- 	restApi.getAuth(credentials).success(function (data) {
+     credentials = {'email':username,'key':password};
+    var response ={};
+  restApi.getAuth(credentials).success(function (data) {
               response =data.user;
                 
               })
@@ -17,7 +17,13 @@ if (response.username === credentials.username)
         $rootScope.loggedInUser = true;
 
 
+               
     
+
     
   };
+
+  
+  
+  
 }]);

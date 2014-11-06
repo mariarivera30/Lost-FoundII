@@ -50,7 +50,7 @@ var translations = {
         "Continue":"Continue",
         "Contact_Info":"Contact Information:",
         "Email":"E-Mail:",
-        "select_category":"Category:",
+        "select_category":"Select a category of the item:",
         "item_status":"Item Status:",
         "Lost":"Lost",
         "Found":"Found",
@@ -62,8 +62,7 @@ var translations = {
         "comment_update":"Email every update from this item",
         "Preview":"Preview",
         "send_email":"Send you an email every time user comment",
-        "Location:":"Location:",
-        "City":"City:",
+
 
         /****Translations of maincontainer.html******/
         "Posts":"Posts",
@@ -146,7 +145,7 @@ var translations = {
         "Continue":"Continuar",
         "Contact_Info":"Informacion de contacto:",
         "Email":"Correo Electronico:",
-        "select_category":"Categoria:",
+        "select_category":"Seleccione una categoria:",
         "item_status":"Estatus del Articulo",
         "Lost":"Perdido",
         "Found":"Encontrado",
@@ -158,8 +157,7 @@ var translations = {
         "comment_update":"Avisar por correo electronico",
         "Preview":"Como se ve",
         "send_email":"Enviar un email cuando un usuario comente",
-        "Location:":"Lugar:",
-        "City":"Ciudad:",
+
 
         /****Translations of maincontainer.html******/
         "Posts":"Publicaciones",

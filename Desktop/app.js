@@ -80,6 +80,8 @@ app.get('/allComments/:id', routes.getComments);
 app.get('/anUser/:id', routes.getUserAdmin);
 app.get('/anItem/:id', routes.getItemsAdminSearchBar);
 app.get('/myPostsItems/:email/:key', routes.getMyPosts);
+app.get('/anLostItem/:id', routes.getLostItemsSearch);
+app.get('/anFoundItem/:id', routes.getFoundItemsSearch);
 
 //posts
 // app.post('/aCategories',routes.postCategories);
@@ -98,6 +100,7 @@ app.post('/unblockAdminItem/', routes.unblockAdminItem);
 app.post('/removeAdmin/', routes.removeAdmin);
 app.post('/updateUser/', routes.updateUser);
 app.post('/updateItem/', routes.updateItem);
+app.post('/resetKey/', routes.resetKey);
 
 
 //block

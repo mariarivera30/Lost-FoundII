@@ -18,6 +18,8 @@ angular.module('formApp')
         reportItemCtrl.list.itemStatus = $stateParams.itemStatus;
         reportItemCtrl.list.itempicture = 'images/' + file.name;
 
+     
+
         restApi.postItem(reportItemCtrl.list)
             .success(function () {
 

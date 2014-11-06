@@ -14,12 +14,12 @@ control.controller('homePageController', [ '$scope', '$state','shareData','restA
         }
     }];
 
-//    $scope.setValue = function(e) {
-//        $scope.itemSelected = e;
-//        shareData.selectedItem= e;
+    $scope.setValue = function(e) {
+        $scope.itemSelected = e;
+        shareData.selectedItem= e;
 
 
-    //};
+    };
     getItems();
     function getItems() {
         restApi.getItems()

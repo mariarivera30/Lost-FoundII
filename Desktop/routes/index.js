@@ -26,6 +26,7 @@ var transporter = nodemailer.createTransport({
 // the same transporter object for all e-mails
 
 // setup e-mail data with unicode symbols
+
 var mailOptions = {
     from: 'LostFound <lostfound.uprm@gmail.com>', // sender address
     to: emailto , // list of receivers
@@ -44,6 +45,93 @@ transporter.sendMail(mailOptions, function(error, info){
 });
 
 };
+
+
+exports.resetKey = function(req,res){
+  console.log("POST");
+  var randkey = generateKey();
+  res.header("Access-Control-Allow-Origin", "*");
+  res.header("Access-Control-Allow-Headers", "X-Requested-With");
+  var client = new pg.Client(conString);
+    
+  client.connect(function(err) {
+                   if (err) {
+                   return console.error('could not connect to postgres', err);
+                   }
+                   client.query("UPDATE public.users SET passkey = '"+randkey+"'  WHERE email = '"+req.body.id+"'", function(err, result) {
+                               
+                                if (err) {
+                                return console.error('error running query', err);
+                                }
+                                
+                                res.status(200);
+                                
+                                
+                                client.end();
+                                });
+                   });
+
+  sendMail(req.body.id,randkey);
+
+
+
+};
+
+
+exports.getLostItemsSearch = function(req, res) {
+    console.log("GET");
+  res.header("Access-Control-Allow-Origin", "*");
+  res.header("Access-Control-Allow-Headers", "X-Requested-With");
+  var client = new pg.Client(conString);
+    
+  client.connect(function(err) {
+                   if (err) {
+                   return console.error('could not connect to postgres', err);
+                   }
+                   client.query("SELECT * FROM public.item WHERE item.itemstatus = 'Lost' AND (item.itemname LIKE '%"+req.params.id+"%' OR item.category LIKE '%"+req.params.id+"%') ", function(err, result) {
+                               
+                                if (err) {
+                                return console.error('error running query', err);
+                                }
+                                var response = {
+                                "items" : result.rows
+                                };
+                                res.json(200,response);
+                                console.log(response);
+                                //output: Tue Jan 15 2013 19:12:47 GMT-600 (CST)
+                                client.end();
+                                });
+                   });
+
+};
+
+exports.getFoundItemsSearch = function(req, res) {
+    console.log("GET");
+  res.header("Access-Control-Allow-Origin", "*");
+  res.header("Access-Control-Allow-Headers", "X-Requested-With");
+  var client = new pg.Client(conString);
+    
+  client.connect(function(err) {
+                   if (err) {
+                   return console.error('could not connect to postgres', err);
+                   }
+                   client.query("SELECT * FROM public.item WHERE item.itemstatus = 'Found' AND (item.itemname LIKE '%"+req.params.id+"%' OR item.category LIKE '%"+req.params.id+"%') ", function(err, result) {
+                               
+                                if (err) {
+                                return console.error('error running query', err);
+                                }
+                                var response = {
+                                "items" : result.rows
+                                };
+                                res.json(200,response);
+                                console.log(response);
+                                //output: Tue Jan 15 2013 19:12:47 GMT-600 (CST)
+                                client.end();
+                                });
+                   });
+
+};
+
 
 
 
@@ -502,7 +590,8 @@ exports.getItemsAdminSearchBar = function(req, res) {
 // };
 
 exports.postItem= function(req,res){
-  var randkey = generateKey();
+  
+  
   console.log("POST");
   var client = new pg.Client(conString);
   client.connect(function(err) {
@@ -516,21 +605,24 @@ exports.postItem= function(req,res){
                                 return console.error('error running query', err);
                                 }
                                 
-                                res.status(200);
-                                client.end();
-                                });
+                                });   
+                             
+                            var randkey = generateKey();    
 
                    client.query("UPDATE public.users SET firstname = '"+req.body.firstname+"', lastname = '"+req.body.lastname+"', phone = '"+req.body.phone+"', passkey = '"+randkey+"' where email = '"+req.body.email+"'", function(err, result) {
                                
                                 if (err) {
                                 return console.error('error running query', err);
                                 }
-                                
+                                res.status(200);
                                 client.end();
                                 });
-                 
+
+
+                    
 sendMail(req.body.email, randkey)
                    });
+
 };
 
 exports.updateItem= function(req,res){
@@ -547,12 +639,11 @@ exports.updateItem= function(req,res){
                                 return console.error('error running query', err);
                                 }
                                 
-                                res.status(200);
-                                client.end();
+                               
                                 });
-                   });
+                 
 
-                 client.query("UPDATE public.users SET firstname = '"+req.body.firstname+"', lastname = '"+req.body.lastname+"', phone = '"+req.body.phone+"', passkey = '"+randkey+"' where email = '"+req.body.email+"'", function(err, result) {
+                 client.query("UPDATE public.users SET firstname = '"+req.body.firstname+"', lastname = '"+req.body.lastname+"', phone = '"+req.body.phone+"',  where email = '"+req.body.email+"'", function(err, result) {
                                
                                 if (err) {
                                 return console.error('error running query', err);
@@ -560,6 +651,8 @@ exports.updateItem= function(req,res){
                                 
                                 client.end();
                                 });
+
+                     });
 };
 
 

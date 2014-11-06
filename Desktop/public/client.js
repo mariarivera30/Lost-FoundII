@@ -6,35 +6,10 @@ var app =angular.module('app', ['formApp','ngAnimate', 'ui.router', 'ngResource'
 
 // configuring our routes 
 // =============================================================================
-app.run(function($rootScope, $location) {
 
-    $rootScope.$on( "$stateChangeStart", function(event, next, current) {
-      if ($rootScope.loggedInUser == null) {
-        // no logged user, redirect to /login
-      	if (next.templateUrl === "adminusers.html"  || next.templateUrl === "adminSettings.html"|| next.templateUrl === "adminitems.html" || next.templateUrl === "admincomment.html" || 
-      		current.templateUrl === "adminusers.html"  || current.templateUrl === "adminSettings.html"|| current.templateUrl === "adminitems.html" || current.templateUrl === "admincomment.html") {
-        		
-        		next.templateUrl="adminlogin.html";
-        } 
-    }
-        else if($rootScope.loggedInUser != null){
-        	if (current.templateUrl==="adminlogin.html" ||next.templateUrl==="adminlogin.html"){
-
-         	next.templateUrl="adminusers.html";
-        }
-        else{	(current=next);
-        }
-
-        }
-
-       
-
-    });
-  });
 
 app.config(function($stateProvider, $urlRouterProvider,$httpProvider,$compileProvider) {
 	
-   
        var oldWhiteList = $compileProvider.imgSrcSanitizationWhitelist();
   $compileProvider.imgSrcSanitizationWhitelist(/^\s*(https?|ftp|file|blob):|data:image\//);
         // Angular before v1.2 uses $compileProvider.urlSanitizationWhitelist(...)
@@ -111,7 +86,7 @@ app.config(function($stateProvider, $urlRouterProvider,$httpProvider,$compilePro
   		.state('form.admin.users', {
     		parent: 'form.admin',
     		url: '/adminusers',
-			 templateUrl: 'adminusers.html'})
+			 })
 
   		.state('form.admin.items', {
     		parent: 'form.admin',

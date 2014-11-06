@@ -32,7 +32,10 @@
         postItemPic:postItemPic,
         getAuth:getAuth,
         updateUser:updateUser,
-        updateItem:updateItem
+        updateItem:updateItem,
+        resetKey:resetKey,
+        getLostItemsSearch:getLostItemsSearch,
+        getFoundItemsSearch:getFoundItemsSearch
 
      
 
@@ -54,16 +57,16 @@
     function getUsers(){
 
     return $http.get('/allUsers');
-	};
+  };
 
 
   function getAdmins(){
     return $http.get('/allAdmins');
   };
 
- 	function getItems(){
+  function getItems(){
     return $http.get('/allItems');
-	};
+  };
 
   function getItemsAdmin(){
     return $http.get('/allItemsAdmin');
@@ -174,6 +177,21 @@
     var data = {id:id};
     return $http.post('/removeAdmin/',data);
   };
+
+   function resetKey(id){
+    var data = {id:id};
+    return $http.post('/resetKey/',data);
+  };
+
+  function getLostItemsSearch(id){
+    return $http.get('/anLostItem/'+id);
+  };
+
+  function getFoundItemsSearch(id){
+    return $http.get('/anFoundItem/'+id);
+  };
+
+
 
 }
 

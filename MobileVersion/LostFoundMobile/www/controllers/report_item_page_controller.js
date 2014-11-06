@@ -91,6 +91,11 @@ control.controller('reportitem2PageController', [ '$scope', '$state','restApi', 
         var options = new FileUploadOptions();
         options.fileKey="post";
         options.chunkedMode = false;
+        var params = {};
+       
+        options.params = params;
+        var ft = new FileTransfer();
+        ft.upload(myImg, encodeURI("https:"), onUploadSuccess, onUploadFail, options);
 
     }
 

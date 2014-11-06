@@ -1,4 +1,5 @@
 
+
 <div ng-controller="foundController as foundCtrl">
 <div class="form-group row">
    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
@@ -8,24 +9,23 @@
         
         <div class="input-group" ng-controller="categoryController as categoryCtrl">
       <div class="input-group-btn">
-        <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown"     ng-click="categoryCtrl.setValue(category)" > {{vm.translations.BY}}: <span class="caret"></span > 
-          <select  id= "categoryscroll" width="100" style="width: 120px" color="black" >
-                     <option selected> {{vm.translations.ALL}}</option>
-                     <option ng-repeat="category in categoryCtrl.categories" ng-click="categoryCtrl.setValue(Jio)">{{category}}</option>
-                
-                   
-                   </select></button>
         
+        
+           <button type="button" ng-click="foundCtrl.setItems(searchFoundItem)" class="btn btn-primary">Search</button>
+
+      </div><!-- /btn-group -->
+    
+      <input type="text" class="form-control" placeholder="{{vm.translations.SEARCH}}" ng-model="searchFoundItem">
            
 
       </div><!-- /btn-group -->
      
-      <input type="text" class="form-control" placeholder=" {{vm.translations.SEARCH}}">
+    
      
   
 <!-- /input-group -->
       </form>
-  
+   <div id="reportfoundbutton" >
        </div>
 <div class="reportbtn">
     <a ui-sref="form.reportitem({itemStatus:'Found'})"  ng-click="gotoTop()" class="btn btn-block btn-info">
@@ -34,6 +34,7 @@
 </div>
 </div>
 </div>
+
 
 <div id="list" > 
 
