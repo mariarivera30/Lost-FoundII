@@ -8,20 +8,12 @@
         
         <div class="input-group" ng-controller="categoryController as categoryCtrl">
       <div class="input-group-btn" >
-        <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown"> {{vm.translations.BY}}: <span class="caret"></span > 
-             <select  id= "categoryscroll" width="120" style="width: 120px" color="black">
-                     <option selected> {{vm.translations.ALL}}</option>
-                      
-                     <option ng-repeat="category in categoryCtrl.categories"  >{{category.name}}</option>
-                
-                   </select>
-
-                 </button>
+        
          
-           
+           <button type="button" ng-click="lostCtrl.setItems(searchLostItem)" class="btn btn-primary">Search</button>
 
       </div><!-- /btn-group -->
-     
+    
       <input type="text" class="form-control" placeholder="{{vm.translations.SEARCH}}" ng-model="searchLostItem">
      
   
@@ -29,7 +21,8 @@
       </form>
   
        </div>
-<div class="reportbtn">
+       <div id="reportlostbutton" >
+
         <a ui-sref="form.reportitem({itemStatus:'Lost'})" ng-click="gotoTop()" class="btn btn-block btn-info">
 
      {{vm.translations.REPORTLOST}} <span class="glyphicon glyphicon-circle-arrow-right"></span>
@@ -41,10 +34,10 @@
 <div id="list" > 
 
 <ul class="list-group">
-  <li class="list-group-item" ng-repeat="lostitem in lostCtrl.lostItems | filter:searchLostItem" >
+  <li class="list-group-item" ng-repeat="lostitem in lostCtrl.lostItems" >
     <div class="row">
   <div class="col-xs-6 col-md-4"><div class="itemimg"><img ng-src="{{lostitem.itempicture}}"  ui-sref="form.viewitem({ item:lostitem.itemid})"height="200" width="200"> </div></div>
-  <div class="col-xs-6 col-md-4"><h2 ><CENTER>{{lostitem.itemstatus}}</CENTER></h2><h4><CENTER> {{vm.translations.ITEMID}} {{lostitem.itemid}}</CENTER></h4><h4><CENTER>{{lostitem.locationitem}}</CENTER></h4><h4><center> {{vm.translations.SEENBY}}: {{lostitem.itemviews}}</center></h4>
+  <div class="col-xs-6 col-md-4"><h2 ><CENTER>{{lostitem.itemstatus}}</CENTER></h2><h4><CENTER> {{vm.translations.ITEMID}} {{lostitem.itemid}}</CENTER></h4><h4><CENTER>{{vm.translations.CATEGORY}}: {{lostitem.category}}</CENTER></h4><h4><CENTER>{{lostitem.locationitem}}</CENTER></h4><h4><center> {{vm.translations.SEENBY}}: {{lostitem.itemviews}}</center></h4>
  </div>
   <div class="col-xs-6 col-md-4">  
  

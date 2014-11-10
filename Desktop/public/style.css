@@ -233,6 +233,7 @@ padding-left: 10px;
     border-color:#0a1921; 
     border-radius: 20px;
 }
+
 .about{
   color: #2A4D58;
   text-align: left;
@@ -283,7 +284,12 @@ padding-left: 100px;
  width: 110px;
 font-size:12px;
 
-
+}
+#reportlostbutton{
+  padding-top: 10px;
+}
+#reportlostfound{
+  padding-top: 10px;
 }
  
 
