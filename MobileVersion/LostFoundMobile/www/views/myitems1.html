@@ -4,19 +4,16 @@
         <div class="list">
             <label class="item item-input">
                 <span class="input-label" translate="Email"></span>
-                <input type="text" ng-model="email">
+                <input type="text" ng-model="credentials.email">
             </label>
             <label class="item item-input">
                 <span class="input-label" translate="Secret_key"></span>
-                <input type="password" ng-model="passkey">
+                <input type="password" ng-model="credentials.key">
             </label>
         </div>
-        <button class="button button-stable" ng-click="login(email,passkey)">
+        <button class="button button-stable" ui-sref="main.myitems2({email:credentials.email,key:credentials.key})">
             <span translate="Find_items"></span>
         </button>
-        <button ng-click="check()">check</button>
-
-        <div><p>{{nose}}</p></div>
 
     </ion-content>
 

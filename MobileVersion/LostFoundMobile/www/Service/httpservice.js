@@ -88,6 +88,7 @@
         function postItem(newItem){
             var data = newItem;
             console.log(newItem);
+            //return $http.post('http://localhost:3000/postItem/', data);
             return $http.post('http://136.145.116.235:3000/postItem/', data);
         };
         function getAuth(credentials){

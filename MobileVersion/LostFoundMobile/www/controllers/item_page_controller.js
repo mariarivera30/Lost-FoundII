@@ -1,5 +1,5 @@
 control.controller('itemPageController', [ '$scope', '$state','$stateParams','shareData','restApi', function($scope, $state,$stateParams, shareData, restApi) {
-    $scope.item_navTitle = 'Item';
+
 
     $scope.leftButtons = [{
         type: 'button-icon icon ion-navicon',

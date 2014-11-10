@@ -1,5 +1,5 @@
-control.controller('SpecificmyitemsPageController', [ '$scope', '$state', function($scope, $state) {
-    $scope.navTitle = 'myItems';
+control.controller('SpecificmyitemsPageController', [ '$scope','$stateParams', '$state','restApi', function($scope,$stateParams, $state, restApi) {
+
 
     $scope.leftButtons = [{
         type: 'button-icon icon ion-navicon',
@@ -7,5 +7,21 @@ control.controller('SpecificmyitemsPageController', [ '$scope', '$state', functi
             $scope.toggleMenu();
         }
     }];
-    $scope.item = shareData.selectedItem;
+
+    getItemID();
+
+
+    function getItemID(){
+        restApi.getItemId($stateParams.item)
+            .success(function (data) {
+                $scope.specificItem= data.item[0];
+
+            })
+            .error(function (error) {
+                $scope.status = 'Unable to load customer data: ' + error.message;
+            });
+
+        return $scope.specificItem;
+    }
+
 }]);

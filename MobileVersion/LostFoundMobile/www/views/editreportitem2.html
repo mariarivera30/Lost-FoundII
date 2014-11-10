@@ -1,11 +1,11 @@
-<ion-view title="{{'report_navTitle'|translate}}" left-buttons="leftButtons">
+<ion-view title="{{'report_navTitle'|translate}}" left-buttons="leftButtons" right-buttons="rightButtons">
 
     <ion-content has-header="true" padding="true">
         <div class="list">
 
             <label class="item item-input">
                 <span class="input-label" translate="Item:"></span>
-                <input type="text" ng-model="myFile.itemname">
+                <input type="text" ng-model="list.itemname">
             </label>
 
 
@@ -13,7 +13,7 @@
                 <div class="input-label">
                     <span translate="select_category"></span>
                 </div>
-                <select ng-model="myFile.category">
+                <select>
                     <option ng-selected >All</option>
                     option>Bags</option>
                     <option>Books</option>
@@ -27,26 +27,26 @@
                 <div class="input-label">
                     <span translate="item_status"></span>
                 </div>
-                <select ng-model="myFile.itemStatus">
-                    <option><span translate="Lost">Lost</span></option>
-                    <option><span translate="Found">Found</span></option>
+                <select>
+                    <option><span translate="Lost"></span></option>
+                    <option><span translate="Found"></span></option>
                 </select>
             </label>
 
             <label class="item item-input">
                 <span class="input-label" translate="Location:"></span>
-                <input type="text" ng-model="myFile.location">
+                <input type="text" ng-model="list.location">
             </label>
             <label class="item item-input">
                 <span class="input-label" translate="City:"></span>
-                <input type="text" ng-model="myFile.city">
+                <input type="text" ng-model="list.city">
             </label>
 
         </div>
         <label class="item item-input item-stacked-label">
             <span class="input-label" translate="item_description"></span>
 
-            <textarea class="checkforms" placeholder={{'w_item_description'|translate}} rows="8" cols="10" ng-model="myFile.description" ng-pattern="pattern.field">
+            <textarea class="checkforms" placeholder={{'w_item_description'|translate}} rows="8" cols="10" ng-model="list.description" ng-pattern="pattern.field">
             </textarea>
         </label>
 
@@ -55,17 +55,10 @@
         <label>
             <div class="entrybuttons">
                 <p> <button class="button button-stable icon-right ion-image"
-                            ng-click="getPic()"><span translate="Upload"></span></button>
+                            ng-click = "getPic()"><span translate="Upload"></span></button>
 
                     <button class="button button-stable icon-right ion-camera"
-                            ng-click="takePic()"><span translate="Take"></span></button>
-
-                    <button class="button button-stable icon-right ion-ios7-upload"
-                            ng-click="updateValues(myFile)"
-                            >
-                        <span translate="PostItem"></span></button>
-
-                </p>
+                            ng-click="takePic()"><span translate="Take"></span></button></p>
             </div>
         </label>
         <p><h5 translate="cont_disp"></h5></p>

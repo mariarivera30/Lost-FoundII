@@ -10,19 +10,24 @@
                 </label>
                 <select width="100" style="width: 100px" >
                     <option selected >All</option>
-                    <option ng-repeat = "category in categories" >{{category.categoryname}}</option>
+                    option>Bags</option>
+                    <option>Books</option>
+                    <option>Clothes</option>
+                    <option>Electronics</option>
+                    <option>Tools</option>
+                    <option>Other</option>
                 </select>
             </div>
         </div>
-        <div class="list" ng-repeat="item in itemspre">
+        <div class="list" ng-repeat="item in myItems">
 
-            <a class="item item-thumbnail-left" ui-sref="main.specificmyitems">
-                <img src={{item.imageurl}}>
-                <h2><span translate="Item:">Item</span> {{item.itemname}}</h2>
-                <p><span translate="Name:">Name:</span> {{item.firstname}}</p>
-                <p><span translate="Location:">Location:</span> {{item.location}}</p>
-                <p><span translate="Category:">Category:</span> {{item.categry}}</p>
-                <p><span translate="Satus:">Satus:</span> {{item.status}}</p>
+            <a class="item item-thumbnail-left" ui-sref="main.specificmyitems({item:item.itemid})">
+                <img ng-src=http://136.145.116.235:3000/{{item.itempicture}}>
+                <h2><span translate="Item:"></span> {{item.itemname}}</h2>
+                <p><span translate="Name:"></span> {{item.firstname}}</p>
+                <p><span translate="Location:"></span> {{item.location}}</p>
+                <p><span translate="Category:"></span> {{item.categry}}</p>
+                <p><span translate="Satus:"></span> {{item.status}}</p>
                 <p>{{item.views}}</p>
             </a>
         </div>

@@ -4,6 +4,7 @@ angular.module('LostFound').factory('shareData', function() {
         commentofitem :{},
         searchUserEmail : {},
         itemStatus:{},
-        myItems : {}
+        myItems : {},
+        credentials:{}
     };
 });

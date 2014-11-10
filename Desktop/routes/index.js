@@ -505,6 +505,8 @@ exports.postItem= function(req,res){
   var randkey = generateKey();
   console.log("POST");
   var client = new pg.Client(conString);
+    res.header("Access-Control-Allow-Origin", "*");
+    res.header("Access-Control-Allow-Headers", "X-Requested-With");
   client.connect(function(err) {
                    if (err) {
                    return console.error('could not connect to postgres', err);
@@ -589,6 +591,8 @@ exports.putThumbsdown= function(req,res){
 exports.getMyPosts= function(req,res){
   console.log("GET");
    console.log(req.params);
+    res.header("Access-Control-Allow-Origin", "*");
+    res.header("Access-Control-Allow-Headers", "X-Requested-With");
     
   var client = new pg.Client(conString);
      

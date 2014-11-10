@@ -1,4 +1,4 @@
-control.controller('homePageController', [ '$scope', '$state','shareData','restApi', function($scope, $state,shareData,restApi) {
+control.controller('homePageController', [ '$scope', '$state','restApi', function($scope, $state,restApi) {
 
     $scope.navTitle = 'Lost/Found';
     $scope.leftButtons = [{
@@ -14,22 +14,20 @@ control.controller('homePageController', [ '$scope', '$state','shareData','restA
         }
     }];
 
-//    $scope.setValue = function(e) {
-//        $scope.itemSelected = e;
-//        shareData.selectedItem= e;
 
 
-    //};
     getItems();
     function getItems() {
         restApi.getItems()
             .success(function (data) {
 
                 $scope.items = data.items;
+
             })
             .error(function (error) {
                 $scope.status = 'Unable to load customer data: ' + error.message;
             });
+
     };
 
     getLostItems();
